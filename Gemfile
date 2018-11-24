@@ -7,7 +7,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem "pry"
-gem "pry-nav"
+gem "pry-byebug"
 gem "pry-rails"
 
 # Declare any dependencies that are still in development here instead of in
