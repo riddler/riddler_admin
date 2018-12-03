@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  guid: MyString
+  type: 
+  name: MyString
+  stepable: one
+  stepable_type: Stepable
+  position: 1
+
+two:
+  guid: MyString
+  type: 
+  name: MyString
+  stepable: two
+  stepable_type: Stepable
+  position: 1

@@ -1,0 +1,14 @@
+<h4>Available Elements</h4>
+<ul>
+<%- RiddlerAdmin::Element.available_classes.each do |klass| %>
+  <%= render klass, object: klass, step: @step %>
+<%- end %>
+</ul>
+
+<div id="new-element">
+</div>
+
+<h4>Elements</h4>
+<ul id="step-elements" class="step-elements" data-step-id="<%= @step.id %>" style="min-height: 20px; border: 1px solid black;">
+  <%= render partial: "riddler_admin/element", collection: @step.elements %>
+</ul>
