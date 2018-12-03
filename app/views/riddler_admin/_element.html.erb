@@ -8,7 +8,7 @@
       ERRORS
     <% end %>
 
-    <%= render partial: element.to_partial_path, locals: { f: f } %>
+    <%= render partial: element.to_partial_path("form"), locals: { f: f } %>
 
     <%= f.submit %>
   <% end %>

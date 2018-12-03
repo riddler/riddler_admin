@@ -8,7 +8,7 @@ module RiddlerAdmin
     acts_as_list scope: [:container_type, :container_id]
 
     def self.available_classes
-      [ Elements::Copy ]
+      [ Elements::Heading, Elements::Copy ]
     end
 
     def self.short_name
