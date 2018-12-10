@@ -11,26 +11,45 @@ module RiddlerAdmin
       [ Elements::Heading, Elements::Copy ]
     end
 
+    def self.default_class
+      Elements::Copy
+    end
+
     def self.short_name
       name.demodulize
     end
 
     def self.to_partial_path
       "#{name.underscore}/class"
-      #"riddler_admin/elements/#{short_name.underscore}/class"
     end
 
     def to_partial_path detail=nil
       [self.class.name.underscore, detail].compact.join "/"
-      #"riddler_admin/elements/#{self.class.short_name.underscore}"
     end
 
     def short_name
       self.class.short_name
     end
 
-    def self.default_class
-      Elements::Copy
+    # Used in serialization
+    def object
+      type.demodulize.underscore
+    end
+
+    def definition_hash options=nil
+      options ||= {}
+      serializable_hash options.merge(serializable_hash_options)
+    end
+
+    def serializable_hash_options
+      {
+        methods: :object,
+        except: excluded_attrs
+      }
+    end
+
+    def excluded_attrs
+      [:created_at, :updated_at, :container_type, :container_id, :position, :name]
     end
   end
 end

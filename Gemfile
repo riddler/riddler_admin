@@ -9,6 +9,8 @@ gemspec
 gem "pg"
 gem "puma"
 
+gem "riddler", path: "../riddler"
+
 group :development do
   gem "pry"
   gem "pry-byebug"

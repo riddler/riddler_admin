@@ -2,7 +2,7 @@ require_dependency "riddler_admin/application_controller"
 
 module RiddlerAdmin
   class StepsController < ApplicationController
-    before_action :set_step, only: [:show, :edit, :update, :destroy]
+    before_action :set_step, only: [:show, :edit, :update, :destroy, :preview]
     before_action :set_step_class
 
     # GET /steps
@@ -12,6 +12,7 @@ module RiddlerAdmin
 
     # GET /steps/1
     def show
+      step_definition = @step.definition_hash
     end
 
     # GET /steps/new

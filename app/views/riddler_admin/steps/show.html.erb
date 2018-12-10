@@ -11,4 +11,11 @@
   </span>
 </h1>
 
-<%= render partial: @step.to_partial_path("show") %>
+<div id="step-preview" style="float: right; width: 49%; border: 1px solid blue;">
+  <%= render partial: "preview", object: @step %>
+</div>
+
+<div style="float: left; width: 49%">
+  <%= render partial: @step.to_partial_path("show") %>
+</div>
+
