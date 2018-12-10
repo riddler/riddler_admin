@@ -1,4 +1,4 @@
-<li id="<%= element.id %>" data-id="<%= element.id %>">
+<li class="list-group-item" id="<%= element.id %>" data-id="<%= element.id %>">
   <b><%= element.short_name %> Element</b>
 
   <%= link_to "Delete", element, method: :delete, remote: true, data: { confirm: "Are you sure?" } %>

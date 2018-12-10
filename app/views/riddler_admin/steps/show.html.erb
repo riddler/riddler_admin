@@ -5,17 +5,10 @@
 
 <h1>
   <%= @step.name %>
-  <span style="font-size:0.4em; font-weight:normal; color: #666;">
+  <small class="text-muted" style="font-size: 0.4em;">
     <%= @step.type.demodulize.titleize %> Step
     <%= @step.id %>
-  </span>
+  </small>
 </h1>
 
-<div id="step-preview" style="float: right; width: 49%; border: 1px solid blue;">
-  <%= render partial: "preview", object: @step %>
-</div>
-
-<div style="float: left; width: 49%">
-  <%= render partial: @step.to_partial_path("show") %>
-</div>
-
+<%= render partial: @step.to_partial_path("show") %>

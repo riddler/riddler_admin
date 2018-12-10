@@ -1,4 +1,5 @@
 require "acts_as_list"
+require "bootstrap"
 require "jquery-rails"
 require "jquery-ui-rails"
 require "ksuid"
