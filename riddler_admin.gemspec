@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = RiddlerAdmin::VERSION
   s.authors     = ["JohnnyT"]
   s.email       = ["ubergeek3141@gmail.com"]
-  s.homepage    = "https://github.com/riddler-engine/riddler_admin"
+  s.homepage    = "https://github.com/riddler/riddler_admin"
   s.summary     = "Admin Rails engine for Riddler"
   s.license     = "MIT"
 
