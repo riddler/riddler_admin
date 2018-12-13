@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_list"
   s.add_dependency "jquery-rails"
   s.add_dependency "jquery-ui-rails"
+  s.add_dependency "active_model_serializers"
 
   s.add_development_dependency "sqlite3"
 end
