@@ -9,7 +9,7 @@ gemspec
 gem "pg"
 gem "puma"
 
-gem "riddler", path: "../riddler"
+#gem "riddler", path: "../riddler"
 
 group :development do
   gem "pry"

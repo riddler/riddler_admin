@@ -1,9 +1,4 @@
 PATH
-  remote: ../riddler
-  specs:
-    riddler (0.1.0)
-
-PATH
   remote: .
   specs:
     riddler_admin (0.1.0)
@@ -13,6 +8,7 @@ PATH
       jquery-ui-rails
       ksuid
       rails (~> 5.2.1)
+      riddler
 
 GEM
   remote: https://rubygems.org/
@@ -87,6 +83,7 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     ksuid (0.1.0)
+    liquid (4.0.1)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -144,6 +141,9 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    riddler (0.1.0)
+      ksuid
+      liquid
     sass (3.7.2)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -179,7 +179,6 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
-  riddler!
   riddler_admin!
   sqlite3
   web-console
