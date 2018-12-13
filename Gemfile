@@ -1,10 +1,22 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Declare your gem's dependencies in riddler_admin.gemspec.
+# Declare your gem"s dependencies in riddler_admin.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
+
+gem "pg"
+gem "puma"
+
+gem "riddler", path: "../riddler"
+
+group :development do
+  gem "pry"
+  gem "pry-byebug"
+  gem "pry-rails"
+  gem "web-console"
+end
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
@@ -12,4 +24,4 @@ gemspec
 # your gem to rubygems.org.
 
 # To use a debugger
-# gem 'byebug', group: [:development, :test]
+# gem "byebug", group: [:development, :test]

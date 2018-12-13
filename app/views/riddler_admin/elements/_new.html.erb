@@ -1,0 +1,15 @@
+<%= form_with model: @element do |f| %>
+  <h5>New Element</h5>
+  <% if @element.errors.any? %>
+    ERRORS
+  <% end %>
+
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :type %>
+  <%= f.hidden_field :container_type %>
+  <%= f.hidden_field :container_id %>
+
+  <%= render partial: "#{@element.to_partial_path}/form", locals: { f: f } %>
+
+  <%= f.submit %>
+<% end %>

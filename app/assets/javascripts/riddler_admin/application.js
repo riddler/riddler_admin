@@ -12,4 +12,10 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require jquery3
+//= require jquery-ui/widgets/draggable
+//= require jquery-ui/widgets/droppable
+//= require jquery-ui/widgets/sortable
+//= require popper
+//= require bootstrap-sprockets
 //= require_tree .

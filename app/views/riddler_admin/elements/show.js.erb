@@ -1,0 +1,4 @@
+$("#new-element").fadeOut().html("").show();
+
+$("#step-elements")
+  .html("<%= j render partial: "riddler_admin/element", collection: @element.container.elements %>")

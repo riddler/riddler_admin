@@ -1,0 +1,15 @@
+<li class="list-group-item" id="<%= element.id %>" data-id="<%= element.id %>">
+  <b><%= element.short_name %> Element</b>
+
+  <%= link_to "Delete", element, method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
+
+  <%= form_with model: element do |f| %>
+    <% if element.errors.any? %>
+      ERRORS
+    <% end %>
+
+    <%= render partial: element.to_partial_path("form"), locals: { f: f } %>
+
+    <%= f.submit %>
+  <% end %>
+</li>
