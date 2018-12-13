@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
+  s.add_dependency "riddler"
+
   s.add_dependency "rails", "~> 5.2.1"
   s.add_dependency "bootstrap", "~> 4.1.3"
   s.add_dependency "ksuid"
