@@ -1,6 +1,38 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(document).ready(function(){
+  $('#step-preview-refresh').on('ajax:beforeSend', function(evt) {
+    paramsSource = $("#context-params-source").val()
+
+    if (paramsSource != "") {
+      var data = new window.FormData(),
+        paramsLines = paramsSource.split("\n");
+
+      $.each(paramsLines, function(idx, line) {
+        pair = line.split(":");
+        key = $.trim(pair[0]);
+        val = $.trim(pair[1]);
+        data.append(key, val);
+      });
+
+      evt.detail[1].data = data
+    };
+
+
+    headersSource = $("#context-headers-source").val()
+    if (headersSource != "") {
+      headersLines = headersSource.split("\n");
+      xhr = evt.detail[0];
+
+      $.each(headersLines, function(idx, line) {
+        pair = line.split(":");
+        key = $.trim(pair[0]);
+        val = $.trim(pair[1]);
+        xhr.setRequestHeader(key, val);
+      });
+    }
+  });
+
 
   $("#step-elements").sortable({
     revert: 50,
@@ -15,28 +47,6 @@ $(document).ready(function(){
         url: "/riddler_admin/elements/sort",
         data: $.param({ element_order: element_ids })
       })
-    },
-
-
-    old_update: function(event, ui) {
-      params = {
-        type: ui.item.data("klass"),
-        step_id: ui.item.parent().data("stepId")
-      }
-      $.get("/riddler_admin/elements/new", params, function(data) {
-        ui.item.removeAttr("style");
-        ui.item.html(data);
-      });
     }
   })
-
-  /*
-  $(".element-classes-draggable").draggable({
-    connectToSortable: "#step-elements",
-    revertDuration: 50,
-    revert: "invalid",
-    helper: "clone"
-  })
-  */
-
 })

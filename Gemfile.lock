@@ -1,7 +1,15 @@
 PATH
+  remote: ../riddler
+  specs:
+    riddler (0.1.0)
+      ksuid
+      liquid
+
+PATH
   remote: .
   specs:
     riddler_admin (0.1.0)
+      active_model_serializers
       acts_as_list
       bootstrap (~> 4.1.3)
       jquery-rails
@@ -36,6 +44,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.10.8)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (5.2.2)
       activesupport (= 5.2.2)
       globalid (>= 0.3.6)
@@ -66,6 +79,8 @@ GEM
       sass (>= 3.5.2)
     builder (3.2.3)
     byebug (10.0.2)
+    case_transform (0.2)
+      activesupport
     coderay (1.1.2)
     concurrent-ruby (1.1.3)
     crass (1.0.4)
@@ -82,6 +97,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    jsonapi-renderer (0.2.0)
     ksuid (0.1.0)
     liquid (4.0.1)
     loofah (2.2.3)
@@ -141,9 +157,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    riddler (0.1.0)
-      ksuid
-      liquid
     sass (3.7.2)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -179,6 +192,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  riddler!
   riddler_admin!
   sqlite3
   web-console

@@ -1,5 +1,5 @@
 <h4>Step Preview</h4>
 
-<pre>
-<%= JSON.pretty_generate preview.definition_hash %>
-</pre>
+<%= link_to "Refresh Preview", preview_step_path(@step), id: "step-preview-refresh", remote: true, method: :post %>
+
+<pre id="step-preview-content"></pre>
