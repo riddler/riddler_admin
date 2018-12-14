@@ -1,6 +1,5 @@
 <h4>Step Preview</h4>
-<% use_case = ::Riddler::UseCases::PreviewStep.new preview.definition_hash %>
 
-<pre>
-<%= JSON.pretty_generate use_case.process %>
-</pre>
+<%= link_to "Refresh Preview", preview_step_path(@step), id: "step-preview-refresh", remote: true, method: :post %>
+
+<pre id="step-preview-content"></pre>

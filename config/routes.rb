@@ -1,5 +1,8 @@
 RiddlerAdmin::Engine.routes.draw do
-  resources :steps
+  resources :steps do
+    post "preview", on: :member
+  end
+
   resources :elements do
     put "sort", on: :collection
   end
