@@ -11,6 +11,9 @@ gem "puma"
 
 gem "riddler", path: "riddler"
 
+gem "faraday"
+gem "faraday_middleware"
+
 group :development do
   gem "pry"
   gem "pry-byebug"
