@@ -7,6 +7,12 @@ module RiddlerAdmin
 
     acts_as_list scope: [:container_type, :container_id]
 
+    validates_presence_of :name
+
+    # Alphanumeric and underscore only - no whitespace.
+    # We might consider doing lowercase only for snake casing.
+    validates_format_of :name, with: /\A[a-z][a-zA-Z0-9_]*\z/
+
     def self.available_classes
       [
         Elements::Heading,
@@ -54,7 +60,7 @@ module RiddlerAdmin
     end
 
     def excluded_attrs
-      [:created_at, :updated_at, :container_type, :container_id, :position, :name]
+      [:created_at, :updated_at, :container_type, :container_id, :position]
     end
   end
 end

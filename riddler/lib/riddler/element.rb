@@ -1,5 +1,4 @@
 module Riddler
-
   class Element
     attr_reader :definition, :context
 
@@ -18,20 +17,12 @@ module Riddler
       @context = context
     end
 
-    #def id
-    #  definition["id"]
-    #end
-
-    #def type
-    #  self.class.type
-    #end
-
     def to_hash
       {
         type: self.class.type,
-        id: definition["id"]
+        id: definition["id"],
+        name: definition["name"]
       }
     end
   end
-
 end

@@ -8,6 +8,9 @@
       ERRORS
     <% end %>
 
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
     <%= render partial: element.to_partial_path("form"), locals: { f: f } %>
 
     <%= f.submit %>
