@@ -8,9 +8,9 @@ module Riddler
       step_type = definition["object"]
 
       # Maybe this should be a registry
-      klass = subclasses.detect { |klass| klass.type == step_type }
+      klazz = subclasses.detect { |klass| klass.type == step_type }
 
-      klass.new definition, context
+      klazz.new definition, context
     end
 
     def initialize definition, context
