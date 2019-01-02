@@ -1,6 +1,6 @@
 module RiddlerAdmin
   module Elements
-    class Copy < Element
+    class Text < Element
       validates_presence_of :text
 
       def self.model_name
