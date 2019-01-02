@@ -10,8 +10,9 @@ module RiddlerAdmin
     def self.available_classes
       [
         Elements::Heading,
+        Elements::Image,
+        Elements::Link,
         Elements::Text,
-        Elements::Link
       ]
     end
 
