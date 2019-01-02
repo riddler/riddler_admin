@@ -7,6 +7,8 @@ module RiddlerAdmin
 
     acts_as_list scope: [:container_type, :container_id]
 
+    validates_presence_of :name
+
     def self.available_classes
       [
         Elements::Heading,

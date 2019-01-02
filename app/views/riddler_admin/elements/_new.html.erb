@@ -18,6 +18,9 @@
   <%= f.hidden_field :container_type %>
   <%= f.hidden_field :container_id %>
 
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
   <%= render partial: "#{@element.to_partial_path}/form", locals: { f: f } %>
 
   <%= f.submit %>
