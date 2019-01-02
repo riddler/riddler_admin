@@ -1,11 +1,4 @@
 PATH
-  remote: ../riddler
-  specs:
-    riddler (0.1.0)
-      ksuid
-      liquid
-
-PATH
   remote: .
   specs:
     riddler_admin (0.1.0)
@@ -17,6 +10,13 @@ PATH
       ksuid
       rails (~> 5.2.1)
       riddler
+
+PATH
+  remote: riddler
+  specs:
+    riddler (0.1.0)
+      ksuid
+      liquid
 
 GEM
   remote: https://rubygems.org/
