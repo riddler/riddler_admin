@@ -9,6 +9,10 @@ module RiddlerAdmin
 
     validates_presence_of :name
 
+    # Alphanumeric and underscore only - no whitespace.
+    # We might consider doing lowercase only for snake casing.
+    validates_format_of :name, with: /^[a-zA-Z0-9_]*$/
+
     def self.available_classes
       [
         Elements::Heading,
