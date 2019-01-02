@@ -11,7 +11,7 @@ module RiddlerAdmin
 
     # Alphanumeric and underscore only - no whitespace.
     # We might consider doing lowercase only for snake casing.
-    validates_format_of :name, with: /^[a-z][a-zA-Z0-9_]*$/
+    validates_format_of :name, with: /\A[a-z][a-zA-Z0-9_]*\z/
 
     def self.available_classes
       [
@@ -60,7 +60,7 @@ module RiddlerAdmin
     end
 
     def excluded_attrs
-      [:created_at, :updated_at, :container_type, :container_id, :position, :name]
+      [:created_at, :updated_at, :container_type, :container_id, :position]
     end
   end
 end
