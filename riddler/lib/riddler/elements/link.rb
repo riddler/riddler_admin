@@ -1,9 +1,12 @@
 module Riddler
   module Elements
-
-    class Copy < ::Riddler::Element
+    class Link < ::Riddler::Element
       def self.type
-        "copy"
+        "link"
+      end
+
+      def href
+        context.render definition["href"]
       end
 
       def text
@@ -11,9 +14,8 @@ module Riddler
       end
 
       def to_hash
-        super.merge text: text
+        super.merge text: text, href: href
       end
     end
-
   end
 end

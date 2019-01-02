@@ -1,0 +1,3 @@
+<li class="list-group-item" data-klass="<%= object.name %>">
+  <%= link_to "New #{object.short_name} Element", new_element_path(type: object.name, step_id: @step.id), remote: true %>
+</li>

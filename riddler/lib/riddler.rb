@@ -8,8 +8,10 @@ require "riddler/context_builder"
 require "riddler/context"
 
 require "riddler/element"
-require "riddler/elements/copy"
+require "riddler/elements/text"
 require "riddler/elements/heading"
+require "riddler/elements/image"
+require "riddler/elements/link"
 
 require "riddler/step"
 require "riddler/steps/content"
