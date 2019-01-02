@@ -1,8 +1,17 @@
 <%= form_with model: @element do |f| %>
-  <h5>New Element</h5>
   <% if @element.errors.any? %>
-    ERRORS
+    <div id="error_explanation">
+      <h2><%= pluralize(@element.errors.count, "error") %> prohibited this step from being saved:</h2>
+
+      <ul>
+      <% @element.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
+
+  <h5>New Element</h5>
 
   <%= f.hidden_field :id %>
   <%= f.hidden_field :type %>
