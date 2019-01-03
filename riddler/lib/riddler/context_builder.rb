@@ -1,5 +1,4 @@
 module Riddler
-
   class ContextBuilder
     attr_reader :params, :headers
 
@@ -12,5 +11,4 @@ module Riddler
       ::Riddler::Context.new params: params, headers: headers
     end
   end
-
 end

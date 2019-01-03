@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/predicator/predicator.git
+  revision: a8fdc974b96ae1a59e821462f64c4a1b9ae14d6a
+  specs:
+    predicator (1.2.0)
+
 PATH
   remote: .
   specs:
@@ -188,6 +194,7 @@ PLATFORMS
 
 DEPENDENCIES
   pg
+  predicator!
   pry
   pry-byebug
   pry-rails
@@ -198,4 +205,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.17.1
+   1.17.2

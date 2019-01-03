@@ -1,5 +1,4 @@
 module Riddler
-
   class Step
     attr_reader :definition, :context
 
@@ -18,14 +17,6 @@ module Riddler
       @context = context
     end
 
-    #def id
-    #  definition["id"]
-    #end
-
-    #def type
-    #  self.class.type
-    #end
-
     def to_hash
       {
         type: self.class.type,
@@ -33,5 +24,4 @@ module Riddler
       }
     end
   end
-
 end

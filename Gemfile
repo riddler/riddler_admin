@@ -11,6 +11,8 @@ gem "puma"
 
 gem "riddler", path: "riddler"
 
+gem "predicator", github: "predicator/predicator"
+
 group :development do
   gem "pry"
   gem "pry-byebug"

@@ -16,6 +16,7 @@ class CreateRiddlerAdminSteps < ActiveRecord::Migration[5.2]
       t.integer :position
       t.string :text
       t.string :href
+      t.string :include_predicate, default: "true"
     end
   end
 end
