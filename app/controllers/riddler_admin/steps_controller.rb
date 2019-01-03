@@ -12,7 +12,7 @@ module RiddlerAdmin
 
     # GET /steps/1
     def show
-      step_definition = @step.definition_hash
+      @step_definition = @step.definition_hash
     end
 
     # GET /steps/new
@@ -29,9 +29,11 @@ module RiddlerAdmin
       original_headers = request.headers.to_h.
         select{|k,v| k.starts_with? "HTTP_"}.
         map{|k,v| [k.downcase.gsub(/^http_/, ""), v] }
+
       request_headers = Hash[original_headers]
 
       definition = @step.definition_hash
+
       @use_case = ::Riddler::UseCases::PreviewStep.new definition,
         params: params.to_unsafe_h,
         headers: request_headers
