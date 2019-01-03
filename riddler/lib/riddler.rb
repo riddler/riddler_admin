@@ -4,6 +4,8 @@ require "liquid"
 
 require "riddler/drops/hash_drop"
 
+require "riddler/configuration"
+
 require "riddler/context_builder"
 require "riddler/context_director"
 require "riddler/context"
