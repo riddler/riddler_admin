@@ -13,13 +13,13 @@
   </div>
 </div>
 
-
 <table class="table">
   <thead>
     <tr>
+      <th>Name</th>
       <th>Id</th>
       <th>Type</th>
-      <th>Name</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -27,15 +27,12 @@
   <tbody>
     <% @steps.each do |step| %>
       <tr>
+        <td><%= link_to step.name, step %></td>
         <td><%= step.id %></td>
         <td><%= step.type.demodulize %></td>
-        <td><%= step.name %></td>
+
         <td>
-          <div class="btn-group">
-            <%= link_to 'Show', step, class: 'btn btn-light' %>
-            <%= link_to 'Edit', edit_step_path(step), class: 'btn btn-light' %>
-            <%= link_to 'Destroy', step, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-light' %>
-          </div>
+            <%= link_to 'Delete', step, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-light' %>
         </td>
       </tr>
     <% end %>
