@@ -9,9 +9,9 @@ $(document).ready(function(){
         paramsLines = paramsSource.split("\n");
 
       $.each(paramsLines, function(idx, line) {
-        pair = line.split(":");
-        key = $.trim(pair[0]);
-        val = $.trim(pair[1]);
+        var pair = line.split(":");
+        var key = $.trim(pair[0]);
+        var val = $.trim(pair[1]);
         data.append(key, val);
       });
 
@@ -21,13 +21,13 @@ $(document).ready(function(){
 
     headersSource = $("#context-headers-source").val()
     if (headersSource != "") {
-      headersLines = headersSource.split("\n");
-      xhr = evt.detail[0];
+      var headersLines = headersSource.split("\n");
+      var xhr = evt.detail[0];
 
       $.each(headersLines, function(idx, line) {
-        pair = line.split(":");
-        key = $.trim(pair[0]);
-        val = $.trim(pair[1]);
+        var pair = line.split(":");
+        var key = $.trim(pair[0]);
+        var val = $.trim(pair[1]);
         xhr.setRequestHeader(key, val);
       });
     }
