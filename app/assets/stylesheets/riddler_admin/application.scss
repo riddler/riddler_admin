@@ -11,4 +11,13 @@
  * It is generally better to create a new file per style scope.
  *
  */
+@import "bootstrap";
 @import "marx.min.css";
+
+button, input[type="submit"] {
+  margin-top: 8px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 8px;
+}
