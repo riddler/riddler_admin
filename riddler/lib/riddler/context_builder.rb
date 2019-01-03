@@ -1,15 +1,16 @@
 module Riddler
 
   class ContextBuilder
-    attr_reader :params, :headers
+    attr_reader :context
 
-    def initialize params: {}, headers: {}
-      @params = params
-      @headers = headers
+    def initialize context
+      @context = context
     end
 
-    def build
-      ::Riddler::Context.new params: params, headers: headers
+    # Inspect context for identifiers or data.
+    # Add any additional relevant information to the context
+    def process
+      # no-op
     end
   end
 
