@@ -6,6 +6,7 @@ require "jquery-ui-rails"
 require "ksuid"
 
 require "riddler_admin/engine"
+require "riddler"
 
 module RiddlerAdmin
   def self.table_name_prefix
