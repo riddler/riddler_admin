@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm">
+    <p id="notice"><%= notice %></p>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_step_path(@step) %> |
-<%= link_to 'Steps', steps_path %>
-
-<h1>
-  <%= @step.name %>
-  <small class="text-muted" style="font-size: 0.4em;">
-    <%= @step.type.demodulize.titleize %> Step
-    <%= @step.id %>
-  </small>
-</h1>
+<div class="row">
+  <div class="col-sm-6">
+    <h1>
+      <%= @step.name %>
+      <small class="text-muted" style="font-size: 0.4em;">
+        <%= @step.type.demodulize.titleize %> Step
+        <%= @step.id %>
+      </small>
+    </h1>
+  </div>
+  <div class="col-sm-6">
+      <%= link_to 'Edit name', edit_step_path(@step), class: 'btn btn-light float-right' %>
+  </div>
+</div>
 
 <%= render partial: @step.to_partial_path("show") %>

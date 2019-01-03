@@ -1,5 +1,13 @@
-<h4>Step Preview</h4>
+<div class="row">
+  <div class="col-sm">
+    <h4>Step Preview</h4>
+  </div>
+</div>
 
-<%= link_to "Refresh Preview", preview_step_path(@step), id: "step-preview-refresh", remote: true, method: :post %>
+<div class="row">
+  <div class="col-sm">
+    <%= link_to "Refresh Preview", preview_step_path(@step), id: "step-preview-refresh", remote: true, method: :post %>
 
-<pre id="step-preview-content"></pre>
+    <pre id="step-preview-content"></pre>
+  </div>
+</div>
