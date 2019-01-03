@@ -15,9 +15,18 @@ module Riddler
       variables[name.to_s] = drop_for value
     end
 
+    def variable name
+      variables[name.to_s]
+    end
+
     def render string
       template = ::Liquid::Template.parse string
       template.render variables
+    end
+
+    def method_missing method_name, *_args
+      return super unless variables.key? method_name.to_s
+      variable method_name
     end
 
     private
