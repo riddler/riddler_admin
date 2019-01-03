@@ -37,8 +37,6 @@ module RiddlerAdmin
       @use_case = ::Riddler::UseCases::PreviewStep.new definition,
         params: params.to_unsafe_h,
         headers: request_headers
-
-      render json: @use_case.process
     end
 
     # POST /steps
