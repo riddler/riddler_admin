@@ -35,7 +35,7 @@ module Riddler
 
     def has_include_predicate?
       definition.key?("include_predicate") and
-        definition["include_predicate"].strip != ""
+        definition["include_predicate"].to_s.strip != ""
     end
 
   end
