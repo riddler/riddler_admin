@@ -1,7 +1,7 @@
 module Riddler
 
   class Step
-    attr_reader :definition, :context
+    attr_reader :definition, :context, :preview_enabled
 
     def self.for definition, context
       # This should be "type" not "object"

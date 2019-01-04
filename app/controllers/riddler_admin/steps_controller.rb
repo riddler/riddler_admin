@@ -26,6 +26,8 @@ module RiddlerAdmin
 
     # POST /steps/1/preview
     def preview
+      render json: {status: 'disabled'}.to_json && return unless @step.preview_enabled
+
       original_headers = request.headers.to_h.
         select{|k,v| k.starts_with? "HTTP_"}.
         map{|k,v| [k.downcase.gsub(/^http_/, ""), v] }
