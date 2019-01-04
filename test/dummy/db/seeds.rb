@@ -22,9 +22,9 @@ module RiddlerAdmin
 
     puts "  Creating Business Text"
     Elements::Heading.create! name: "text",
-      text: "Hey owner of {{ account.business_name }}, I'm Nicolina, a Product Designer at Nav. I'd love to hear your thoughts on our onboarding process.",
+      text: "Hey owner of {{ enterprise_business.name }}, I'm Nicolina, a Product Designer at Nav. I'd love to hear your thoughts on our onboarding process.",
       container: variant,
-      include_predicate: "account.business_name is present"
+      include_predicate: "enterprise_business.name is present"
 
     puts "  Creating Default Text"
     Elements::Heading.create! name: "text",
@@ -44,7 +44,7 @@ module RiddlerAdmin
   step = Steps::Content.create! id: "st_pokemon", name: "Pokemon", preview_enabled: true
 
   puts "Creating Heading"
-  Elements::Heading.create! name: "heading", text: "{{ pokemon.name }}", container: step
+  Elements::Heading.create! name: "heading", text: "{{ pokemon.name | capitalize }}", container: step
 
   Elements::Text.create! name: "text",
     text: "height: {{ pokemon.height }} weight: {{ pokemon.weight }}",
