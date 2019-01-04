@@ -7,9 +7,15 @@ module Riddler
       element_type = definition["object"]
 
       # Maybe this should be a registry
-      klass = subclasses.detect { |klass| klass.type == element_type }
+      klazz = subclasses.detect { |klass| klass.type == element_type }
 
-      klass.new definition, context
+      klazz.new definition, context
+    end
+
+    def include?
+      return true unless has_include_predicate?
+      predicate = definition["include_predicate"]
+      Predicator.evaluate predicate, context.to_liquid
     end
 
     def initialize definition, context
@@ -24,5 +30,13 @@ module Riddler
         name: definition["name"]
       }
     end
+
+    private
+
+    def has_include_predicate?
+      definition.key?("include_predicate") and
+        definition["include_predicate"].strip != ""
+    end
+
   end
 end

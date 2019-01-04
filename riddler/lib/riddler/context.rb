@@ -24,6 +24,10 @@ module Riddler
       template.render variables
     end
 
+    def to_liquid
+      Liquid::Context.new [variables]
+    end
+
     def method_missing method_name, *_args
       return super unless variables.key? method_name.to_s
       variable method_name

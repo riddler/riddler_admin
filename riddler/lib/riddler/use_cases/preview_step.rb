@@ -1,6 +1,5 @@
 module Riddler
   module UseCases
-
     class PreviewStep
       attr_reader :definition, :params, :headers, :step
 
@@ -27,6 +26,5 @@ module Riddler
         director.context
       end
     end
-
   end
 end

@@ -1,5 +1,4 @@
 module Riddler
-
   class ContextBuilder
     attr_reader :context
 
@@ -13,5 +12,4 @@ module Riddler
       # no-op
     end
   end
-
 end
