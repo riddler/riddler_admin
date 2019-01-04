@@ -10,8 +10,34 @@
   <%= javascript_include_tag "riddler_admin/application" %>
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Riddler</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <%= link_to 'Home', '/riddler_admin', class: 'nav-link' %>
 
-<%= yield %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Steps
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to 'All steps', steps_path, class: 'dropdown-item' %>
+            <div class="dropdown-divider"></div>
+            <%= link_to 'New step', new_step_path, class: 'dropdown-item' %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
 
+      <%= yield %>
+
+  </div>
 </body>
 </html>
