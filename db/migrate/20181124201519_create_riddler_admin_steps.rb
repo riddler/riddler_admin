@@ -5,6 +5,7 @@ class CreateRiddlerAdminSteps < ActiveRecord::Migration[5.2]
       t.timestamps
       t.string :type, null: false
       t.string :name
+      t.boolean :preview_enabled, default: false
     end
 
     create_table :riddler_elements, id: false do |t|

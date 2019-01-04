@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
     t.datetime "updated_at", null: false
     t.string "type", null: false
     t.string "name"
+    t.boolean "preview_enabled", default: false
     t.index ["id"], name: "index_riddler_steps_on_id"
   end
 

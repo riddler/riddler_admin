@@ -2,7 +2,7 @@ require_dependency "riddler_admin/application_controller"
 
 module RiddlerAdmin
   class StepsController < ApplicationController
-    before_action :set_step, only: [:show, :edit, :update, :destroy, :preview]
+    before_action :set_step, only: [:show, :edit, :update, :destroy, :preview, :toggle]
     before_action :set_step_class
 
     # GET /steps
@@ -26,17 +26,26 @@ module RiddlerAdmin
 
     # POST /steps/1/preview
     def preview
-      original_headers = request.headers.to_h.
-        select{|k,v| k.starts_with? "HTTP_"}.
-        map{|k,v| [k.downcase.gsub(/^http_/, ""), v] }
+      if @step.preview_enabled
+        original_headers = request.headers.to_h.
+          select{|k,v| k.starts_with? "HTTP_"}.
+          map{|k,v| [k.downcase.gsub(/^http_/, ""), v] }
 
-      request_headers = Hash[original_headers]
+        request_headers = Hash[original_headers]
 
-      definition = @step.definition_hash
+        definition = @step.definition_hash
 
-      @use_case = ::Riddler::UseCases::PreviewStep.new definition,
-        params: params.to_unsafe_h,
-        headers: request_headers
+        @use_case = ::Riddler::UseCases::PreviewStep.new definition,
+          params: params.to_unsafe_h,
+          headers: request_headers
+      else
+        render json: {status: 'disabled'}.to_json
+      end
+    end
+
+    def toggle
+      @step.update_attributes(preview_enabled: !@step.preview_enabled)
+      redirect_to @step
     end
 
     # POST /steps

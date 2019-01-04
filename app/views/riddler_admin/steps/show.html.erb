@@ -16,6 +16,12 @@
   </div>
   <div class="col-sm-6">
       <%= link_to 'Edit name', edit_step_path(@step), class: 'btn btn-light float-right' %>
+      <%= link_to "#{@step.preview_enabled ? 'Disable' : 'Enable'} Preview", toggle_step_path(@step), class: 'btn btn-light float-right mr-2' %>
+      <% if @step.preview_enabled %>
+        <span class="badge badge-success float-right mr-2 mt-2">Preview Enabled</span>
+      <% else %>
+        <span class="badge badge-secondary float-right mr-2 mt-2">Preview Disabled</span>
+      <% end %>
   </div>
 </div>
 
