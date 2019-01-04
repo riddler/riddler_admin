@@ -1,50 +1,80 @@
-<ul id="step-tabs" class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" id="elements-tab" data-toggle="tab" href="#elements" role="tab" aria-controls="elements" aria-selected="true">Elements</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="step-definition-tab" data-toggle="tab" href="#step-definition" role="tab" aria-controls="step-definition" aria-selected="false">Definition</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="step-context-tab" data-toggle="tab" href="#step-context" role="tab" aria-controls="step-context" aria-selected="false">Context</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="step-preview-tab" data-toggle="tab" href="#step-preview" role="tab" aria-controls="step-preview" aria-selected="false">Preview</a>
-  </li>
-</ul>
+<div class="row" style="margin-bottom: 32px;">
+  <div class="col-sm">
 
-<div class="tab-content" id="step-tabs-content">
-  <div class="tab-pane fade show active" id="elements" role="tabpanel" aria-labelledby="elements-tab">
-    <h4>Available Elements</h4>
-    <div class="row">
-      <div class="col-4">
-        <ul class="list-group">
-        <%- RiddlerAdmin::Element.available_classes.each do |klass| %>
-          <%= render klass, object: klass, step: @step %>
-        <%- end %>
-        </ul>
-      </div>
-      <div class="col-8">
-        <div id="new-element">
-        </div>
+    <ul id="step-tabs" class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" id="elements-tab" data-toggle="tab" href="#elements" role="tab" aria-controls="elements" aria-selected="true">Elements</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="step-definition-tab" data-toggle="tab" href="#step-definition" role="tab" aria-controls="step-definition" aria-selected="false">Definition</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="step-context-tab" data-toggle="tab" href="#step-context" role="tab" aria-controls="step-context" aria-selected="false">Context</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="step-preview-tab" data-toggle="tab" href="#step-preview" role="tab" aria-controls="step-preview" aria-selected="false">Preview</a>
+      </li>
+    </ul>
 
-        <h4>Elements</h4>
-        <ul id="step-elements" class="list-group step-elements" data-step-id="<%= @step.id %>">
-          <%= render partial: "riddler_admin/element", collection: @step.elements %>
-        </ul>
-      </div>
     </div>
   </div>
 
-  <div class="tab-pane fade" id="step-definition" role="tabpanel" aria-labelledby="definition-tab">
-    <%= render partial: "definition", object: @step %>
-  </div>
+  <div class="row">
+    <div class="col-sm">
 
-  <div class="tab-pane fade" id="step-context" role="tabpanel" aria-labelledby="context-tab">
-    <%= render partial: "context", object: @step %>
-  </div>
+    <div class="tab-content" id="step-tabs-content">
+      <div class="tab-pane fade show active" id="elements" role="tabpanel" aria-labelledby="elements-tab">
 
-  <div class="tab-pane fade" id="step-preview" role="tabpanel" aria-labelledby="preview-tab">
-    <%= render partial: "preview", object: @step %>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <h4>Add an element type</h4>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+
+              <ul class="nav flex-column">
+              <%- RiddlerAdmin::Element.available_classes.each do |klass| %>
+                <%= render klass, object: klass, step: @step %>
+              <%- end %>
+              </ul>
+
+            </div>
+            <div class="col-md-8">
+              <div id="new-element">
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h4>Step elements</h4>
+                </div>
+                <div class="card-body">
+                  <ul id="step-elements" class="list-group step-elements" data-step-id="<%= @step.id %>">
+                    <%= render partial: "riddler_admin/element", collection: @step.elements %>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tab-pane fade" id="step-definition" role="tabpanel" aria-labelledby="definition-tab">
+        <%= render partial: "definition", object: @step %>
+      </div>
+
+      <div class="tab-pane fade" id="step-context" role="tabpanel" aria-labelledby="context-tab">
+        <%= render partial: "context", object: @step %>
+      </div>
+
+      <div class="tab-pane fade" id="step-preview" role="tabpanel" aria-labelledby="preview-tab">
+        <%= render partial: "preview", object: @step %>
+      </div>
+    </div>
+
   </div>
 </div>

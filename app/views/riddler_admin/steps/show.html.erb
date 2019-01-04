@@ -1,14 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm">
+    <% if notice %>
+    <div class="alert alert-success">
+      <span id="notice"><%= notice %></span>
+    </div>
+    <% end %>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_step_path(@step) %> |
-<%= link_to 'Steps', steps_path %>
-
-<h1>
-  <%= @step.name %>
-  <small class="text-muted" style="font-size: 0.4em;">
-    <%= @step.type.demodulize.titleize %> Step
-    <%= @step.id %>
-  </small>
-</h1>
+<div class="row" style="margin-bottom: 32px;">
+  <div class="col-sm-6">
+    <h1>
+      <%= @step.name %>
+      <small class="text-muted" style="font-size: 1rem;">
+        <%= @step.type.demodulize.titleize %> Step
+        <%= @step.id %>
+      </small>
+    </h1>
+  </div>
+  <div class="col-sm-6">
+      <%= link_to 'Edit name', edit_step_path(@step), class: 'btn btn-light float-right' %>
+      <%= link_to "#{@step.preview_enabled ? 'Disable' : 'Enable'} Preview", toggle_step_path(@step), class: 'btn btn-light float-right mr-2' %>
+      <% if @step.preview_enabled %>
+        <span class="badge badge-success float-right mr-2 mt-2">Preview Enabled</span>
+      <% else %>
+        <span class="badge badge-secondary float-right mr-2 mt-2">Preview Disabled</span>
+      <% end %>
+  </div>
+</div>
 
 <%= render partial: @step.to_partial_path("show") %>

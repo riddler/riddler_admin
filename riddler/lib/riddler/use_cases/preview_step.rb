@@ -1,6 +1,5 @@
 module Riddler
   module UseCases
-
     class PreviewStep
       attr_reader :definition, :params, :headers, :step
 
@@ -12,17 +11,20 @@ module Riddler
       end
 
       def context
-        @context ||= begin
-          builder = ::Riddler::ContextBuilder.new params: params,
-            headers: headers
-          builder.build
-        end
+        @context ||= generate_context
       end
 
       def process
         step.to_hash
       end
-    end
 
+      private
+
+      def generate_context
+        director = ::Riddler::ContextDirector.new params: params,
+          headers: headers
+        director.context
+      end
+    end
   end
 end

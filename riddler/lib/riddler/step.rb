@@ -1,7 +1,6 @@
 module Riddler
-
   class Step
-    attr_reader :definition, :context
+    attr_reader :definition, :context, :preview_enabled
 
     def self.for definition, context
       # This should be "type" not "object"
@@ -18,14 +17,6 @@ module Riddler
       @context = context
     end
 
-    #def id
-    #  definition["id"]
-    #end
-
-    #def type
-    #  self.class.type
-    #end
-
     def to_hash
       {
         type: self.class.type,
@@ -33,5 +24,4 @@ module Riddler
       }
     end
   end
-
 end

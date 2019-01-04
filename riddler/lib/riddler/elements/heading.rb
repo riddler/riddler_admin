@@ -14,6 +14,5 @@ module Riddler
         super.merge text: text
       end
     end
-
   end
 end

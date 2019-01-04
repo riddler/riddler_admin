@@ -11,7 +11,7 @@ module RiddlerAdmin
 
     # Alphanumeric and underscore only - no whitespace.
     # We might consider doing lowercase only for snake casing.
-    validates_format_of :name, with: /\A[a-z][a-zA-Z0-9_]*\z/
+    validates_format_of :name, with: /\A[a-z][a-zA-Z0-9_]*\z/, message: "of Element ID cannot start with a capital letter or a number."
 
     def self.available_classes
       [
