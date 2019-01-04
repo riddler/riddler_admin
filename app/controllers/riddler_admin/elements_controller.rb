@@ -8,9 +8,13 @@ module RiddlerAdmin
     # GET /elements/new
     def new
       hash = {}
+
       if step = Step.find_by_id(params["step_id"])
         hash[:container] = step
+      elsif element = RiddlerAdmin::Element.find_by_id(params[:element_id])
+        hash[:container] = element
       end
+
       @element = @element_class.new hash
     end
 

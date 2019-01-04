@@ -19,12 +19,12 @@
 
       <div class="form-group col-md-6">
         <%= f.label :include_predicate %>
-        <%= f.text_field :include_predicate, class: "form-control", placeholder: "e.g. parms.user_id is present" %>
+        <%= f.text_field :include_predicate, class: "form-control", placeholder: "e.g. params.user_id is present" %>
         <small class="form-text text-muted">Use data from the context that evaluates to <code>true</code> or <code>false</code></small>
       </div>
     </div>
 
-    <%= render partial: element.to_partial_path("form"), locals: { f: f } %>
+    <%= render partial: element.to_partial_path("form"), locals: { f: f, element: element } %>
 
 
     <div class="form-row">
