@@ -19,8 +19,8 @@
 
       <div class="form-group col-md-6">
         <%= f.label :include_predicate %>
-        <%= f.text_field :include_predicate, class: "form-control" %>
-        <small class="form-text text-muted">Should this element be included?</small>
+        <%= f.text_field :include_predicate, class: "form-control", placeholder: "e.g. parms.user_id is present" %>
+        <small class="form-text text-muted">Use data from the context that evaluates to <code>true</code> or <code>false</code></small>
       </div>
     </div>
 
