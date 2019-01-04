@@ -1,14 +1,18 @@
-<div class="row">
-  <div class="col-sm">
-    <h1>Editing Step</h1>
-  </div>
-</div>
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm">
+        <h1>Editing Step</h1>
+      </div>
+    </div>
 
-<div class="row">
-  <div class="col-sm">
-    <%= render 'form', step: @step %>
+    <div class="row">
+      <div class="col-sm">
+        <%= render 'form', step: @step %>
 
-    <%= link_to 'Show', @step %> |
-    <%= link_to 'Back', steps_path %>
+        <%= link_to 'Show', @step %> |
+        <%= link_to 'Back', steps_path %>
+      </div>
+    </div>
   </div>
 </div>
