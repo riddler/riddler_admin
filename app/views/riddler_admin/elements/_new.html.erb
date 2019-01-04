@@ -11,17 +11,27 @@
     </div>
   <% end %>
 
-  <h5>New Element</h5>
+<div class="card" style="margin-bottom: 32px;">
+  <div class="card-body">
 
-  <%= f.hidden_field :id %>
-  <%= f.hidden_field :type %>
-  <%= f.hidden_field :container_type %>
-  <%= f.hidden_field :container_id %>
+    <div class="card-title">
+      <h5>New <%= @element.short_name %> Element</h5>
+    </div>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :type %>
+    <%= f.hidden_field :container_type %>
+    <%= f.hidden_field :container_id %>
 
-  <%= render partial: "#{@element.to_partial_path}/form", locals: { f: f } %>
+    <div class="form-group">
+      <%= f.label :name, 'Element ID' %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <small class="form-text text-muted">Cannot start with a capital letter or a number.</small>
+    </div>
 
-  <%= f.submit %>
-<% end %>
+    <%= render partial: "#{@element.to_partial_path}/form", locals: { f: f } %>
+
+    <%= f.submit 'Add element', class: 'btn btn-primary' %>
+  <% end %>
+  </div>
+</div>

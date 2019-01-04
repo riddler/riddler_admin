@@ -1,5 +1,10 @@
-<%= f.label :text %>
-<%= f.text_field :text %>
-
-<%= f.label :href %>
-<%= f.text_field :href %>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <%= f.label :text, 'Alt text' %>
+    <%= f.text_field :text, class: 'form-control' %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= f.label :href %>
+    <%= f.text_field :href, class: 'form-control' %>
+  </div>
+</div>
