@@ -15,6 +15,7 @@ require "riddler/elements/text"
 require "riddler/elements/heading"
 require "riddler/elements/image"
 require "riddler/elements/link"
+require "riddler/elements/variant"
 
 require "riddler/step"
 require "riddler/steps/content"
