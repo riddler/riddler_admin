@@ -19,6 +19,7 @@ module RiddlerAdmin
         Elements::Image,
         Elements::Link,
         Elements::Text,
+        Elements::Variant
       ]
     end
 
@@ -61,6 +62,14 @@ module RiddlerAdmin
 
     def excluded_attrs
       [:created_at, :updated_at, :container_type, :container_id, :position]
+    end
+
+    def step
+      if container.kind_of?(::RiddlerAdmin::Step)
+        container
+      else
+        container.step
+      end
     end
   end
 end
