@@ -2,10 +2,7 @@
 
   <b><%= element.short_name %> Element</b>
 
-<%= form_with model: element do |f| %>
-  <div class="form-group">
-
-  </div>
+  <%= form_with model: element do |f| %>
     <% if element.errors.any? %>
       ERRORS
     <% end %>
@@ -25,7 +22,6 @@
     </div>
 
     <%= render partial: element.to_partial_path("form"), locals: { f: f, element: element } %>
-
 
     <div class="form-row">
       <div class="form-group col-md-6">

@@ -25,20 +25,20 @@
 
       <div class="form-group">
         <div class="form-row">
-          <div class="col-auto">
+          <div class="col">
             <%= f.label :name, 'Element ID' %>
             <%= f.text_field :name, class: 'form-control' %>
             <small class="form-text text-muted">Cannot start with a capital letter or a number.</small>
           </div>
 
-          <div class="col-auto">
+          <div class="col">
             <%= f.label :include_predicate %>
             <%= f.text_field :include_predicate, class: "form-control", placeholder: "e.g. params.user_id is present" %>
             <small class="form-text text-muted">Use data from the context that evaluates to <code>true</code> or <code>false</code></small>
           </div>
         </div>
 
-        <%= render partial: "#{@element.to_partial_path}/form", locals: { f: f } %>
+        <%= render partial: "#{@element.to_partial_path}/form", locals: { f: f, element: @element } %>
 
         <%= f.submit 'Add element', class: 'btn btn-primary' %>
       </div>

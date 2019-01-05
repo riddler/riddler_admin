@@ -27,13 +27,8 @@
 
         <div class="container">
           <div class="row">
-            <div class="col-sm">
+            <div class="col-md-3">
               <h4>Add an element type</h4>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
 
               <ul class="nav flex-column">
               <%- RiddlerAdmin::Element.available_classes.each do |klass| %>
@@ -42,7 +37,7 @@
               </ul>
 
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
               <div id="new-element">
               </div>
 
