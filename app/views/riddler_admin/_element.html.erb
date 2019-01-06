@@ -1,5 +1,8 @@
 <li class="list-group-item" id="<%= element.id %>" data-id="<%= element.id %>">
-  <a href="#" onclick="$('#<%= element.id %>-detail').toggle(); return false;">Toggle</a>
+  <div>
+    <%= link_to "Toggle", "#", onclick: "$('##{element.id}-detail').toggle(); return false;" %>
+    <span class="handle">Move</span>
+  </div>
 
   <%= render partial: element.to_partial_path("show"), locals: { element: element } %>
 

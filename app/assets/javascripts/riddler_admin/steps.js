@@ -37,6 +37,7 @@ $(document).ready(function(){
   $(".element-container").sortable({
     revert: 50,
     opacity: 0.5,
+    handle: ".handle",
     cursor: "move",
     containment: "parent",
     forcePlaceholderSize: true,
