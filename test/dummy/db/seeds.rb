@@ -4,8 +4,8 @@ module RiddlerAdmin
 
   puts "Creating Image"
   variant = Elements::Image.create! name: "image",
-    text: "",
-    href: "http://someimage",
+    text: "Nicolina",
+    href: "https://cdn.nav.com/wp-content/uploads/2017/10/nicolina_brown.jpg",
     container: step
 
   puts "Creating Heading"
@@ -15,19 +15,19 @@ module RiddlerAdmin
   variant = Elements::Variant.create! name: "variant", container: step
 
     puts "  Creating Member Text"
-    Elements::Heading.create! name: "text",
+    Elements::Text.create! name: "text",
       text: "Hi {{ member.first_name }}, I'm Nicolina, a Product Designer at Nav. I'd love to hear your thoughts on our onboarding process.",
       container: variant,
       include_predicate: "member.first_name is present"
 
     puts "  Creating Business Text"
-    Elements::Heading.create! name: "text",
+    Elements::Text.create! name: "text",
       text: "Hey owner of {{ enterprise_business.name }}, I'm Nicolina, a Product Designer at Nav. I'd love to hear your thoughts on our onboarding process.",
       container: variant,
       include_predicate: "enterprise_business.name is present"
 
     puts "  Creating Default Text"
-    Elements::Heading.create! name: "text",
+    Elements::Text.create! name: "text",
       text: "Hi, I'm Nicolina, a Product Designer at Nav. I'd love to hear your thoughts on our onboarding process.",
       container: variant
 

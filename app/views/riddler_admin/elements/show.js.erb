@@ -1,4 +1,4 @@
 $("#new-element").fadeOut().html("").show();
 
-$("#step-elements")
+$("#<%= @element.step.id %>-elements")
   .html("<%= j render partial: "riddler_admin/element", collection: @element.step.elements %>")

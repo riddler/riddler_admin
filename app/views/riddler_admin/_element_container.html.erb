@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Elements</h4>
+    <a href="#" onclick="$('.<%= container.id %>-detail').toggle(); return false;">Toggle all</a>
+  </div>
+  <div class="card-body">
+    <ul id="<%= container.id %>-elements" class="list-group element-container">
+      <%= render partial: "riddler_admin/element", collection: container.elements %>
+    </ul>
+  </div>
+</div>

@@ -1,17 +1,1 @@
-<div class="form-group">
-  <div class="form-row">
-    <div class="col-auto">
-      <% if element.persisted? %>
-        <%- RiddlerAdmin::Element.available_classes.each do |klass| %>
-          <%= link_to "#{klass.short_name} Element", new_element_path(type: klass.name, element_id: element.id), remote: true, class: 'nav-link' %>
-        <%- end %>
-
-        <div class="card-body">
-          <ul id="step-elements" class="list-group step-elements" data-step-id="<%= element.id %>">
-            <%= render partial: "riddler_admin/element", collection: element.elements %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+<div class="form-group"></div>

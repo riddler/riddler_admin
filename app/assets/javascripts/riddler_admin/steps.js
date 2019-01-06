@@ -34,10 +34,12 @@ $(document).ready(function(){
   });
 
 
-  $("#step-elements").sortable({
+  $(".element-container").sortable({
     revert: 50,
     opacity: 0.5,
+    handle: ".handle",
     cursor: "move",
+    containment: "parent",
     forcePlaceholderSize: true,
     update: function(event, ui) {
       element_ids = $(this).sortable("toArray", { attribute: "data-id" })

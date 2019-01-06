@@ -27,35 +27,21 @@
 
         <div class="container">
           <div class="row">
-            <div class="col-sm">
+            <div class="col-md-3">
               <h4>Add an element type</h4>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
 
               <ul class="nav flex-column">
-              <%- RiddlerAdmin::Element.available_classes.each do |klass| %>
-                <%= render klass, object: klass, step: @step %>
-              <%- end %>
+              <% RiddlerAdmin::Element.available_classes.each do |klass| %>
+                <%= link_to "#{klass.short_name} Element", new_element_path(type: klass.name, step_id: @step.id), remote: true, class: 'nav-link' %>
+              <% end %>
               </ul>
 
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
               <div id="new-element">
               </div>
 
-              <div class="card">
-                <div class="card-header">
-                  <h4>Step elements</h4>
-                </div>
-                <div class="card-body">
-                  <ul id="step-elements" class="list-group step-elements" data-step-id="<%= @step.id %>">
-                    <%= render partial: "riddler_admin/element", collection: @step.elements %>
-                  </ul>
-                </div>
-              </div>
+              <%= render partial: "riddler_admin/element_container", locals: { container: @step } %>
 
             </div>
           </div>
