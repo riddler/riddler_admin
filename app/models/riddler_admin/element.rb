@@ -3,6 +3,8 @@ module RiddlerAdmin
     MODEL_KEY = "el".freeze
     ID_LENGTH = 6 # 56_800_235_584 per second
 
+    after_initialize :set_defaults
+
     belongs_to :container, polymorphic: true, validate: true
 
     acts_as_list scope: [:container_type, :container_id]
@@ -11,7 +13,8 @@ module RiddlerAdmin
 
     # Alphanumeric and underscore only - no whitespace.
     # We might consider doing lowercase only for snake casing.
-    validates_format_of :name, with: /\A[a-z][a-zA-Z0-9_]*\z/, message: "of Element ID cannot start with a capital letter or a number."
+    validates_format_of :name, with: /\A[a-z][a-zA-Z0-9_]*\z/, message: "cannot start with a capital letter or a number."
+    validates_uniqueness_of :name, scope: [:container_type, :container_id], unless: :is_variant?
 
     def self.available_classes
       [
@@ -29,10 +32,6 @@ module RiddlerAdmin
 
     def self.short_name
       name.demodulize
-    end
-
-    def self.to_partial_path
-      "#{name.underscore}/class"
     end
 
     def to_partial_path detail=nil
@@ -65,11 +64,21 @@ module RiddlerAdmin
     end
 
     def step
-      if container.kind_of?(::RiddlerAdmin::Step)
+      if container.kind_of? ::RiddlerAdmin::Step
         container
       else
         container.step
       end
+    end
+
+    private
+
+    def is_variant?
+      container.kind_of? ::RiddlerAdmin::Elements::Variant
+    end
+
+    def set_defaults
+      self.name = short_name.underscore if name.blank?
     end
   end
 end
