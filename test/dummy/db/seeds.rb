@@ -4,8 +4,8 @@ module RiddlerAdmin
 
   puts "Creating Image"
   variant = Elements::Image.create! name: "image",
-    text: "",
-    href: "http://someimage",
+    text: "Nicolina",
+    href: "https://cdn.nav.com/wp-content/uploads/2017/10/nicolina_brown.jpg",
     container: step
 
   puts "Creating Heading"
