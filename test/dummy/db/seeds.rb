@@ -5,7 +5,7 @@ module RiddlerAdmin
   puts "Creating Image"
   variant = Elements::Image.create! name: "image",
     text: "Nicolina",
-    href: "https://cdn.nav.com/wp-content/uploads/2017/10/nicolina_brown.jpg",
+    url: "https://cdn.nav.com/wp-content/uploads/2017/10/nicolina_brown.jpg",
     container: step
 
   puts "Creating Heading"
@@ -32,14 +32,14 @@ module RiddlerAdmin
       container: variant
 
   puts "Creating Link"
-  variant = Elements::Link.create! name: "link",
+  variant = Elements::ExternalLink.create! name: "link",
     text: "Earn $50 for 30 minutes of your time",
-    href: "https://navsmb.typeform.com/to/Mya2il",
+    url: "https://navsmb.typeform.com/to/Mya2il",
     container: step
 
 
-
   puts "=" * 80
+
   puts "Creating Pokemon Step"
   step = Steps::Content.create! id: "st_pokemon", name: "Pokemon", preview_enabled: true
 
