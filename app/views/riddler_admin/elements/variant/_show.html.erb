@@ -1,0 +1,3 @@
+<% unless element.elements.count.zero? %>
+  <%= render partial: element.elements.last.to_partial_path("show"), locals: { element: element.elements.last } %>
+<% end %>
