@@ -16,7 +16,7 @@ class CreateRiddlerAdminSteps < ActiveRecord::Migration[5.2]
       t.references :container, polymorphic: true, index: true, type: :string
       t.integer :position
       t.string :text
-      t.string :href
+      t.string :url
       t.string :include_predicate
     end
   end

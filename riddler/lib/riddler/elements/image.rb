@@ -5,8 +5,8 @@ module Riddler
         "image"
       end
 
-      def href
-        context.render definition["href"]
+      def src
+        context.render definition["url"]
       end
 
       def text
@@ -14,7 +14,7 @@ module Riddler
       end
 
       def to_hash
-        super.merge text: text, href: href
+        super.merge text: text, src: src
       end
     end
   end

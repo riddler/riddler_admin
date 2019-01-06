@@ -1,12 +1,12 @@
 module Riddler
   module Elements
-    class Link < ::Riddler::Element
+    class ExternalLink < ::Riddler::Element
       def self.type
-        "link"
+        "external_link"
       end
 
       def href
-        context.render definition["href"]
+        context.render definition["url"]
       end
 
       def text

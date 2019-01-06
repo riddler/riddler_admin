@@ -15,9 +15,9 @@ module RiddlerAdmin
 
     def self.available_classes
       [
+        Elements::ExternalLink,
         Elements::Heading,
         Elements::Image,
-        Elements::Link,
         Elements::Text,
         Elements::Variant
       ]
