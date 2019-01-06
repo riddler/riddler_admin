@@ -1,5 +1,6 @@
+Add new: 
 <% RiddlerAdmin::Element.available_classes.each do |klass| %>
-  <%= link_to "#{klass.short_name} Element", new_element_path(type: klass.name, element_id: element.id), remote: true, class: 'nav-link' %>
+  <%= link_to "#{klass.short_name}", new_element_path(type: klass.name, element_id: element.id), remote: true, class: "btn btn-outline-secondary btn-sm" %>
 <% end %>
 
 <%= render partial: "riddler_admin/element_container", locals: { container: element } %>
