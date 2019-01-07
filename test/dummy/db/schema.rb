@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
     t.index ["id"], name: "index_riddler_elements_on_id"
   end
 
+  create_table "riddler_preview_contexts", id: :string, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "params"
+    t.string "headers"
+    t.jsonb "data"
+    t.index ["id"], name: "index_riddler_preview_contexts_on_id"
+    t.index ["title"], name: "index_riddler_preview_contexts_on_title", unique: true
+  end
+
   create_table "riddler_steps", id: :string, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -75,22 +75,23 @@ module RiddlerAdmin
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_step
-        @step = Step.find(params[:id])
-      end
 
-      def set_step_class
-        class_name = params.fetch(:step, {}).delete(:type) ||
-          params.delete(:type)
-        class_name = RiddlerAdmin::Step.default_class.name if class_name.blank?
+    # Use callbacks to share common setup or constraints between actions.
+    def set_step
+      @step = Step.find(params[:id])
+    end
 
-        @step_class = class_name.constantize
-      end
+    def set_step_class
+      class_name = params.fetch(:step, {}).delete(:type) ||
+        params.delete(:type)
+      class_name = RiddlerAdmin::Step.default_class.name if class_name.blank?
 
-      # Only allow a trusted parameter "white list" through.
-      def step_params
-        params.require(:step).permit(:name)
-      end
+      @step_class = class_name.constantize
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def step_params
+      params.require(:step).permit(:name)
+    end
   end
 end

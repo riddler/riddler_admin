@@ -19,5 +19,16 @@ class CreateRiddlerAdminSteps < ActiveRecord::Migration[5.2]
       t.string :href
       t.string :include_predicate
     end
+
+    create_table :riddler_preview_contexts, id: false do |t|
+      t.primary_key :id, :string, index: true
+      t.timestamps
+      t.string :title
+      t.string :params
+      t.string :headers
+      t.jsonb :data
+    end
+
+    add_index :riddler_preview_contexts, :title, unique: true
   end
 end

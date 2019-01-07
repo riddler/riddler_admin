@@ -8,4 +8,6 @@ RiddlerAdmin::Engine.routes.draw do
   resources :elements do
     put "sort", on: :collection
   end
+
+  resources :preview_contexts
 end

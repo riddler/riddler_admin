@@ -28,6 +28,13 @@ module Riddler
       Liquid::Context.new [variables]
     end
 
+    def to_hash
+      hash_array = variables.map do |key, value|
+        [key, value.to_hash]
+      end
+      Hash[hash_array]
+    end
+
     def method_missing method_name, *_args
       return super unless variables.key? method_name.to_s
       variable method_name
