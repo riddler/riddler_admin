@@ -38,6 +38,9 @@ module RiddlerAdmin
     container: step
 
 
+  puts "Creating Blank Preview Context"
+  pctx = PreviewContext.create! id: "pctx_blank", title: "Blank"
+  pctx.refresh_data
 
   puts "=" * 80
   puts "Creating Pokemon Step"
@@ -51,10 +54,10 @@ module RiddlerAdmin
     text: "Height: {{ pokemon.height }} Weight: {{ pokemon.weight }}
 Types: {% for type in pokemon.types %}
   {{ type.type.name | capitalize }}
-{% endfor %}"
+{% endfor %}",
     container: step
 
-  %w[ 1 2 3 ].each do |id|
+  %w[ 1 2 ].each do |id|
     puts "Creating Pokemon Preview Context #{id}"
     pctx = PreviewContext.create! id: "pctx_pokemon#{id}", title: "Pokemon[#{id}]", params: "pokemon_id: #{id}"
     pctx.refresh_data

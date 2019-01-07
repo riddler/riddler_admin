@@ -2,6 +2,9 @@ RiddlerAdmin::Engine.routes.draw do
   resources :steps do
     post "preview", on: :member
     get "preview", on: :member
+
+    get "internal_preview", on: :member
+
     get "toggle", on: :member
   end
 

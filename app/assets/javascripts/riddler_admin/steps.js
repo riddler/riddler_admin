@@ -1,38 +1,20 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(document).ready(function(){
-  $('#step-preview-refresh').on('ajax:beforeSend', function(evt) {
-    paramsSource = $("#context-params-source").val()
+  $('.step-context-preview').on('click', function(evt) {
+    var stepId = $(this).data('stepId'),
+      pctxId = $(this).data('pctxId')
 
-    if (paramsSource != "") {
-      var data = new window.FormData(),
-        paramsLines = paramsSource.split("\n");
+    var url = "/riddler_admin/steps/" + stepId + "/internal_preview?pctx_id=" + pctxId
 
-      $.each(paramsLines, function(idx, line) {
-        var pair = line.split(":");
-        var key = $.trim(pair[0]);
-        var val = $.trim(pair[1]);
-        data.append(key, val);
-      });
-
-      evt.detail[1].data = data
-    };
-
-
-    headersSource = $("#context-headers-source").val()
-    if (headersSource != "") {
-      var headersLines = headersSource.split("\n");
-      var xhr = evt.detail[0];
-
-      $.each(headersLines, function(idx, line) {
-        var pair = line.split(":");
-        var key = $.trim(pair[0]);
-        var val = $.trim(pair[1]);
-        xhr.setRequestHeader(key, val);
-      });
-    }
+    Rails.ajax({
+      type: "GET",
+      url: url,
+      success: function(data){
+        eval(data);
+      }
+    })
   });
-
 
   $(".element-container").sortable({
     revert: 50,

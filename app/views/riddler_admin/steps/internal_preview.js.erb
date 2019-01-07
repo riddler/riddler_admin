@@ -1,2 +1,2 @@
-$("#step-preview-content")
+$("#preview-context-<%= @preview_context.id %> pre")
   .html("<%= j JSON.pretty_generate @use_case.process %>")

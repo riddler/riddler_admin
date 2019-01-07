@@ -5,10 +5,20 @@ module RiddlerAdmin
 
     validates :title, presence: true, uniqueness: true
 
+    def self.convert_headers input_headers
+      original_headers = input_headers.to_h.
+        select{|k,v| k.starts_with? "HTTP_"}.
+        map{|k,v| [k.downcase.gsub(/^http_/, ""), v] }
+
+      Hash[original_headers]
+    end
+
     def refresh_data input_headers: {}
+      use_case_headers = merge_headers input_headers
+
       use_case = ::Riddler::UseCases::PreviewContext.new \
         params: params_hash,
-        headers: rack_input_headers(input_headers)
+        headers: use_case_headers
 
       update_attribute :data, use_case.process
     end
@@ -28,15 +38,8 @@ module RiddlerAdmin
       Hash[headers_array]
     end
 
-    private
-
-    def rack_input_headers input_headers
-      original_headers = input_headers.to_h.
-        select{|k,v| k.starts_with? "HTTP_"}.
-        map{|k,v| [k.downcase.gsub(/^http_/, ""), v] }
-
-      request_headers = Hash[original_headers]
-
+    def merge_headers input_headers
+      request_headers = self.class.convert_headers input_headers
       request_headers.merge headers_hash
     end
   end
