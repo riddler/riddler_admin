@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm">
+    <% if notice %>
+    <div class="alert alert-success">
+      <span id="notice"><%= notice %></span>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom: 32px;">
+  <div class="col-sm-6">
+    <h1><%= @preview_context.title %></h1>
+  </div>
+  <div class="col-sm-6">
+    <%= link_to "Edit", edit_preview_context_path(@preview_context), class: "btn btn-primary float-right" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-3">
+    <div class="list-group" id="preview-context-sections-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-preview-context-input-params" data-toggle="list" href="#preview-context-input-params" role="tab" aria-controls="preview-context-input-params">Input Params</a>
+      <a class="list-group-item list-group-item-action" id="list-preview-context-input-headers" data-toggle="list" href="#preview-context-input-headers" role="tab" aria-controls="preview-context-input-headers">Input Headers</a>
+      <% @preview_context.data.keys.each do |key| %>
+        <a class="list-group-item list-group-item-action" id="list-preview-<%= key %>" data-toggle="list" href="#preview-context-<%= key %>" role="tab" aria-controls="preview-context-<%= key %>"><%= key %></a>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="preview-context-input-params" role="tabpanel" aria-labelledby="list-preview-context-input-params">
+        <pre><%= @preview_context.params %></pre>
+      </div>
+      <div class="tab-pane fade" id="preview-context-input-headers" role="tabpanel" aria-labelledby="list-preview-context-input-headers">
+        <pre><%= @preview_context.headers %></pre>
+      </div>
+      <% @preview_context.data.each do |key, val| %>
+        <div class="tab-pane fade" id="preview-context-<%= key %>" role="tabpanel" aria-labelledby="list-preview-context-<%= key %>">
+          <pre><%= JSON.pretty_generate val %></pre>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

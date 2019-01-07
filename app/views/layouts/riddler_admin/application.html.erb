@@ -18,17 +18,26 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <%= link_to 'Home', '/riddler_admin', class: 'nav-link' %>
-
+          <%= link_to "Home", "/riddler_admin", class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="steps-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Steps
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to 'All steps', steps_path, class: 'dropdown-item' %>
+          <div class="dropdown-menu" aria-labelledby="steps-dropdown">
+            <%= link_to "All steps", steps_path, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
-            <%= link_to 'New step', new_step_path, class: 'dropdown-item' %>
+            <%= link_to "New step", new_step_path, class: "dropdown-item" %>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="preview-contexts-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Preview Contexts
+          </a>
+          <div class="dropdown-menu" aria-labelledby="preview-contexts-dropdown">
+            <%= link_to "All preview contexts", preview_contexts_path, class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "New preview context", new_preview_context_path, class: "dropdown-item" %>
           </div>
         </li>
       </ul>

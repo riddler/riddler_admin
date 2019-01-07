@@ -1,0 +1,44 @@
+<%= form_with model: preview_context, local: true do |form| %>
+  <div class="row">
+    <% if preview_context.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(preview_context.errors.count, "error") %> prohibited this preview context from being saved:</h2>
+
+        <ul>
+        <% preview_context.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <div class="field">
+          <%= form.label :title %>
+          <%= form.text_field :title, class:"form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <%= form.label :params %>
+          <%= form.text_area :params, class:"form-control", rows: 3, placeholder: "e.g. pokemon_id: 1" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <%= form.label :headers %>
+          <%= form.text_area :headers, class:"form-control", rows: 3, placeholder: "e.g. authorization: [JWT GOES HERE]" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="actions">
+          <%= form.submit "Save preview context", class: "btn btn-primary" %>
+          <%= link_to "Cancel", preview_contexts_path, class: "btn btn-light" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

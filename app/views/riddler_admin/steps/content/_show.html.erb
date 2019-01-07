@@ -9,9 +9,6 @@
         <a class="nav-link" id="step-definition-tab" data-toggle="tab" href="#step-definition" role="tab" aria-controls="step-definition" aria-selected="false">Definition</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="step-context-tab" data-toggle="tab" href="#step-context" role="tab" aria-controls="step-context" aria-selected="false">Context</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" id="step-preview-tab" data-toggle="tab" href="#step-preview" role="tab" aria-controls="step-preview" aria-selected="false">Preview</a>
       </li>
     </ul>
@@ -51,10 +48,6 @@
 
       <div class="tab-pane fade" id="step-definition" role="tabpanel" aria-labelledby="definition-tab">
         <%= render partial: "definition", object: @step %>
-      </div>
-
-      <div class="tab-pane fade" id="step-context" role="tabpanel" aria-labelledby="context-tab">
-        <%= render partial: "context", object: @step %>
       </div>
 
       <div class="tab-pane fade" id="step-preview" role="tabpanel" aria-labelledby="preview-tab">

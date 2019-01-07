@@ -12,6 +12,10 @@ module Riddler
         @hash[method]
       end
 
+      def to_hash
+        hash
+      end
+
       def method_missing method, *_args
         liquid_method_missing method.to_s
       end

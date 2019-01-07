@@ -20,6 +20,7 @@ require "riddler/elements/variant"
 require "riddler/step"
 require "riddler/steps/content"
 
+require "riddler/use_cases/preview_context"
 require "riddler/use_cases/preview_step"
 
 module Riddler
