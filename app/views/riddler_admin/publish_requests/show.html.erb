@@ -16,6 +16,11 @@
     <%= render partial: "riddler_admin/publish_requests/actions", locals: { publish_request: @publish_request } %>
   </div>
 </div>
+<div class="row" style="margin-bottom: 32px;">
+  <div class="col-sm-6">
+    <%= @publish_request.description %>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-sm-3">

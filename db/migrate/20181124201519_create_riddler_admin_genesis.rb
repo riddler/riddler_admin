@@ -1,6 +1,6 @@
 class CreateRiddlerAdminGenesis < ActiveRecord::Migration[5.2]
   def change
-    create_table :riddler_steps, id: false do |t|
+    create_table :ra_steps, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
       t.string :type, null: false
@@ -9,7 +9,7 @@ class CreateRiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.boolean :preview_enabled, default: false
     end
 
-    create_table :riddler_elements, id: false do |t|
+    create_table :ra_elements, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
       t.string :type, null: false
@@ -21,7 +21,7 @@ class CreateRiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.string :include_predicate
     end
 
-    create_table :riddler_preview_contexts, id: false do |t|
+    create_table :ra_preview_contexts, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
       t.string :title
@@ -30,9 +30,9 @@ class CreateRiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.jsonb :data
     end
 
-    add_index :riddler_preview_contexts, :title, unique: true
+    add_index :ra_preview_contexts, :title, unique: true
 
-    create_table :riddler_publish_requests, id: false do |t|
+    create_table :ra_publish_requests, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
       t.timestamp :approved_at
@@ -41,7 +41,15 @@ class CreateRiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.string :description
       t.string :status, default: "active"
       t.references :content, polymorphic: true, index: true, type: :string
-      t.jsonb :content_definition
+    end
+
+    create_table :ra_content_definitions, id: false do |t|
+      t.primary_key :id, :string, index: true
+      t.timestamps
+      t.references :publish_request, type: :string
+      t.references :content, polymorphic: true, index: true, type: :string
+      t.integer :version
+      t.jsonb :definition
     end
   end
 end

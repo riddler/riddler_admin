@@ -100,7 +100,7 @@ module RiddlerAdmin
 
     # Only allow a trusted parameter "white list" through.
     def step_params
-      params.require(:step).permit(:name)
+      params.require(:step).permit(:title, :name)
     end
   end
 end

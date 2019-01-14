@@ -10,6 +10,6 @@ require "riddler"
 
 module RiddlerAdmin
   def self.table_name_prefix
-    "riddler_"
+    "ra_"
   end
 end

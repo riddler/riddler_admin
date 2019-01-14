@@ -18,7 +18,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Title</th>
       <th>Id</th>
       <th>Type</th>
 
@@ -29,7 +29,7 @@
   <tbody>
     <% @steps.each do |step| %>
       <tr>
-        <td><%= link_to step.name, step %></td>
+        <td><%= link_to step.title, step %></td>
         <td><%= step.id %></td>
         <td><%= step.type.demodulize %></td>
 

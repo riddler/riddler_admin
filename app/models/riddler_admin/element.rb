@@ -47,6 +47,14 @@ module RiddlerAdmin
       type.demodulize.underscore
     end
 
+    def content_type
+      "element"
+    end
+
+    def content_id
+      id
+    end
+
     def definition_hash options=nil
       options ||= {}
       serializable_hash options.merge(serializable_hash_options)
@@ -54,7 +62,7 @@ module RiddlerAdmin
 
     def serializable_hash_options
       {
-        methods: :object,
+        methods: [:object, :content_type, :content_id],
         except: excluded_attrs
       }
     end

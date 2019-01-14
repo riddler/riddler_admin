@@ -25,8 +25,8 @@ module RiddlerAdmin
 
       if step = Step.find_by_id(params["step_id"])
         hash[:content] = step
-        hash[:content_definition] = step.definition_hash.to_yaml
         @publish_request = PublishRequest.new hash
+        @definition = step.definition_hash.to_yaml
       else
         redirect_to publish_requests_path, notice: "Content must be provided in step_id"
       end
@@ -43,12 +43,18 @@ module RiddlerAdmin
     end
 
     def edit
+      if @publish_request.approved? || @publish_request.published?
+        redirect_to @publish_request, notice: "Editing of approved requests is not allowed"
+      end
+
+      @definition = @publish_request.content.definition_hash.to_yaml
     end
 
     def update
-      if @publish_request.update publish_request_params
-        @publish_request.refresh_data input_headers: request.headers.to_h
+      if @publish_request.approved? || @publish_request.published?
+        redirect_to @publish_request, notice: "Editing of approved requests is not allowed"
 
+      elsif @publish_request.update publish_request_params
         redirect_to @publish_request, notice: "Publish request was successfully updated."
       else
         render :edit
