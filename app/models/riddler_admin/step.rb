@@ -5,6 +5,10 @@ module RiddlerAdmin
 
     validates_presence_of :name
 
+    has_many :publish_requests,
+      dependent: :destroy,
+      as: :content
+
     def self.default_class
       Steps::Content
     end

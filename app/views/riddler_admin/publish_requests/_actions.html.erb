@@ -1,0 +1,17 @@
+<% if publish_request.approved_at.present? %>
+  <span class="sm float-right">Approved <%= time_ago_in_words publish_request.approved_at %> ago</span>
+<% else %>
+  <%= link_to "Approve", approve_publish_request_path(publish_request), method: :post, remote: true, class: "btn btn-secondary float-right" %>
+<% end %>
+
+<% if publish_request.approved_at.present? %>
+  <% if publish_request.published_at.present? %>
+    <span class="sm float-right">Published <%= time_ago_in_words publish_request.published_at %> ago</span>
+  <% else %>
+    <%= link_to "Publish", publish_publish_request_path(publish_request), method: :post, remote: true, class: "btn btn-secondary float-right" %>
+  <% end %>
+<% end %>
+
+<% unless publish_request.published? %>
+  <%= link_to "Edit", edit_publish_request_path(publish_request), class: "btn btn-primary float-right" %>
+<% end %>

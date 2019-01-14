@@ -1,0 +1,48 @@
+<div class="row">
+  <% if notice %>
+  <div class="col-sm">
+    <span id="notice"><%= notice %></span>
+  </div>
+  <% end %>
+  <% if flash[:error] %>
+  <div class="col-sm">
+    <span id="error"><%= flash[:error] %></span>
+  </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Publish Requests</h1>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Id</th>
+      <th>Status</th>
+      <th>Content</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @publish_requests.each do |publish_request| %>
+      <tr>
+        <td><%= link_to publish_request.title, publish_request %></td>
+        <td><%= publish_request.id %></td>
+        <td><%= publish_request.status %></td>
+        <td><%= publish_request.content.title %></td>
+
+        <td>
+            <%= link_to "Delete", publish_request, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-light" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

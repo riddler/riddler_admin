@@ -1,6 +1,6 @@
 module RiddlerAdmin
   puts "Creating Step"
-  step = Steps::Content.create! id: "st_prompt", name: "User Research Prompt", preview_enabled: true
+  step = Steps::Content.create! id: "st_prompt", title: "User Research Prompt", name: "user_research_prompt", preview_enabled: true
 
   puts "Creating Image"
   variant = Elements::Image.create! name: "image",
@@ -44,7 +44,7 @@ module RiddlerAdmin
 
   puts "=" * 80
   puts "Creating Pokemon Step"
-  step = Steps::Content.create! id: "st_pokemon", name: "Pokemon", preview_enabled: true
+  step = Steps::Content.create! id: "st_pokemon", title: "Pokemon", name: "pokemon", preview_enabled: true
 
   puts "Creating Heading"
   Elements::Heading.create! name: "heading", text: "{{ pokemon.name | capitalize }}", container: step

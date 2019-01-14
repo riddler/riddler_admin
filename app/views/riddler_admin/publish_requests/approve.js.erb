@@ -1,0 +1,2 @@
+$("#<%= @publish_request.id %>-actions")
+  .html("<%= j render partial: "riddler_admin/publish_requests/actions", locals: { publish_request: @publish_request } %>")
