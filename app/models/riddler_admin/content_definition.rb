@@ -1,9 +1,11 @@
+require "riddler/content_management_pb"
+
 module RiddlerAdmin
   class ContentDefinition < ApplicationRecord
     MODEL_KEY = "cdef".freeze
     ID_LENGTH = 5 # 916_132_832 per second
 
-    DEFINITION_SCHEMA_VERSION = "1".freeze
+    DEFINITION_SCHEMA_VERSION = 1
 
     # The Step or Element being defined
     belongs_to :content, polymorphic: true
@@ -16,6 +18,16 @@ module RiddlerAdmin
     validates_uniqueness_of :version, scope: [:content_type, :content_id]
 
     before_validation :add_fields
+
+    def grpc_request
+      ::Riddler::CreateContentDefinitionRequest.new \
+        definition_schema_version: DEFINITION_SCHEMA_VERSION,
+        definition_id: id,
+        content_type: content.content_type,
+        content_id: content.id,
+        version: version,
+        definition: definition.to_json
+    end
 
     private
 

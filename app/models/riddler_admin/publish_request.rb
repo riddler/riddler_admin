@@ -1,3 +1,5 @@
+require "riddler/content_management_services_pb"
+
 module RiddlerAdmin
   class PublishRequest < ApplicationRecord
     MODEL_KEY = "pr".freeze
@@ -24,6 +26,7 @@ module RiddlerAdmin
 
     def publish published_at = Time.now
       create_content_definition! content: content
+      publish_to_remote
 
       update_attributes published_at: published_at,
         status: "published"
@@ -34,6 +37,16 @@ module RiddlerAdmin
     end
 
     private
+
+    def publish_to_remote
+      content_management_stub.create_content_definition content_definition.grpc_request
+    end
+
+    def content_management_stub
+      @content_management_stub ||= ::Riddler::ContentManagement::Stub.new \
+        ::RiddlerAdmin.configuration.riddler_grpc_address,
+        :this_channel_is_insecure
+    end
 
     def set_defaults
       return if title.present? || content.blank?

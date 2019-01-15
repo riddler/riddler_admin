@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package riddler;
+
+message CreateContentDefinitionRequest {
+  int32 definition_schema_version = 1;
+  string definition_id = 2;
+  string content_type = 3;
+  string content_id = 4;
+  int32 version = 5;
+  string definition = 6;
+}
+
+message CreateContentDefinitionResponse {}
+
+service ContentManagement {
+  rpc CreateContentDefinition(CreateContentDefinitionRequest) returns (CreateContentDefinitionResponse) {}
+}

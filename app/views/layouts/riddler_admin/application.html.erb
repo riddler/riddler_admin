@@ -40,9 +40,11 @@
             <%= link_to "New preview context", new_preview_context_path, class: "dropdown-item" %>
           </div>
         </li>
-        <li class="nav-item">
-          <%= link_to "Publish Requests", publish_requests_path, class: "nav-link" %>
-        </li>
+        <% if ::RiddlerAdmin.configuration.remote_riddler? %>
+          <li class="nav-item">
+            <%= link_to "Publish Requests", publish_requests_path, class: "nav-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </nav>

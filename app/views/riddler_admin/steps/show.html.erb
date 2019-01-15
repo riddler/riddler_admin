@@ -15,7 +15,9 @@
   <div class="col-sm-6">
     <%= link_to 'Edit title', edit_step_path(@step), class: 'btn btn-light float-right' %>
     <%= link_to "#{@step.preview_enabled ? 'Disable' : 'Enable'} Preview", toggle_step_path(@step), class: 'btn btn-light float-right mr-2' %>
-    <%= link_to "Publish", new_publish_request_path(step_id: @step.id), class: "btn btn-light float-right"%>
+    <% if ::RiddlerAdmin.configuration.remote_riddler? %>
+      <%= link_to "Publish", new_publish_request_path(step_id: @step.id), class: "btn btn-light float-right"%>
+    <% end %>
     <% if @step.preview_enabled %>
       <span class="badge badge-success float-right mr-2 mt-2">Preview Enabled</span>
     <% else %>
