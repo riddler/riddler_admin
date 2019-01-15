@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package riddler.protobuf;
+
+import "google/protobuf/timestamp.proto";
+
+message ContentDefinition {
+  int32 schema_version = 1;
+  string id = 2;
+  google.protobuf.Timestamp created_at = 3;
+  string content_type = 4;
+  string content_id = 5;
+  int32 version = 6;
+  string definition_json = 7;
+}

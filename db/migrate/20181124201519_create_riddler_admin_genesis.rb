@@ -46,10 +46,22 @@ class CreateRiddlerAdminGenesis < ActiveRecord::Migration[5.2]
     create_table :ra_content_definitions, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
+      t.integer :schema_version
       t.references :publish_request, type: :string
       t.references :content, polymorphic: true, index: true, type: :string
       t.integer :version
       t.jsonb :definition
     end
+
+    create_table :ra_slugs, id: false do |t|
+      t.primary_key :id, :string, index: true
+      t.timestamps
+      t.string :name
+      t.references :content_definition, type: :string
+      t.references :content, polymorphic: true, index: true, type: :string
+      t.integer :version
+      t.jsonb :definition
+    end
+    add_index :ra_slugs, :name, unique: true
   end
 end

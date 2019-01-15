@@ -13,18 +13,11 @@ desc "Compile protobuf definitions"
 task :proto do
   grpc_ruby_plugin = `which grpc_ruby_plugin`.chomp
   command_string = "protoc \
-    -I ./lib/riddler/proto \
-    --ruby_out ./lib/riddler \
-    --grpc_out ./lib/riddler \
+    -I ./lib \
+    --ruby_out ./lib \
+    --grpc_out ./lib \
     --plugin=protoc-gen-grpc=#{grpc_ruby_plugin} \
-    ./lib/riddler/proto/*.proto"
+    ./lib/riddler/protobuf/*.proto"
 
   system command_string
-
-  Dir["./lib/riddler/*_pb.rb"].each do |path|
-    filename = File.basename path
-    content = File.read path
-    content.gsub! /require '(.*)_pb'/, 'require_relative \'./\1_pb\''
-    File.write path, content
-  end
 end

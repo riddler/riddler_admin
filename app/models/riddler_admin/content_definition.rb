@@ -1,4 +1,4 @@
-require "riddler/content_management_pb"
+require "riddler/protobuf/content_definition_pb"
 
 module RiddlerAdmin
   class ContentDefinition < ApplicationRecord
@@ -19,17 +19,23 @@ module RiddlerAdmin
 
     before_validation :add_fields
 
-    def grpc_request
-      ::Riddler::CreateContentDefinitionRequest.new \
-        definition_schema_version: DEFINITION_SCHEMA_VERSION,
-        definition_id: id,
+    def to_proto
+      ::Riddler::Protobuf::ContentDefinition.new \
+        schema_version: DEFINITION_SCHEMA_VERSION,
+        id: id,
+        created_at: created_at_proto,
         content_type: content.content_type,
         content_id: content.id,
         version: version,
-        definition: definition.to_json
+        definition_json: definition.to_json
     end
 
     private
+
+    def created_at_proto
+      ::Google::Protobuf::Timestamp.new seconds: created_at.to_i,
+        nanos: created_at.nsec
+    end
 
     def add_fields
       return if self.persisted? || content.blank?

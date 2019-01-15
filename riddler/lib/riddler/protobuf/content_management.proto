@@ -1,14 +1,11 @@
 syntax = "proto3";
 
-package riddler;
+package riddler.protobuf;
+
+import "riddler/protobuf/content_definition.proto";
 
 message CreateContentDefinitionRequest {
-  int32 definition_schema_version = 1;
-  string definition_id = 2;
-  string content_type = 3;
-  string content_id = 4;
-  int32 version = 5;
-  string definition = 6;
+  ContentDefinition content_definition = 1;
 }
 
 message CreateContentDefinitionResponse {}

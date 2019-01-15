@@ -1,4 +1,4 @@
-require "riddler/content_management_services_pb"
+require "riddler/protobuf/content_management_services_pb"
 
 module RiddlerAdmin
   class PublishRequest < ApplicationRecord
@@ -36,14 +36,20 @@ module RiddlerAdmin
       published_at.present?
     end
 
+    def publish_to_remote
+      raise "ERROR: Attempt to publish an unapproved definition" unless approved?
+      content_management_stub.create_content_definition request_proto
+    end
+
     private
 
-    def publish_to_remote
-      content_management_stub.create_content_definition content_definition.grpc_request
+    def request_proto
+      ::Riddler::Protobuf::CreateContentDefinitionRequest.new \
+        content_definition: content_definition.to_proto
     end
 
     def content_management_stub
-      @content_management_stub ||= ::Riddler::ContentManagement::Stub.new \
+      ::Riddler::Protobuf::ContentManagement::Stub.new \
         ::RiddlerAdmin.configuration.riddler_grpc_address,
         :this_channel_is_insecure
     end
