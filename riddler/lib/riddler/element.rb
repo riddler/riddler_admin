@@ -2,6 +2,14 @@ module Riddler
   class Element
     attr_reader :definition, :context
 
+    def self.subclasses
+      @@subclasses ||= []
+    end
+
+    def self.inherited subclass
+      self.subclasses << subclass
+    end
+
     def self.for definition, context
       # This should be "type" not "object"
       element_type = definition["object"]

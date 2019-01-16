@@ -2,6 +2,14 @@ module Riddler
   class Step
     attr_reader :definition, :context, :preview_enabled
 
+    def self.subclasses
+      @@subclasses ||= []
+    end
+
+    def self.inherited subclass
+      self.subclasses << subclass
+    end
+
     def self.for definition, context
       # This should be "type" not "object"
       step_type = definition["object"]
