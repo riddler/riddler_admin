@@ -57,10 +57,8 @@ class CreateRiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.primary_key :id, :string, index: true
       t.timestamps
       t.string :name
+      t.string :status, default: "active"
       t.references :content_definition, type: :string
-      t.references :content, polymorphic: true, index: true, type: :string
-      t.integer :version
-      t.jsonb :definition
     end
     add_index :ra_slugs, :name, unique: true
   end
