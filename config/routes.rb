@@ -13,4 +13,9 @@ RiddlerAdmin::Engine.routes.draw do
   end
 
   resources :preview_contexts
+
+  resources :publish_requests do
+    post "approve", on: :member
+    post "publish", on: :member
+  end
 end

@@ -40,13 +40,17 @@
             <%= link_to "New preview context", new_preview_context_path, class: "dropdown-item" %>
           </div>
         </li>
+        <% if ::RiddlerAdmin.configuration.remote_riddler? %>
+          <li class="nav-item">
+            <%= link_to "Publish Requests", publish_requests_path, class: "nav-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </nav>
+
   <div class="container" style="padding: 2rem 0;">
-
-      <%= yield %>
-
+    <%= yield %>
   </div>
 </body>
 </html>

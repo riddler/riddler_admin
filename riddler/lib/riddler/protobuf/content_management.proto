@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package riddler.protobuf;
+
+import "riddler/protobuf/content_definition.proto";
+
+message CreateContentDefinitionRequest {
+  ContentDefinition content_definition = 1;
+}
+
+message CreateContentDefinitionResponse {}
+
+service ContentManagement {
+  rpc CreateContentDefinition(CreateContentDefinitionRequest) returns (CreateContentDefinitionResponse) {}
+}

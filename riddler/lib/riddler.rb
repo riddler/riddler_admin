@@ -22,6 +22,7 @@ require "riddler/steps/content"
 
 require "riddler/use_cases/preview_context"
 require "riddler/use_cases/preview_step"
+require "riddler/use_cases/show_step"
 
 module Riddler
   class Error < StandardError; end

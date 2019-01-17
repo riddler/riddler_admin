@@ -1,0 +1,53 @@
+<%= form_with model: publish_request, local: true do |form| %>
+  <%= form.hidden_field :content_type %>
+  <%= form.hidden_field :content_id %>
+
+  <% if publish_request.errors.any? %>
+    <div class="row">
+      <div id="error_explanation">
+        <h2><%= pluralize(publish_request.errors.count, "error") %> prohibited this preview context from being saved:</h2>
+
+        <ul>
+        <% publish_request.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col">
+      <h4><%= publish_request.content.type %> - <%= publish_request.content.title %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <div class="field">
+          <%= form.label :title %>
+          <%= form.text_field :title, class:"form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <%= form.label :description %>
+          <%= form.text_area :description, class:"form-control", rows: 3 %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          Definition:
+          <textarea class="form-control" rows="5" disabled><%= @definition %></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="actions">
+          <%= form.submit "Save publish request", class: "btn btn-primary" %>
+          <%= link_to "Cancel", publish_requests_path, class: "btn btn-light" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
