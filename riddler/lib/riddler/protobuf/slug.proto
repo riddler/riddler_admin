@@ -4,13 +4,11 @@ package riddler.protobuf;
 
 import "google/protobuf/timestamp.proto";
 
-message ContentDefinition {
+message Slug {
   string id = 1;
   google.protobuf.Timestamp created_at = 2;
   google.protobuf.Timestamp updated_at = 3;
-  int32 schema_version = 4;
-  string content_type = 5;
-  string content_id = 6;
-  int32 version = 7;
-  string definition_json = 8;
+  string name = 4;
+  string status = 5;
+  string content_definition_id = 6;
 }

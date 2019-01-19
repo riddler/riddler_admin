@@ -38,7 +38,7 @@ module RiddlerAdmin
 
     def publish_to_remote
       raise "ERROR: Attempt to publish an unapproved definition" unless approved?
-      content_management_stub.create_content_definition request_proto
+      content_management_grpc.create_content_definition request_proto
     end
 
     private
@@ -48,7 +48,7 @@ module RiddlerAdmin
         content_definition: content_definition.to_proto
     end
 
-    def content_management_stub
+    def content_management_grpc
       ::Riddler::Protobuf::ContentManagement::Stub.new \
         ::RiddlerAdmin.configuration.riddler_grpc_address,
         :this_channel_is_insecure

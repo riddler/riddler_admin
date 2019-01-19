@@ -16,6 +16,8 @@ module Riddler
         self.service_name = 'riddler.protobuf.ContentManagement'
 
         rpc :CreateContentDefinition, CreateContentDefinitionRequest, CreateContentDefinitionResponse
+        rpc :CreateSlug, CreateSlugRequest, CreateSlugResponse
+        rpc :UpdateSlug, UpdateSlugRequest, UpdateSlugResponse
       end
 
       Stub = Service.rpc_stub_class

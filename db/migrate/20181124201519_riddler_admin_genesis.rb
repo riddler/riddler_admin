@@ -1,4 +1,4 @@
-class CreateRiddlerAdminGenesis < ActiveRecord::Migration[5.2]
+class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
   def change
     create_table :ra_steps, id: false do |t|
       t.primary_key :id, :string, index: true
@@ -57,7 +57,7 @@ class CreateRiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.primary_key :id, :string, index: true
       t.timestamps
       t.string :name
-      t.string :status, default: "active"
+      t.string :status, default: "live"
       t.references :content_definition, type: :string
     end
     add_index :ra_slugs, :name, unique: true
