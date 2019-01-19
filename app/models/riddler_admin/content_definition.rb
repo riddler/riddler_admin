@@ -19,6 +19,10 @@ module RiddlerAdmin
 
     before_validation :add_fields
 
+    def title
+      "#{content.title} v#{version}"
+    end
+
     def to_proto
       ::Riddler::Protobuf::ContentDefinition.new \
         schema_version: DEFINITION_SCHEMA_VERSION,

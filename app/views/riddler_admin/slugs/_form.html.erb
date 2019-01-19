@@ -1,0 +1,42 @@
+<%= form_with model: slug, local: true do |form| %>
+  <div class="row">
+    <% if slug.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(slug.errors.count, "error") %> prohibited this slug from being saved:</h2>
+
+        <ul>
+        <% slug.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <div class="field">
+          <%= form.label :name %>
+          <%= form.text_field :name, class:"form-control" %>
+        </div>
+        <div class="field">
+          <%= form.label :status %>
+          <%= form.select :status, options_for_select([["Live", "live"], ["Paused", "paused"]], slug.status), {}, class:"form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <%= form.label :content_definition %>
+          <%= form.collection_select :content_definition_id, RiddlerAdmin::ContentDefinition.all, :id, :title, {prompt: true}, {class:"form-control"}  %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="actions">
+          <%= form.submit "Save slug", class: "btn btn-primary" %>
+          <%= link_to "Cancel", slugs_path, class: "btn btn-light" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
