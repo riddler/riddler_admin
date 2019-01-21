@@ -13,7 +13,7 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.primary_key :id, :string, index: true
       t.timestamps
       t.string :type, null: false
-      t.string :name
+      t.string :name, null: false
       t.references :container, polymorphic: true, index: true, type: :string
       t.integer :position
       t.string :text
@@ -24,10 +24,11 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
     create_table :ra_preview_contexts, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
-      t.string :title
+      t.string :title, null: false
       t.string :params
       t.string :headers
-      t.jsonb :data
+      t.string :yaml
+      t.string :encrypted_yaml
     end
 
     add_index :ra_preview_contexts, :title, unique: true
@@ -37,28 +38,28 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.timestamps
       t.timestamp :approved_at
       t.timestamp :published_at
-      t.string :title
+      t.string :title, null: false
       t.string :description
-      t.string :status, default: "active"
+      t.string :status, default: "active", null: false
       t.references :content, polymorphic: true, index: true, type: :string
     end
 
     create_table :ra_content_definitions, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
-      t.integer :schema_version
+      t.integer :schema_version, null: false
       t.references :publish_request, type: :string
       t.references :content, polymorphic: true, index: true, type: :string
-      t.integer :version
-      t.jsonb :definition
+      t.integer :version, null: false
+      t.jsonb :definition, null: false
     end
 
     create_table :ra_slugs, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
-      t.string :name
-      t.string :status, default: "live"
-      t.references :content_definition, type: :string
+      t.string :name, null: false
+      t.string :status, default: "live", null: false
+      t.references :content_definition, type: :string, null: false
     end
     add_index :ra_slugs, :name, unique: true
   end

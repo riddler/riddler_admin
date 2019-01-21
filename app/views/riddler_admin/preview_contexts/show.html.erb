@@ -37,7 +37,7 @@
       </div>
       <% @preview_context.data.each do |key, val| %>
         <div class="tab-pane fade" id="preview-context-<%= key %>" role="tabpanel" aria-labelledby="list-preview-context-<%= key %>">
-          <pre><%= JSON.pretty_generate val %></pre>
+          <pre><%= val.to_yaml %></pre>
         </div>
       <% end %>
     </div>

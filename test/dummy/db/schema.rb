@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
   create_table "ra_content_definitions", id: :string, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "schema_version"
+    t.integer "schema_version", null: false
     t.string "publish_request_id"
     t.string "content_type"
     t.string "content_id"
-    t.integer "version"
-    t.jsonb "definition"
+    t.integer "version", null: false
+    t.jsonb "definition", null: false
     t.index ["content_type", "content_id"], name: "index_ra_content_definitions_on_content_type_and_content_id"
     t.index ["id"], name: "index_ra_content_definitions_on_id"
     t.index ["publish_request_id"], name: "index_ra_content_definitions_on_publish_request_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "type", null: false
-    t.string "name"
+    t.string "name", null: false
     t.string "container_type"
     t.string "container_id"
     t.integer "position"
@@ -47,10 +47,11 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
   create_table "ra_preview_contexts", id: :string, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
+    t.string "title", null: false
     t.string "params"
     t.string "headers"
-    t.jsonb "data"
+    t.string "yaml"
+    t.string "encrypted_yaml"
     t.index ["id"], name: "index_ra_preview_contexts_on_id"
     t.index ["title"], name: "index_ra_preview_contexts_on_title", unique: true
   end
@@ -60,9 +61,9 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
     t.datetime "updated_at", null: false
     t.datetime "approved_at"
     t.datetime "published_at"
-    t.string "title"
+    t.string "title", null: false
     t.string "description"
-    t.string "status", default: "active"
+    t.string "status", default: "active", null: false
     t.string "content_type"
     t.string "content_id"
     t.index ["content_type", "content_id"], name: "index_ra_publish_requests_on_content_type_and_content_id"
@@ -72,9 +73,9 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
   create_table "ra_slugs", id: :string, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "status", default: "live"
-    t.string "content_definition_id"
+    t.string "name", null: false
+    t.string "status", default: "live", null: false
+    t.string "content_definition_id", null: false
     t.index ["content_definition_id"], name: "index_ra_slugs_on_content_definition_id"
     t.index ["id"], name: "index_ra_slugs_on_id"
     t.index ["name"], name: "index_ra_slugs_on_name", unique: true
