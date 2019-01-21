@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/predicator/predicator.git
-  revision: a8fdc974b96ae1a59e821462f64c4a1b9ae14d6a
-  specs:
-    predicator (1.2.0)
-
 PATH
   remote: .
   specs:
@@ -80,6 +74,7 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (9.4.5)
       execjs
+    aws-sigv4 (1.0.3)
     bindex (0.5.0)
     bootstrap (4.1.3)
       autoprefixer-rails (>= 6.0.3)
@@ -131,6 +126,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     pg (1.1.4)
     popper_js (1.14.5)
+    predicator (1.2.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -188,6 +184,8 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    vault (0.12.0)
+      aws-sigv4
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -202,7 +200,7 @@ PLATFORMS
 
 DEPENDENCIES
   pg
-  predicator!
+  predicator
   pry
   pry-byebug
   pry-rails
@@ -210,6 +208,7 @@ DEPENDENCIES
   riddler!
   riddler_admin!
   sqlite3
+  vault
   web-console
 
 BUNDLED WITH
