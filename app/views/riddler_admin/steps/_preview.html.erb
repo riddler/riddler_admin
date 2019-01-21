@@ -11,7 +11,21 @@
     <div class="tab-content" id="nav-tabContent">
       <% @preview_contexts.each do |ctx| %>
         <div class="tab-pane fade" id="preview-context-<%= ctx.id %>" role="tabpanel" aria-labelledby="list-preview-context-<%= ctx.id %>">
-          <pre></pre>
+          <ul class="nav nav-pills" id="<%= ctx.id %>-type" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="<%= ctx.id %>-visual-tab" data-toggle="tab" href="#<%= ctx.id %>-visual" role="tab" aria-controls="<%= ctx.id %>-visual" aria-selected="true">Visual</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="<%= ctx.id %>-json-tab" data-toggle="tab" href="#<%= ctx.id %>-json" role="tab" aria-controls="<%= ctx.id %>-json" aria-selected="false">JSON</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="<%= ctx.id %>-typeContent">
+            <div class="tab-pane fade show active" id="<%= ctx.id %>-visual" role="tabpanel" aria-labelledby="<%= ctx.id %>-visual-tab">
+            </div>
+            <div class="tab-pane fade" id="<%= ctx.id %>-json" role="tabpanel" aria-labelledby="<%= ctx.id %>-json-tab">
+              <pre></pre>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>

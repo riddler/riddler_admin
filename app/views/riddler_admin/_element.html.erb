@@ -4,11 +4,12 @@
     <span class="handle">Move</span>
   </div>
 
-  <%= render partial: element.to_partial_path("show"), locals: { element: element } %>
+  <h5>
+    <%= element.name %>
+    <span class="small text-muted"><%= element.short_name %> Element</span>
+  </h5>
 
   <div id="<%= element.id %>-detail" class="<%= element.container.id %>-detail" style="display: none;">
-    <h5><%= element.short_name %> Element</h5>
-
     <%= form_with model: element do |f| %>
       <% if element.errors.any? %>
         ERRORS

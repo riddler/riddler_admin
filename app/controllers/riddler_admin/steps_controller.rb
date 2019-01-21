@@ -33,7 +33,7 @@ module RiddlerAdmin
         params: @preview_context.params_hash,
         headers: @preview_context.merge_headers(request.headers.to_h)
 
-      #render json: use_case.process
+      @preview_hash = @use_case.process
     end
 
     # POST /steps/1/preview

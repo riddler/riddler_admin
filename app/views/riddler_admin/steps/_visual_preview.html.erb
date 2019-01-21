@@ -1,0 +1,16 @@
+<ul class="list-group">
+<% data["elements"].each do |element| %>
+  <li class="list-group-item">
+    <% case element[:type] %>
+    <% when "heading" %>
+      <h5><%= element[:text] %></h5>
+    <% when "text" %>
+      <%= element[:text] %>
+    <% when "image" %>
+      <img src="<%= element[:href] %>" alt="<%= element[:text] %>" />
+    <% when "link" %>
+      <a href="<%= element[:href] %>" target="_blank"><%= element[:text] %></a>
+    <% end %>
+  </li>
+<% end %>
+</ul>
