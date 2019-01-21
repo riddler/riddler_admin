@@ -29,9 +29,8 @@ module RiddlerAdmin
     def internal_preview
       @preview_context = ::RiddlerAdmin::PreviewContext.find params["pctx_id"]
 
-      @use_case = ::Riddler::UseCases::PreviewStep.new @step.definition_hash,
-        params: @preview_context.params_hash,
-        headers: @preview_context.merge_headers(request.headers.to_h)
+      @use_case = ::Riddler::UseCases::AdminPreviewStep.new @step.definition_hash,
+        preview_context_data: @preview_context.data
 
       @preview_hash = @use_case.process
     end
