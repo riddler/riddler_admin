@@ -1,0 +1,35 @@
+<li class="list-group-item" id="<%= step.id %>" data-id="<%= step.id %>">
+  <div>
+    <%= link_to "Toggle", "#", onclick: "$('##{step.id}-detail').toggle(); return false;" %>
+    <span class="handle">Move</span>
+  </div>
+
+  <h5>
+    <%= step.name %>
+    <span class="small text-muted"><%= step.short_name %> Step</span>
+  </h5>
+
+  <div id="<%= step.id %>-detail" class="<%= step.stepable.id %>-detail" style="display: none;">
+    <%= form_with model: step do |f| %>
+      <% if step.errors.any? %>
+        ERRORS
+      <% end %>
+
+      <div class="form-row">
+        <div class="form-group col">
+          <%= f.label :include_predicate %>
+          <%= f.text_field :include_predicate, class: "form-control", placeholder: "e.g. params.user_id is present" %>
+          <small class="form-text text-muted">Use data from the context that evaluates to <code>true</code> or <code>false</code></small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col">
+          <%= f.submit 'Update step', class: 'btn btn-outline-primary' %>
+          <%= link_to "Delete", step, method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: 'btn btn-link' %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</li>

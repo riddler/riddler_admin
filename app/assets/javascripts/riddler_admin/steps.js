@@ -33,4 +33,22 @@ $(document).ready(function(){
       })
     }
   })
+
+  $(".step-container").sortable({
+    revert: 50,
+    opacity: 0.5,
+    handle: ".handle",
+    cursor: "move",
+    containment: "parent",
+    forcePlaceholderSize: true,
+    update: function(event, ui) {
+      step_ids = $(this).sortable("toArray", { attribute: "data-id" })
+
+      Rails.ajax({
+        type: "PUT",
+        url: "/riddler_admin/steps/sort",
+        data: $.param({ step_order: step_ids })
+      })
+    }
+  })
 })

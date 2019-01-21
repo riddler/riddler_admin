@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Steps</h4>
+    <a href="#" onclick="$('.<%= stepable.id %>-detail').toggle(); return false;">Toggle all</a>
+  </div>
+  <div class="card-body">
+    <ul id="<%= stepable.id %>-steps" class="list-group step-container">
+      <%= render partial: "riddler_admin/step", collection: stepable.steps %>
+    </ul>
+  </div>
+</div>

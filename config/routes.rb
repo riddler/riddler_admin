@@ -11,6 +11,8 @@ RiddlerAdmin::Engine.routes.draw do
   end
 
   resources :steps do
+    put "sort", on: :collection
+
     get "internal_preview", on: :member
     post "preview", on: :member
     get "preview", on: :member

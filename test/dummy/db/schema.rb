@@ -87,8 +87,13 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
     t.string "type", null: false
     t.string "title"
     t.string "name", null: false
+    t.string "stepable_type"
+    t.string "stepable_id"
+    t.integer "position"
+    t.string "include_predicate"
     t.boolean "preview_enabled", default: false
     t.index ["id"], name: "index_ra_steps_on_id"
+    t.index ["stepable_type", "stepable_id"], name: "index_ra_steps_on_stepable_type_and_stepable_id"
   end
 
 end

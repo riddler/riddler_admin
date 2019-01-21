@@ -3,6 +3,9 @@ module RiddlerAdmin
     MODEL_KEY = "st".freeze
     ID_LENGTH = 5 # 916_132_832 per second
 
+    belongs_to :stepable, polymorphic: true, optional: true
+    acts_as_list scope: [:stepable_type, :stepable_id]
+
     validates_presence_of :title
 
     validates_presence_of :name
@@ -22,8 +25,23 @@ module RiddlerAdmin
 
     before_validation :set_defaults
 
+    def self.available_classes
+      [
+        Steps::Content,
+        Steps::Variant
+      ]
+    end
+
     def self.default_class
       Steps::Content
+    end
+
+    def self.short_name
+      name.demodulize
+    end
+
+    def short_name
+      self.class.short_name
     end
 
     def to_partial_path detail=nil
@@ -54,13 +72,13 @@ module RiddlerAdmin
 
     def serializable_hash_options
       {
-        methods: [:object, :content_type, :content_id],
+        methods: [:object, :content_type],
         except: excluded_attrs
       }
     end
 
     def excluded_attrs
-      [:created_at, :updated_at, :title, :preview_enabled]
+      [:created_at, :updated_at, :title, :preview_enabled, :stepable_type, :stepable_id, :position]
     end
 
     private

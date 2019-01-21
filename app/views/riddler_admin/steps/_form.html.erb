@@ -1,6 +1,6 @@
 <%= form_with model: step, local: true do |form| %>
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col">
       <% if step.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(step.errors.count, "error") %> prohibited this step from being saved:</h2>
@@ -16,21 +16,28 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-4">
-      <div class="form-group">
-        <div class="field">
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col">
           <%= form.label :title %>
-          <%= form.text_field :title, class:'form-control' %>
+          <%= form.text_field :title, class:"form-control" %>
         </div>
-        <div class="field">
+        <div class="col">
           <%= form.label :name %>
-          <%= form.text_field :name, class:'form-control' %>
+          <%= form.text_field :name, class:"form-control" %>
+          <small class="form-text text-muted">This will be created based on the title if not provided</small>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-row">
+        <div class="col">
+          <%= form.label :type %>
+          <%= form.select :type, options_for_select(::RiddlerAdmin::Step.available_classes.map{|klass| [klass.short_name, klass.name]}, step.type), {}, class:"form-control" %>
+        </div>
+      </div>
+      <div class="form-row">
         <div class="actions">
-          <%= form.submit 'Save step', class: 'btn btn-primary' %>
-          <%= link_to 'Cancel', steps_path, class: 'btn btn-light' %>
+          <%= form.submit "Save step", class: "btn btn-primary" %>
+          <%= link_to "Cancel", steps_path, class: "btn btn-light" %>
         </div>
       </div>
     </div>
