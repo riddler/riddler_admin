@@ -20,6 +20,7 @@ require "riddler/elements/variant"
 require "riddler/step"
 require "riddler/steps/content"
 
+require "riddler/use_cases/admin_preview_step"
 require "riddler/use_cases/preview_context"
 require "riddler/use_cases/preview_step"
 require "riddler/use_cases/show_content_definition"

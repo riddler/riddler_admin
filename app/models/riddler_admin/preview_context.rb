@@ -13,6 +13,10 @@ module RiddlerAdmin
       Hash[original_headers]
     end
 
+    def data
+      YAML.safe_load yaml
+    end
+
     def refresh_data input_headers: {}
       use_case_headers = merge_headers input_headers
 
@@ -20,7 +24,8 @@ module RiddlerAdmin
         params: params_hash,
         headers: use_case_headers
 
-      update_attribute :data, use_case.process
+      hash = use_case.process
+      update_attribute :yaml, hash.to_yaml
     end
 
     def params_hash
