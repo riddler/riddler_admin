@@ -51,7 +51,7 @@
       </div>
 
       <div class="tab-pane fade" id="step-preview" role="tabpanel" aria-labelledby="preview-tab">
-        <%= render partial: "preview", object: @step %>
+        <%= render partial: "riddler_admin/preview_step", locals: { preview_contexts: @preview_contexts, step: @step } %>
       </div>
     </div>
 

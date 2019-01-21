@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.string "status"
+    t.string "status", default: "live"
     t.string "content_definition_id"
     t.index ["content_definition_id"], name: "index_ra_slugs_on_content_definition_id"
     t.index ["id"], name: "index_ra_slugs_on_id"
