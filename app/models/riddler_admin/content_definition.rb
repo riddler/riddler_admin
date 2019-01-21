@@ -44,6 +44,7 @@ module RiddlerAdmin
     def add_fields
       return if self.persisted? || content.blank?
 
+      self.schema_version = DEFINITION_SCHEMA_VERSION
       self.version = next_version
       self.definition = generate_definition self.version
     end

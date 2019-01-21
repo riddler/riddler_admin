@@ -6,6 +6,9 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.string :type, null: false
       t.string :title
       t.string :name, null: false
+      t.references :stepable, polymorphic: true, index: true, type: :string
+      t.integer :position
+      t.string :include_predicate
       t.boolean :preview_enabled, default: false
     end
 

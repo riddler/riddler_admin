@@ -1,0 +1,4 @@
+$("#new-step").fadeOut().html("").show();
+
+$("#<%= @step.stepable.id %>-steps")
+  .html("<%= j render partial: "riddler_admin/step", collection: @step.stepable.steps %>")

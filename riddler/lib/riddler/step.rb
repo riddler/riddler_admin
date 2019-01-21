@@ -1,5 +1,7 @@
 module Riddler
   class Step
+    include ::Riddler::Includeable
+
     attr_reader :definition, :context, :preview_enabled
 
     def self.subclasses

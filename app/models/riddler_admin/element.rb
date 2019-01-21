@@ -62,13 +62,13 @@ module RiddlerAdmin
 
     def serializable_hash_options
       {
-        methods: [:object, :content_type, :content_id],
+        methods: [:object, :content_type],
         except: excluded_attrs
       }
     end
 
     def excluded_attrs
-      [:created_at, :updated_at, :container_type, :container_id, :position]
+      [:created_at, :updated_at, :container_type, :container_id, :position, :href]
     end
 
     def step

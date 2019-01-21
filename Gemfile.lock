@@ -24,6 +24,7 @@ PATH
       grpc
       ksuid
       liquid
+      predicator
 
 GEM
   remote: https://rubygems.org/
@@ -99,7 +100,7 @@ GEM
     google-protobuf (3.6.1)
     googleapis-common-protos-types (1.0.2)
       google-protobuf (~> 3.0)
-    grpc (1.17.1)
+    grpc (1.18.0)
       google-protobuf (~> 3.1)
       googleapis-common-protos-types (~> 1.0.0)
     i18n (1.5.2)

@@ -18,7 +18,13 @@ module RiddlerAdmin
 
     # GET /steps/new
     def new
-      @step = Step.new
+      hash = {}
+
+      if step = Step.find_by_id(params["step_id"])
+        hash[:stepable] = step
+      end
+
+      @step = @step_class.new hash
     end
 
     # GET /steps/1/edit
@@ -33,6 +39,17 @@ module RiddlerAdmin
         preview_context_data: @preview_context.data
 
       @preview_hash = @use_case.process
+    end
+
+    def sort
+      step_order = params.fetch "step_order"
+
+      step_order.each_with_index do |step_id, index|
+        step = Step.find_by_id step_id
+        step.update_attribute :position, index+1
+      end
+
+      head :no_content
     end
 
     # POST /steps/1/preview
@@ -99,7 +116,7 @@ module RiddlerAdmin
 
     # Only allow a trusted parameter "white list" through.
     def step_params
-      params.require(:step).permit(:title, :name)
+      params.require(:step).permit(:title, :name, :type, :stepable_type, :stepable_id, :include_predicate)
     end
   end
 end

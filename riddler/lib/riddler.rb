@@ -1,6 +1,9 @@
 require "riddler/version"
 
 require "liquid"
+require "predicator"
+
+require "riddler/includeable"
 
 require "riddler/drops/hash_drop"
 
@@ -19,6 +22,7 @@ require "riddler/elements/variant"
 
 require "riddler/step"
 require "riddler/steps/content"
+require "riddler/steps/variant"
 
 require "riddler/use_cases/admin_preview_step"
 require "riddler/use_cases/preview_context"
