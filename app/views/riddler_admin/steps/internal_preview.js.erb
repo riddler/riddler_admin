@@ -1,2 +1,5 @@
-$("#preview-context-<%= @preview_context.id %> pre")
-  .html("<%= j JSON.pretty_generate @use_case.process %>")
+$("#<%= @preview_context.id %>-json pre")
+  .html("<%= j JSON.pretty_generate @preview_hash %>");
+
+$("#<%= @preview_context.id %>-visual")
+  .html("<%= j render partial: "riddler_admin/steps/visual_preview", locals: { data: @preview_hash } %>")
