@@ -4,7 +4,7 @@ package riddler.protobuf;
 
 import "google/protobuf/timestamp.proto";
 
-message ContentDefinition {
+message Definition {
   string id = 1;
   google.protobuf.Timestamp created_at = 2;
   google.protobuf.Timestamp updated_at = 3;

@@ -75,7 +75,7 @@ module RiddlerAdmin
 
     # Only allow a trusted parameter "white list" through.
     def publish_request_params
-      params.require(:publish_request).permit(:title, :description, :content_type, :content_id, :content_definition)
+      params.require(:publish_request).permit(:title, :description, :content_type, :content_id, :definition)
     end
   end
 end

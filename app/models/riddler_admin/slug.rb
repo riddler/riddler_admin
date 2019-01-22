@@ -5,7 +5,7 @@ module RiddlerAdmin
     MODEL_KEY = "sl".freeze
     ID_LENGTH = 5 # 916_132_832 per second
 
-    belongs_to :content_definition
+    belongs_to :definition
 
     validates :name, presence: true, uniqueness: true,
       format: {
@@ -35,7 +35,7 @@ module RiddlerAdmin
         updated_at: timestamp_proto(updated_at),
         name: name,
         status: status,
-        content_definition_id: content_definition.id,
+        definition_id: definition.id,
         interaction_identity: interaction_identity
     end
 

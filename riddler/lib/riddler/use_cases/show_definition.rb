@@ -1,14 +1,13 @@
 module Riddler
   module UseCases
-    class ShowStep
+    class ShowDefinition
       attr_reader :definition_repo,
-        :step_id, :version, :params, :headers,
+        :definition_id, :params, :headers,
         :definition, :context, :step
 
-      def initialize definition_repo:, step_id:, version:, params: {}, headers: {}
+      def initialize definition_repo:, definition_id:, params: {}, headers: {}
         @definition_repo = definition_repo
-        @step_id = step_id
-        @version = version
+        @definition_id = definition_id
         @params = params
         @headers = headers
 
@@ -27,9 +26,7 @@ module Riddler
       private
 
       def lookup_definition
-        definition_repo.find_by content_type: "step",
-          content_id: step_id,
-          version: version
+        definition_repo.find_by id: definition_id
       end
 
       def generate_context

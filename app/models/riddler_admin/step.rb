@@ -19,7 +19,7 @@ module RiddlerAdmin
       dependent: :nullify,
       as: :content
 
-    has_many :content_definitions,
+    has_many :definitions,
       dependent: :nullify,
       as: :content
 
@@ -62,7 +62,7 @@ module RiddlerAdmin
     end
 
     def published?
-      content_definitions.any?
+      definitions.any?
     end
 
     def definition_hash options=nil

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ra_content_definitions", id: :string, force: :cascade do |t|
+  create_table "ra_definitions", id: :string, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "schema_version", null: false
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
     t.string "content_id"
     t.integer "version", null: false
     t.jsonb "definition", null: false
-    t.index ["content_type", "content_id"], name: "index_ra_content_definitions_on_content_type_and_content_id"
-    t.index ["id"], name: "index_ra_content_definitions_on_id"
-    t.index ["publish_request_id"], name: "index_ra_content_definitions_on_publish_request_id"
+    t.index ["content_type", "content_id"], name: "index_ra_definitions_on_content_type_and_content_id"
+    t.index ["id"], name: "index_ra_definitions_on_id"
+    t.index ["publish_request_id"], name: "index_ra_definitions_on_publish_request_id"
   end
 
   create_table "ra_elements", id: :string, force: :cascade do |t|
@@ -75,9 +75,9 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
     t.datetime "updated_at", null: false
     t.string "name", null: false
     t.string "status", default: "live", null: false
-    t.string "content_definition_id", null: false
+    t.string "definition_id", null: false
     t.string "interaction_identity"
-    t.index ["content_definition_id"], name: "index_ra_slugs_on_content_definition_id"
+    t.index ["definition_id"], name: "index_ra_slugs_on_definition_id"
     t.index ["id"], name: "index_ra_slugs_on_id"
     t.index ["name"], name: "index_ra_slugs_on_name", unique: true
   end
