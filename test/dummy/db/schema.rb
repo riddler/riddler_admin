@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
     t.string "container_id"
     t.integer "position"
     t.string "text"
-    t.string "href"
+    t.string "url"
     t.string "include_predicate"
     t.index ["container_type", "container_id"], name: "index_ra_elements_on_container_type_and_container_id"
     t.index ["id"], name: "index_ra_elements_on_id"

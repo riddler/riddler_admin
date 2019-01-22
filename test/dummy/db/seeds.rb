@@ -20,7 +20,14 @@ Types: {% for type in pokemon.types %}
 
   puts "Creating Image"
   Elements::Image.create! name: "image",
-    href: "{{ pokemon.sprites.front_default }}",
+    url: "{{ pokemon.sprites.front_default }}",
+    text: "{{ pokemon.name | capitalize }}",
+    container: step
+
+  puts "Creating ExternalLink"
+  Elements::ExternalLink.create! name: "external_link",
+    url: "https://pokeapi.co/api/v2/pokemon/{{ pokemon.id }}/",
+    text: "View raw JSON from PokeAPI",
     container: step
 
   %w[ 1 2 25 100 ].each do |id|
