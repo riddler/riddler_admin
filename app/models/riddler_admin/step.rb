@@ -67,12 +67,15 @@ module RiddlerAdmin
 
     def definition_hash options=nil
       options ||= {}
-      serializable_hash options.merge(serializable_hash_options)
+      hash = serializable_hash options.merge(serializable_hash_options)
+      hash["type"] = object
+      hash.delete "include_predicate" if hash["include_predicate"].blank?
+      hash
     end
 
     def serializable_hash_options
       {
-        methods: [:object, :content_type],
+        methods: [:content_type],
         except: excluded_attrs
       }
     end

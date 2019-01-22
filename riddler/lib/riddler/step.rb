@@ -13,13 +13,12 @@ module Riddler
     end
 
     def self.for definition, context
-      # This should be "type" not "object"
-      step_type = definition["object"]
+      step_type = definition["type"]
 
       # Maybe this should be a registry
-      klazz = subclasses.detect { |klass| klass.type == step_type }
+      klass = subclasses.detect { |k| k.type == step_type }
 
-      klazz.new definition, context
+      klass.new definition, context
     end
 
     def initialize definition, context
