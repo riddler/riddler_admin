@@ -14,7 +14,15 @@ module RiddlerAdmin
     end
 
     def data
-      YAML.safe_load yaml
+      yaml_string = yaml
+
+      if ::RiddlerAdmin.configuration.encrypt_preview_contexts? &&
+        encrypted_yaml.present?
+
+        yaml_string = decrypt encrypted_yaml
+      end
+
+      YAML.safe_load yaml_string
     end
 
     def refresh_data input_headers: {}
@@ -25,7 +33,7 @@ module RiddlerAdmin
         headers: use_case_headers
 
       hash = use_case.process
-      update_attribute :yaml, hash.to_yaml
+      update_data hash
     end
 
     def params_hash
@@ -46,6 +54,29 @@ module RiddlerAdmin
     def merge_headers input_headers
       request_headers = self.class.convert_headers input_headers
       request_headers.merge headers_hash
+    end
+
+    def update_data hash
+      yaml = hash.to_yaml
+
+      if ::RiddlerAdmin.configuration.encrypt_preview_contexts?
+        encrypted_yaml = encrypt yaml
+        update_attribute :encrypted_yaml, encrypted_yaml
+      else
+        update_attribute :yaml, yaml
+      end
+    end
+
+    private
+
+    def encrypt plaintext
+      ::RiddlerAdmin.encrypt plaintext,
+        key: ::RiddlerAdmin.configuration.preview_context_transit_key
+    end
+
+    def decrypt ciphertext
+      ::RiddlerAdmin.decrypt ciphertext,
+        key: ::RiddlerAdmin.configuration.preview_context_transit_key
     end
   end
 end
