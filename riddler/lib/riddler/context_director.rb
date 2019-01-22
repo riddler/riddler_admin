@@ -20,6 +20,8 @@ module Riddler
     def apply_builders ctx
       ::Riddler.configuration.context_builders.each do |builder_class|
         builder = builder_class.new ctx
+        next unless builder.data_available?
+        builder.extract_ids
         builder.process
       end
     end

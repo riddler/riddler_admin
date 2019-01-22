@@ -2,6 +2,7 @@ require "riddler/version"
 
 require "liquid"
 require "predicator"
+require "ulid"
 
 require "riddler/includeable"
 

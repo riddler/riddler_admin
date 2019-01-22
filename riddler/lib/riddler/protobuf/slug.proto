@@ -11,4 +11,5 @@ message Slug {
   string name = 4;
   string status = 5;
   string content_definition_id = 6;
+  string interaction_identity = 7;
 }

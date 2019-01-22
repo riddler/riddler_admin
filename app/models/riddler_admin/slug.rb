@@ -35,7 +35,8 @@ module RiddlerAdmin
         updated_at: timestamp_proto(updated_at),
         name: name,
         status: status,
-        content_definition_id: content_definition.id
+        content_definition_id: content_definition.id,
+        interaction_identity: interaction_identity
     end
 
     private
