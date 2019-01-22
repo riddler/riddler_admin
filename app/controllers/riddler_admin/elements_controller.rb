@@ -72,12 +72,12 @@ module RiddlerAdmin
 
       # Only allow a trusted parameter "white list" through.
       def element_create_params
-        params.require(:element).permit(:id, :name, :type, :text, :container_type, :container_id, :href, :include_predicate)
+        params.require(:element).permit(:id, :name, :type, :text, :container_type, :container_id, :url, :include_predicate)
       end
 
       # Only allow a trusted parameter "white list" through.
       def element_params
-        params.require(:element).permit(:name, :text, :href, :include_predicate)
+        params.require(:element).permit(:name, :text, :url, :include_predicate)
       end
   end
 end

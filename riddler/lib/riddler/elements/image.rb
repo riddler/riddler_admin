@@ -5,16 +5,16 @@ module Riddler
         "image"
       end
 
-      def href
-        context.render definition["href"]
+      def src
+        context.render definition["src"]
       end
 
-      def text
-        context.render definition["text"]
+      def alt
+        context.render definition["alt"]
       end
 
       def to_hash
-        super.merge text: text, href: href
+        super.merge alt: alt, src: src
       end
     end
   end

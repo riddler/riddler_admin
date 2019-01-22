@@ -18,9 +18,9 @@ module RiddlerAdmin
 
     def self.available_classes
       [
+        Elements::ExternalLink,
         Elements::Heading,
         Elements::Image,
-        Elements::Link,
         Elements::Text,
         Elements::Variant
       ]
@@ -68,7 +68,7 @@ module RiddlerAdmin
     end
 
     def excluded_attrs
-      [:created_at, :updated_at, :container_type, :container_id, :position, :href]
+      [:created_at, :updated_at, :container_type, :container_id, :position, :url, :text]
     end
 
     def step

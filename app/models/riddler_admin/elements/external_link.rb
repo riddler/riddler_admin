@@ -1,7 +1,7 @@
 module RiddlerAdmin
   module Elements
-    class Link < Element
-      validates_presence_of :href
+    class ExternalLink < Element
+      validates_presence_of :url
 
       def self.model_name
         Element.model_name
@@ -9,7 +9,8 @@ module RiddlerAdmin
 
       def definition_hash options=nil
         hash = super
-        hash["href"] = href
+        hash["href"] = url
+        hash["text"] = text
         hash
       end
     end

@@ -6,6 +6,12 @@ module RiddlerAdmin
       def self.model_name
         Element.model_name
       end
+
+      def definition_hash options=nil
+        hash = super
+        hash["text"] = text
+        hash
+      end
     end
   end
 end
