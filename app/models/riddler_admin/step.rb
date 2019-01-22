@@ -19,7 +19,7 @@ module RiddlerAdmin
       dependent: :nullify,
       as: :content
 
-    has_many :content_definitions,
+    has_many :definitions,
       dependent: :nullify,
       as: :content
 
@@ -62,17 +62,20 @@ module RiddlerAdmin
     end
 
     def published?
-      content_definitions.any?
+      definitions.any?
     end
 
     def definition_hash options=nil
       options ||= {}
-      serializable_hash options.merge(serializable_hash_options)
+      hash = serializable_hash options.merge(serializable_hash_options)
+      hash["type"] = object
+      hash.delete "include_predicate" if hash["include_predicate"].blank?
+      hash
     end
 
     def serializable_hash_options
       {
-        methods: [:object, :content_type],
+        methods: [:content_type],
         except: excluded_attrs
       }
     end

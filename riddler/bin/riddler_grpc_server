@@ -12,13 +12,13 @@ class ContentManagementImpl < Riddler::ContentManagement::Service
     @content_repo = content_repo
   end
 
-  def create_content_definition request, _call
+  def create_definition request, _call
     p request
     grpc_response
   end
 
   def grpc_response
-    ::Riddler::CreateContentDefinitionResponse.new
+    ::Riddler::CreateDefinitionResponse.new
   end
 end
 

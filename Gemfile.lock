@@ -16,9 +16,9 @@ PATH
   specs:
     riddler (0.1.0)
       grpc
-      ksuid
       liquid
       predicator
+      ulid-ruby
 
 GEM
   remote: https://rubygems.org/
@@ -92,10 +92,10 @@ GEM
     ffi (1.10.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    google-protobuf (3.6.1)
+    google-protobuf (3.6.1-universal-darwin)
     googleapis-common-protos-types (1.0.2)
       google-protobuf (~> 3.0)
-    grpc (1.18.0)
+    grpc (1.18.0-universal-darwin)
       google-protobuf (~> 3.1)
       googleapis-common-protos-types (~> 1.0.0)
     i18n (1.5.2)
@@ -184,6 +184,7 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    ulid-ruby (1.0.0)
     vault (0.12.0)
       aws-sigv4
     web-console (3.7.0)

@@ -9,7 +9,7 @@ module RiddlerAdmin
     belongs_to :content, polymorphic: true
 
     # The Definition created as a result of this request
-    has_one :content_definition
+    has_one :definition
 
     validates :title, presence: true
 
@@ -25,7 +25,7 @@ module RiddlerAdmin
     end
 
     def publish published_at = Time.now
-      create_content_definition! content: content
+      create_definition! content: content
       publish_to_remote
 
       update_attributes published_at: published_at,
@@ -38,14 +38,14 @@ module RiddlerAdmin
 
     def publish_to_remote
       raise "ERROR: Attempt to publish an unapproved definition" unless approved?
-      content_management_grpc.create_content_definition request_proto
+      content_management_grpc.create_definition request_proto
     end
 
     private
 
     def request_proto
-      ::Riddler::Protobuf::CreateContentDefinitionRequest.new \
-        content_definition: content_definition.to_proto
+      ::Riddler::Protobuf::CreateDefinitionRequest.new \
+        definition: definition.to_proto
     end
 
     def content_management_grpc

@@ -47,7 +47,7 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.references :content, polymorphic: true, index: true, type: :string
     end
 
-    create_table :ra_content_definitions, id: false do |t|
+    create_table :ra_definitions, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
       t.integer :schema_version, null: false
@@ -62,7 +62,8 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.timestamps
       t.string :name, null: false
       t.string :status, default: "live", null: false
-      t.references :content_definition, type: :string, null: false
+      t.references :definition, type: :string, null: false
+      t.string :interaction_identity
     end
     add_index :ra_slugs, :name, unique: true
   end

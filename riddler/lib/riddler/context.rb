@@ -5,7 +5,9 @@ module Riddler
 
     def initialize input = nil
       input ||= {}
-      @variables = {}
+      @variables = {
+        "ids" => {}
+      }
       input.each do |key, value|
         assign key, value
       end
@@ -22,6 +24,10 @@ module Riddler
     def render string
       template = ::Liquid::Template.parse string
       template.render variables
+    end
+
+    def add_id name, value
+      variables["ids"][name.to_s] = value
     end
 
     def to_liquid
