@@ -17,8 +17,20 @@ module Riddler
         @slug = lookup_slug
       end
 
-      def available?
-        slug.status == "live"
+      def exists?
+        !slug.nil?
+      end
+
+      def paused?
+        return true if slug.nil?
+        slug.status == "paused"
+      end
+
+      def dismissed?
+        return false unless interaction_identity_present?
+        find_interaction
+        return false if @interaction.nil?
+        @interaction.status == "dismissed"
       end
 
       def process
@@ -27,9 +39,9 @@ module Riddler
       end
 
       def find_interaction
-        return unless interaction_identity_present?
+        return nil unless interaction_identity_present?
 
-        @interaction = interaction_repo.last_by slug: slug_name,
+        @interaction ||= interaction_repo.last_by slug: slug_name,
           identity: identity
       end
 
