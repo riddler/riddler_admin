@@ -1,6 +1,6 @@
 <% if publish_request.approved_at.present? %>
   <span class="sm float-right">Approved <%= time_ago_in_words publish_request.approved_at %> ago</span>
-<% elsif user_can_approve? %>
+<% elsif riddler_user_can_approve? %>
   <%= link_to "Approve", approve_publish_request_path(publish_request), method: :post, remote: true, class: "btn btn-secondary float-right" %>
 <% else %>
   Not Approved

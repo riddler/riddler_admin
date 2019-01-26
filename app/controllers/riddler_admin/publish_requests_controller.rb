@@ -3,6 +3,7 @@ require_dependency "riddler_admin/application_controller"
 module RiddlerAdmin
   class PublishRequestsController < ApplicationController
     before_action :set_publish_request, only: [:show, :edit, :update, :destroy, :approve, :publish]
+    before_action :check_approval_ability, only: :approve
 
     def index
       @publish_requests = PublishRequest.all
@@ -67,6 +68,14 @@ module RiddlerAdmin
     end
 
     private
+
+    def check_approval_ability
+      if !riddler_user_can_approve?
+        redirect_to publish_requests_url, notice: "Approval not allowed"
+        return false
+      end
+      true
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_publish_request

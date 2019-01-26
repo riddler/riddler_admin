@@ -5,6 +5,7 @@
   c.user_class_name = "::User"
   c.base_controller_name = "::ApplicationController"
   c.current_user_method = "current_user"
+
   #c.user_can_approve_block = -> (user) {
   #  user && user.role == "admin"
   #}
