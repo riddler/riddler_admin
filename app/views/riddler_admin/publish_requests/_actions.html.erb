@@ -1,7 +1,9 @@
 <% if publish_request.approved_at.present? %>
   <span class="sm float-right">Approved <%= time_ago_in_words publish_request.approved_at %> ago</span>
-<% else %>
+<% elsif user_can_approve? %>
   <%= link_to "Approve", approve_publish_request_path(publish_request), method: :post, remote: true, class: "btn btn-secondary float-right" %>
+<% else %>
+  Not Approved
 <% end %>
 
 <% if publish_request.approved_at.present? %>

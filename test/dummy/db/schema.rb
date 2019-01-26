@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_24_201519) do
+ActiveRecord::Schema.define(version: 2019_01_26_153702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
     t.string "include_predicate"
     t.index ["container_type", "container_id"], name: "index_ra_elements_on_container_type_and_container_id"
     t.index ["id"], name: "index_ra_elements_on_id"
+  end
+
+  create_table "ra_emails", id: :string, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title", null: false
+    t.string "name", null: false
+    t.string "subject", null: false
+    t.string "body", null: false
+    t.string "css"
+    t.string "include_predicate"
+    t.boolean "preview_enabled", default: false
+    t.index ["id"], name: "index_ra_emails_on_id"
   end
 
   create_table "ra_preview_contexts", id: :string, force: :cascade do |t|
@@ -95,6 +108,13 @@ ActiveRecord::Schema.define(version: 2018_11_24_201519) do
     t.boolean "preview_enabled", default: false
     t.index ["id"], name: "index_ra_steps_on_id"
     t.index ["stepable_type", "stepable_id"], name: "index_ra_steps_on_stepable_type_and_stepable_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

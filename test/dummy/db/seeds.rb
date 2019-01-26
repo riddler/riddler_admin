@@ -1,4 +1,10 @@
 module RiddlerAdmin
+  puts "Creating Admin User"
+  ::User.create! name: "Admin User", role: "admin"
+
+  puts "Creating User"
+  ::User.create! name: "User", role: "user"
+
   puts "Creating Blank Preview Context"
   pctx = PreviewContext.create! id: "pctx_blank", title: "Blank"
   pctx.refresh_data
