@@ -22,6 +22,8 @@ module RiddlerAdmin
     @configuration ||= ::RiddlerAdmin::Configuration.new
   end
 
+  def self.config; configuration; end
+
   def self.encrypt plaintext, key:
     encoded_plaintext = Base64.strict_encode64 plaintext
     secret = Vault.logical.write "transit/encrypt/#{key}",
