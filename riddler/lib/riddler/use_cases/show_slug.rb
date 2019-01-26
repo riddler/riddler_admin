@@ -33,10 +33,19 @@ module Riddler
         @interaction.status == "dismissed"
       end
 
+      def completed?
+        return false unless interaction_identity_present?
+        find_interaction
+        return false if @interaction.nil?
+        @interaction.status == "completed"
+      end
+
       def process
         find_interaction || create_interaction
         definition_use_case.process.merge interaction_id: interaction.id
       end
+
+      private
 
       def find_interaction
         return nil unless interaction_identity_present?
@@ -65,8 +74,6 @@ module Riddler
           params: params,
           headers: headers
       end
-
-      private
 
       def interaction_identity_present?
         !(slug.interaction_identity.nil? || slug.interaction_identity == "")
