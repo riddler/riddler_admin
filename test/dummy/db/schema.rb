@@ -44,19 +44,6 @@ ActiveRecord::Schema.define(version: 2019_01_26_153702) do
     t.index ["id"], name: "index_ra_elements_on_id"
   end
 
-  create_table "ra_emails", id: :string, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "title", null: false
-    t.string "name", null: false
-    t.string "subject", null: false
-    t.string "body", null: false
-    t.string "css"
-    t.string "include_predicate"
-    t.boolean "preview_enabled", default: false
-    t.index ["id"], name: "index_ra_emails_on_id"
-  end
-
   create_table "ra_preview_contexts", id: :string, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
