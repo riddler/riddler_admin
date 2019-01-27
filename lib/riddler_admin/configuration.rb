@@ -4,7 +4,7 @@ module RiddlerAdmin
     attr_accessor :riddler_grpc_address, :encrypt_preview_contexts,
       :vault_address, :preview_context_transit_key,
       :current_user_method, :user_can_approve_block,
-      :controller_authorization_block
+      :controller_authorization_block, :app_name, :parent_app_name
 
     attr_reader :user_class_name, :user_class,
       :base_controller_name, :base_controller
@@ -14,6 +14,7 @@ module RiddlerAdmin
       @encrypt_preview_contexts = false
       @vault_address = nil
       @preview_context_transit_key = "riddler-admin-preview-context"
+      @app_name = "Riddler"
     end
 
     def remote_riddler?
