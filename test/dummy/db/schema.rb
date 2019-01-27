@@ -60,10 +60,12 @@ ActiveRecord::Schema.define(version: 2019_01_26_153702) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "approved_at"
+    t.string "approved_by_id"
+    t.string "approved_by_name"
     t.datetime "published_at"
     t.string "title", null: false
     t.string "description"
-    t.string "status", default: "active", null: false
+    t.string "status", default: "pending", null: false
     t.string "content_type"
     t.string "content_id"
     t.index ["content_type", "content_id"], name: "index_ra_publish_requests_on_content_type_and_content_id"

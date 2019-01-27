@@ -15,16 +15,21 @@ module RiddlerAdmin
 
     after_initialize :set_defaults
 
-    def approve approved_at = Time.now
-      update_attributes approved_at: approved_at,
-        status: "approved"
+    def approve riddler_user = nil, approved_at = Time.now.utc
+      attrs = {status: "approved", approved_at: approved_at}
+      if riddler_user.present?
+        attrs[:approved_by_name] = ::RiddlerAdmin.config.user_name_block.call riddler_user
+        attrs[:approved_by_id] = riddler_user.public_send ::RiddlerAdmin.config.user_id_method
+      end
+
+      update_attributes attrs
     end
 
     def approved?
       approved_at.present?
     end
 
-    def publish published_at = Time.now
+    def publish published_at = Time.now.utc
       create_definition! content: content
       publish_to_remote
 
