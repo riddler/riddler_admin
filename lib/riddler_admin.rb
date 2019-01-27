@@ -1,4 +1,3 @@
-require "active_model_serializers"
 require "acts_as_list"
 require "bootstrap"
 require "jquery-rails"

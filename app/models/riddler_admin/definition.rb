@@ -1,7 +1,7 @@
 require "riddler/protobuf/definition_pb"
 
 module RiddlerAdmin
-  class Definition < ApplicationRecord
+  class Definition < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "cdef".freeze
     ID_LENGTH = 5 # 916_132_832 per second
 
