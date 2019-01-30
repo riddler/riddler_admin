@@ -16,6 +16,7 @@ PATH
     riddler (0.1.0)
       grpc
       liquid
+      outlog
       predicator
       ulid-ruby
 
@@ -84,10 +85,10 @@ GEM
     ffi (1.9.25)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    google-protobuf (3.6.1)
+    google-protobuf (3.6.1-universal-darwin)
     googleapis-common-protos-types (1.0.2)
       google-protobuf (~> 3.0)
-    grpc (1.18.0)
+    grpc (1.18.0-universal-darwin)
       google-protobuf (~> 3.1)
       googleapis-common-protos-types (~> 1.0.0)
     i18n (1.5.2)
@@ -114,6 +115,7 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
+    outlog (0.2.0)
     pg (1.1.4)
     popper_js (1.14.5)
     predicator (1.2.0)

@@ -1,18 +1,24 @@
 <ul class="list-group">
-<% data["elements"].each do |element| %>
-  <li class="list-group-item">
-    <% case element[:type] %>
-    <% when "external_link" %>
-      <a href="<%= element[:href] %>" target="_blank"><%= element[:text] %></a>
-    <% when "heading" %>
-      <h5><%= element[:text] %></h5>
-    <% when "image" %>
-      <img src="<%= element[:src] %>" alt="<%= element[:alt] %>" />
-    <% when "text" %>
-      <%= element[:text] %>
-    <% else %>
-      Unknown Element type "<%= element[:type] %>"
+  <% if (data[:response_code] || "").to_s == "204" %>
+    <li class="list-group-item">
+      <%= data[:message] %>
+    </li>
+  <% else %>
+    <% data["elements"].each do |element| %>
+      <li class="list-group-item">
+        <% case element[:type] %>
+        <% when "external_link" %>
+          <a href="<%= element[:href] %>" target="_blank"><%= element[:text] %></a>
+        <% when "heading" %>
+          <h5><%= element[:text] %></h5>
+        <% when "image" %>
+          <img src="<%= element[:src] %>" alt="<%= element[:alt] %>" />
+        <% when "text" %>
+          <%= element[:text] %>
+        <% else %>
+          Unknown Element type "<%= element[:type] %>"
+        <% end %>
+      </li>
     <% end %>
-  </li>
-<% end %>
+  <% end %>
 </ul>

@@ -13,7 +13,7 @@
     <h1><%= @step.title %></h1>
   </div>
   <div class="col-sm-6">
-    <%= link_to 'Edit title', edit_step_path(@step), class: 'btn btn-light float-right' %>
+    <%= link_to 'Edit Step', edit_step_path(@step), class: 'btn btn-light float-right' %>
     <%= link_to "#{@step.preview_enabled ? 'Disable' : 'Enable'} Preview", toggle_step_path(@step), class: 'btn btn-light float-right mr-2' %>
     <% if ::RiddlerAdmin.configuration.remote_riddler? %>
       <%= link_to "Publish", new_publish_request_path(step_id: @step.id), class: "btn btn-light float-right"%>

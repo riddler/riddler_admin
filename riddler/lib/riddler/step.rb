@@ -15,7 +15,6 @@ module Riddler
     def self.for definition, context
       step_type = definition["type"]
 
-      # Maybe this should be a registry
       klass = subclasses.detect { |k| k.type == step_type }
 
       klass.new definition, context

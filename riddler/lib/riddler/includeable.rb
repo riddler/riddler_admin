@@ -2,8 +2,11 @@ module Riddler
   module Includeable
     def include?
       return true unless has_include_predicate?
-      predicate = definition["include_predicate"]
-      Predicator.evaluate predicate, context.to_liquid
+      Predicator.evaluate include_predicate, context.to_liquid
+    end
+
+    def include_predicate
+      definition["include_predicate"]
     end
 
     private

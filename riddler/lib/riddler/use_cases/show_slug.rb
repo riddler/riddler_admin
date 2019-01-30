@@ -3,7 +3,7 @@ module Riddler
     class ShowSlug
       attr_reader :definition_repo, :slug_repo, :interaction_repo,
         :slug_name, :params, :headers,
-        :slug, :context, :interaction
+        :slug, :interaction
 
       def initialize definition_repo:, slug_repo:, interaction_repo:,
         slug_name:, params: {}, headers: {}
@@ -40,6 +40,10 @@ module Riddler
         @interaction.status == "completed"
       end
 
+      def excluded?
+        definition_use_case.excluded?
+      end
+
       def process
         find_interaction || create_interaction
         definition_use_case.process.merge interaction_id: interaction.id
@@ -57,7 +61,8 @@ module Riddler
       def create_interaction
         @interaction = Entities::Interaction.new slug: slug_name,
           status: "active",
-          definition_id: slug.definition_id
+          definition_id: slug.definition_id,
+          identifiers: context.ids
 
         @interaction.identity = identity if request_is_unique?
 
@@ -72,8 +77,12 @@ module Riddler
           headers: headers
       end
 
+      def context
+        definition_use_case.context
+      end
+
       def identity
-        @identity ||= definition_use_case.context.render slug.interaction_identity
+        @identity ||= context.render slug.interaction_identity
       end
 
       def blank_interaction_identity

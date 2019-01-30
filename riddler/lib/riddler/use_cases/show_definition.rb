@@ -23,6 +23,10 @@ module Riddler
         step.to_hash
       end
 
+      def excluded?
+        !step.include?
+      end
+
       private
 
       def lookup_definition
