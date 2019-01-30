@@ -81,8 +81,13 @@ module Riddler
         definition_use_case.context
       end
 
+      # Only has IDs extracted - context builders have not been processed
+      def simple_context
+        @simple_context = ::Riddler::ContextDirector.new(params: params, headers: headers).simple_context
+      end
+
       def identity
-        @identity ||= context.render slug.interaction_identity
+        @identity ||= simple_context.render slug.interaction_identity
       end
 
       def blank_interaction_identity

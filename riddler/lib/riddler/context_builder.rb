@@ -28,8 +28,8 @@ module Riddler
 
     # Adds the ID to the context and defines a method for the ID
     def add_id name, value
-      context.add_id name.to_s, value
-      self.class.define_method(name) { value }
+      context.add_id name, value
+      define_singleton_method(name) { value }
     end
   end
 end
