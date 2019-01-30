@@ -3,8 +3,8 @@ module RiddlerAdmin
   class Configuration
     attr_accessor :riddler_grpc_address, :encrypt_preview_contexts,
       :vault_address, :preview_context_transit_key,
-      :current_user_method, :user_can_approve_block,
-      :user_id_method, :user_name_block,
+      :current_user_method, :user_id_method, :user_name_block,
+      :user_can_approve_block, :user_can_deploy_block,
       :controller_authorization_block, :app_name, :parent_app_name
 
     attr_reader :user_class_name, :user_class,

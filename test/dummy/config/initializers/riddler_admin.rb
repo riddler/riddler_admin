@@ -11,4 +11,8 @@
   #c.user_can_approve_block = -> (user) {
   #  user && user.role == "admin"
   #}
+  #
+  #c.user_can_deploy_block = -> (user) {
+  #  user && user.role == "admin"
+  #}
 end
