@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "grpc"
   spec.add_dependency "liquid"
+  spec.add_dependency "outlog"
   spec.add_dependency "predicator"
   spec.add_dependency "ulid-ruby"
 

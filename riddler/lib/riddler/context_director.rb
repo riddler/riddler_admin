@@ -20,8 +20,13 @@ module Riddler
     def apply_builders ctx
       ::Riddler.configuration.context_builders.each do |builder_class|
         builder = builder_class.new ctx
-        next unless builder.data_available?
+        unless builder.data_available?
+          ::Riddler.logger.debug "data not available for builder", context_builder: builder_class.name
+          next
+        end
+        ::Riddler.logger.debug "extracting ids", context_builder: builder_class.name
         builder.extract_ids
+        ::Riddler.logger.debug "processing context builder", context_builder: builder_class.name
         builder.process
       end
     end

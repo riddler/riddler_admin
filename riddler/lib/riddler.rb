@@ -1,6 +1,7 @@
 require "riddler/version"
 
 require "liquid"
+require "outlog"
 require "predicator"
 require "ulid"
 
@@ -36,5 +37,11 @@ module Riddler
 
   def self.configuration
     @configuration ||= ::Riddler::Configuration.new
+  end
+
+  def self.config; configuration; end
+
+  def self.logger
+    @logger ||= ::Outlog.logger
   end
 end
