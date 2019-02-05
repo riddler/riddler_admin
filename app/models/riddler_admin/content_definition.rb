@@ -1,7 +1,7 @@
-require "riddler/protobuf/definition_pb"
+require "riddler/protobuf/content_definition_pb"
 
 module RiddlerAdmin
-  class Definition < ::RiddlerAdmin::ApplicationRecord
+  class ContentDefinition < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "cdef".freeze
     ID_LENGTH = 5 # 916_132_832 per second
 
@@ -24,7 +24,7 @@ module RiddlerAdmin
     end
 
     def to_proto
-      ::Riddler::Protobuf::Definition.new \
+      ::Riddler::Protobuf::ContentDefinition.new \
         schema_version: DEFINITION_SCHEMA_VERSION,
         id: id,
         created_at: created_at_proto,

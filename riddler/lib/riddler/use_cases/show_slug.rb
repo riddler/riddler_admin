@@ -1,14 +1,14 @@
 module Riddler
   module UseCases
     class ShowSlug
-      attr_reader :definition_repo, :slug_repo, :interaction_repo,
+      attr_reader :content_definition_repo, :slug_repo, :interaction_repo,
         :slug_name, :params, :headers,
         :slug, :interaction
 
-      def initialize definition_repo:, slug_repo:, interaction_repo:,
+      def initialize content_definition_repo:, slug_repo:, interaction_repo:,
         slug_name:, params: {}, headers: {}
 
-        @definition_repo = definition_repo
+        @content_definition_repo = content_definition_repo
         @slug_repo = slug_repo
         @interaction_repo = interaction_repo
         @slug_name = slug_name
@@ -61,7 +61,7 @@ module Riddler
       def create_interaction
         @interaction = Entities::Interaction.new slug: slug_name,
           status: "active",
-          definition_id: slug.definition_id,
+          content_definition_id: slug.content_definition_id,
           identifiers: context.ids
 
         @interaction.identity = identity if request_is_unique?
@@ -70,9 +70,9 @@ module Riddler
       end
 
       def definition_use_case
-        @definition_use_case ||= ShowDefinition.new \
-          definition_repo: definition_repo,
-          definition_id: slug.definition_id,
+        @definition_use_case ||= ShowContentDefinition.new \
+          content_definition_repo: content_definition_repo,
+          content_definition_id: slug.content_definition_id,
           params: params,
           headers: headers
       end
