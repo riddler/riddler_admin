@@ -11,7 +11,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :updated_at, :message, 3, "google.protobuf.Timestamp"
     optional :name, :string, 4
     optional :status, :string, 5
-    optional :definition_id, :string, 6
+    optional :content_definition_id, :string, 6
     optional :interaction_identity, :string, 7
   end
 end
