@@ -1,5 +1,7 @@
 require "riddler/version"
 
+require "faraday"
+require "faraday_middleware"
 require "liquid"
 require "outlog"
 require "predicator"
@@ -12,6 +14,7 @@ require "riddler/drops/hash_drop"
 require "riddler/configuration"
 
 require "riddler/context_builder"
+require "riddler/context_builders/faraday_builder"
 require "riddler/context_director"
 require "riddler/context"
 

@@ -14,6 +14,8 @@ PATH
   remote: riddler
   specs:
     riddler (0.1.0)
+      faraday
+      faraday_middleware
       grpc
       liquid
       outlog
@@ -82,6 +84,10 @@ GEM
     crass (1.0.4)
     erubi (1.8.0)
     execjs (2.7.0)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.13.0)
+      faraday (>= 0.7.4, < 1.0)
     ffi (1.9.25)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -112,6 +118,7 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
+    multipart-post (2.0.0)
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
