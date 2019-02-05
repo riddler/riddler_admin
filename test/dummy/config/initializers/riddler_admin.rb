@@ -6,7 +6,13 @@
   c.base_controller_name = "::ApplicationController"
   c.current_user_method = "current_user"
 
+  c.parent_app_name = "Main App"
+
   #c.user_can_approve_block = -> (user) {
+  #  user && user.role == "admin"
+  #}
+  #
+  #c.user_can_deploy_block = -> (user) {
   #  user && user.role == "admin"
   #}
 end

@@ -1,5 +1,5 @@
 module RiddlerAdmin
-  class Step < ApplicationRecord
+  class Step < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "st".freeze
     ID_LENGTH = 5 # 916_132_832 per second
 

@@ -6,23 +6,54 @@ module Riddler
     def initialize params: {}, headers: {}
       @params = params
       @headers = headers
+      @ctx = ::Riddler::Context.new params: params, headers: headers
+      @ids_extracted = false
+    end
+
+    # Return the context with only IDs extracted
+    def simple_context
+      extract_ids
+      @ctx
     end
 
     # Create a new context and use registered builders to fill it in
     def context
-      ctx = ::Riddler::Context.new params: params, headers: headers
-      apply_builders ctx
-      ctx
+      extract_ids
+      apply_builders
+      @ctx
     end
 
     private
 
-    def apply_builders ctx
-      ::Riddler.configuration.context_builders.each do |builder_class|
-        builder = builder_class.new ctx
-        next unless builder.data_available?
+    def extract_ids
+      return if @ids_extracted
+
+      builders.each do |builder|
+        unless builder.data_available?
+          ::Riddler.logger.debug "data not available for builder", context_builder: builder.class.name
+          next
+        end
+        ::Riddler.logger.debug "extracting ids", context_builder: builder.class.name
         builder.extract_ids
+      end
+
+      @ids_extracted = true
+    end
+
+    def apply_builders
+      builders.each do |builder|
+        unless builder.data_available?
+          ::Riddler.logger.debug "data not available for builder", context_builder: builder.class.name
+          next
+        end
+        ::Riddler.logger.debug "processing context builder", context_builder: builder.class.name
         builder.process
+      end
+    end
+
+    def builders
+      @builders ||= ::Riddler.configuration.context_builders.map do |builder_class|
+        builder = builder_class.new @ctx
       end
     end
   end

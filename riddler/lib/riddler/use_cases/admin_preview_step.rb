@@ -11,7 +11,15 @@ module Riddler
       end
 
       def process
-        step.to_hash
+        if step.include?
+          step.to_hash
+        else
+          {
+            response_code: 204,
+            include_predicate: step.include_predicate,
+            message: "Excluded - the include_predicate returned false"
+          }
+        end
       end
     end
   end

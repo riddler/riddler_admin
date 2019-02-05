@@ -17,13 +17,12 @@ Gem::Specification.new do |s|
 
   s.add_dependency "riddler"
 
-  s.add_dependency "rails", "~> 5.2.1"
-  s.add_dependency "bootstrap", "~> 4.1.3"
-  s.add_dependency "ksuid"
+  s.add_dependency "rails", "~> 5.2"
+  s.add_dependency "bootstrap"
   s.add_dependency "acts_as_list"
   s.add_dependency "jquery-rails"
   s.add_dependency "jquery-ui-rails"
-  s.add_dependency "active_model_serializers"
+  s.add_dependency "ulid-ruby"
 
   s.add_development_dependency "sqlite3"
 end

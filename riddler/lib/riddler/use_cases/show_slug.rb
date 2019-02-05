@@ -3,7 +3,7 @@ module Riddler
     class ShowSlug
       attr_reader :definition_repo, :slug_repo, :interaction_repo,
         :slug_name, :params, :headers,
-        :slug, :context, :interaction
+        :slug, :interaction
 
       def initialize definition_repo:, slug_repo:, interaction_repo:,
         slug_name:, params: {}, headers: {}
@@ -27,17 +27,21 @@ module Riddler
       end
 
       def dismissed?
-        return false unless interaction_identity_present?
+        return false unless slug_defines_identity?
         find_interaction
         return false if @interaction.nil?
         @interaction.status == "dismissed"
       end
 
       def completed?
-        return false unless interaction_identity_present?
+        return false unless slug_defines_identity?
         find_interaction
         return false if @interaction.nil?
         @interaction.status == "completed"
+      end
+
+      def excluded?
+        definition_use_case.excluded?
       end
 
       def process
@@ -48,7 +52,7 @@ module Riddler
       private
 
       def find_interaction
-        return nil unless interaction_identity_present?
+        return nil unless request_is_unique?
 
         @interaction ||= interaction_repo.last_by slug: slug_name,
           identity: identity
@@ -57,14 +61,12 @@ module Riddler
       def create_interaction
         @interaction = Entities::Interaction.new slug: slug_name,
           status: "active",
-          definition_id: slug.definition_id
-        interaction.identity = identity if interaction_identity_present?
+          definition_id: slug.definition_id,
+          identifiers: context.ids
+
+        @interaction.identity = identity if request_is_unique?
 
         interaction_repo.create interaction
-      end
-
-      def identity
-        @identity ||= definition_use_case.context.render slug.interaction_identity
       end
 
       def definition_use_case
@@ -75,7 +77,32 @@ module Riddler
           headers: headers
       end
 
-      def interaction_identity_present?
+      def context
+        definition_use_case.context
+      end
+
+      # Only has IDs extracted - context builders have not been processed
+      def simple_context
+        @simple_context = ::Riddler::ContextDirector.new(params: params, headers: headers).simple_context
+      end
+
+      def identity
+        @identity ||= simple_context.render slug.interaction_identity
+      end
+
+      def blank_interaction_identity
+        @blank_interaction_identity ||= ::Riddler::Context.new.render slug.interaction_identity
+      end
+
+      def request_is_unique?
+        slug_defines_identity? && !interaction_identity_is_blank?
+      end
+
+      def interaction_identity_is_blank?
+        identity == blank_interaction_identity
+      end
+
+      def slug_defines_identity?
         !(slug.interaction_identity.nil? || slug.interaction_identity == "")
       end
 

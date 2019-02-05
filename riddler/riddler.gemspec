@@ -33,8 +33,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "faraday"
+  spec.add_dependency "faraday_middleware"
   spec.add_dependency "grpc"
   spec.add_dependency "liquid"
+  spec.add_dependency "outlog"
   spec.add_dependency "predicator"
   spec.add_dependency "ulid-ruby"
 

@@ -1,9 +1,8 @@
-require "active_model_serializers"
 require "acts_as_list"
 require "bootstrap"
 require "jquery-rails"
 require "jquery-ui-rails"
-require "ksuid"
+require "ulid"
 
 require "riddler_admin/engine"
 require "riddler_admin/configuration"

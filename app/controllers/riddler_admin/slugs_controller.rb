@@ -3,6 +3,7 @@ require_dependency "riddler_admin/application_controller"
 module RiddlerAdmin
   class SlugsController < ApplicationController
     before_action :set_slug, only: [:show, :edit, :update, :destroy, :toggle_status, :publish]
+    before_action :check_deploy_ability, only: [:create, :update]
 
     def index
       @slugs = Slug.all
@@ -42,6 +43,14 @@ module RiddlerAdmin
     end
 
     private
+
+    def check_deploy_ability
+      if !riddler_user_can_deploy?
+        redirect_to slugs_url, notice: "Slug creation/modification not allowed"
+        return false
+      end
+      true
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_slug

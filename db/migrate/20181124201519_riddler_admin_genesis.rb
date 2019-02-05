@@ -40,10 +40,12 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.primary_key :id, :string, index: true
       t.timestamps
       t.timestamp :approved_at
+      t.string :approved_by_id
+      t.string :approved_by_name
       t.timestamp :published_at
       t.string :title, null: false
       t.string :description
-      t.string :status, default: "active", null: false
+      t.string :status, default: "pending", null: false
       t.references :content, polymorphic: true, index: true, type: :string
     end
 

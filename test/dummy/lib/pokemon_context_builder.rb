@@ -15,7 +15,11 @@ class PokemonContextBuilder < ::Riddler::ContextBuilder
     http = Net::HTTP.new uri.host, uri.port
     http.use_ssl = true
     request = Net::HTTP::Get.new uri.request_uri
+
+    ::Riddler.logger.info "fetching pokemon", pokemon_id: pokemon_id
     response = http.request request
+    ::Riddler.logger.debug "done fetching response", pokemon_id: pokemon_id
+
     parsed_response = JSON.parse response.body
 
     context.assign "pokemon", parsed_response

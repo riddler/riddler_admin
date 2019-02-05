@@ -1,4 +1,6 @@
 RiddlerAdmin::Engine.routes.draw do
+  root to: "dashboard#index"
+
   resources :elements do
     put "sort", on: :collection
   end

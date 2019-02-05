@@ -14,7 +14,7 @@ module RiddlerAdmin
     end
 
     def approve
-      @publish_request.approve
+      @publish_request.approve riddler_current_user
     end
 
     def publish
