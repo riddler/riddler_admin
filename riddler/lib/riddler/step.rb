@@ -27,8 +27,10 @@ module Riddler
 
     def to_hash
       {
+        content_type: "step",
         type: self.class.type,
-        id: definition["id"]
+        id: definition["id"],
+        name: definition["name"]
       }
     end
   end
