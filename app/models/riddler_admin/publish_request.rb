@@ -15,6 +15,8 @@ module RiddlerAdmin
 
     after_initialize :set_defaults
 
+    scope :unapproved, -> { where "approved_at is null" }
+
     def approve riddler_user = nil, approved_at = Time.now.utc
       attrs = {status: "approved", approved_at: approved_at}
       if riddler_user.present?
