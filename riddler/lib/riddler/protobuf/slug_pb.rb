@@ -13,6 +13,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :status, :string, 5
     optional :content_definition_id, :string, 6
     optional :interaction_identity, :string, 7
+    optional :include_predicate, :string, 8
   end
 end
 

@@ -22,6 +22,7 @@ module RiddlerAdmin
         yaml_string = decrypt encrypted_yaml
       end
 
+      return {} if yaml_string.to_s.strip == ""
       YAML.safe_load yaml_string
     end
 

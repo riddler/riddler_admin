@@ -8,6 +8,7 @@ module Riddler
       @headers = headers
       @ctx = ::Riddler::Context.new params: params, headers: headers
       @ids_extracted = false
+      @builders_applied = false
     end
 
     # Return the context with only IDs extracted
@@ -41,6 +42,8 @@ module Riddler
     end
 
     def apply_builders
+      return if @builders_applied
+
       builders.each do |builder|
         unless builder.data_available?
           ::Riddler.logger.debug "data not available for builder", context_builder: builder.class.name
@@ -49,6 +52,8 @@ module Riddler
         ::Riddler.logger.debug "processing context builder", context_builder: builder.class.name
         builder.process
       end
+
+      @builders_applied = true
     end
 
     def builders
