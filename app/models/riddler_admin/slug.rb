@@ -29,7 +29,7 @@ module RiddlerAdmin
     end
 
     def to_proto
-      ::Riddler::Protobuf::Slug.new \
+      proto = ::Riddler::Protobuf::Slug.new \
         id: id,
         created_at: timestamp_proto(created_at),
         updated_at: timestamp_proto(updated_at),
@@ -37,6 +37,9 @@ module RiddlerAdmin
         status: status,
         content_definition_id: content_definition.id,
         interaction_identity: interaction_identity
+
+      proto.include_predicate = include_predicate if include_predicate.present?
+      proto
     end
 
     private

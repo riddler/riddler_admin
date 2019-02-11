@@ -5,7 +5,7 @@ $(document).ready(function(){
     var stepId = $(this).data('stepId'),
       pctxId = $(this).data('pctxId')
 
-    var url = "/riddler_admin/steps/" + stepId + "/internal_preview?pctx_id=" + pctxId
+    var url = window.riddler_admin_path + "steps/" + stepId + "/internal_preview?pctx_id=" + pctxId
 
     Rails.ajax({
       type: "GET",
@@ -26,9 +26,10 @@ $(document).ready(function(){
     update: function(event, ui) {
       element_ids = $(this).sortable("toArray", { attribute: "data-id" })
 
+      var url = window.riddler_admin_path + "elements/sort"
       Rails.ajax({
         type: "PUT",
-        url: "/riddler_admin/elements/sort",
+        url: url,
         data: $.param({ element_order: element_ids })
       })
     }
@@ -44,9 +45,10 @@ $(document).ready(function(){
     update: function(event, ui) {
       step_ids = $(this).sortable("toArray", { attribute: "data-id" })
 
+      url = window.riddler_admin_path + "steps/sort"
       Rails.ajax({
         type: "PUT",
-        url: "/riddler_admin/steps/sort",
+        url: url,
         data: $.param({ step_order: step_ids })
       })
     }

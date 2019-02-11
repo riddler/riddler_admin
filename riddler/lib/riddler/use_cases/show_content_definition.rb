@@ -2,21 +2,20 @@ module Riddler
   module UseCases
     class ShowContentDefinition
       attr_reader :content_definition_repo,
-        :content_definition_id, :params, :headers,
+        :content_definition_id, :context_director,
         :content_definition, :context, :step
 
-      def initialize content_definition_repo:, content_definition_id:, params: {}, headers: {}
+      def initialize content_definition_repo:, content_definition_id:, context_director:
         @content_definition_repo = content_definition_repo
         @content_definition_id = content_definition_id
-        @params = params
-        @headers = headers
+        @context_director = context_director
 
         @content_definition = lookup_content_definition
         @step = ::Riddler::Step.for content_definition.definition, context
       end
 
       def context
-        @context ||= generate_context
+        context_director.context
       end
 
       def process

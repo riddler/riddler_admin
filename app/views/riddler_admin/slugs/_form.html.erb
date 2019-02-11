@@ -22,16 +22,21 @@
       <%= form.label :status %>
       <%= form.select :status, options_for_select([["Live", "live"], ["Paused", "paused"]], slug.status), {}, class:"form-control" %>
     </div>
-  </div>
-  <div class="form-row">
     <div class="form-group col">
       <%= form.label :content_definition %>
       <%= form.collection_select :content_definition_id, RiddlerAdmin::ContentDefinition.all, :id, :title, {prompt: true}, {class:"form-control"}  %>
     </div>
+  </div>
+  <div class="form-row">
     <div class="form-group col">
       <%= form.label :interaction_identity %>
       <%= form.text_field :interaction_identity, class:"form-control", placeholder: "e.g. user_id:{{ ids.user_id }}" %>
       <small class="form-text text-muted">This liquid string will determine when an interaction is used again (can only use <code>ids</code>).</small>
+    </div>
+    <div class="form-group col">
+      <%= form.label :include_predicate %>
+      <%= form.text_field :include_predicate, class: "form-control", placeholder: "e.g. params.user_id is present" %>
+      <small class="form-text text-muted">Use data from the context that evaluates to <code>true</code> or <code>false</code></small>
     </div>
   </div>
   <div class="form-row">

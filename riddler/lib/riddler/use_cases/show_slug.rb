@@ -2,8 +2,7 @@ module Riddler
   module UseCases
     class ShowSlug
       attr_reader :content_definition_repo, :slug_repo, :interaction_repo,
-        :slug_name, :params, :headers,
-        :slug, :interaction
+        :slug_name, :context_director, :slug, :interaction
 
       def initialize content_definition_repo:, slug_repo:, interaction_repo:,
         slug_name:, params: {}, headers: {}
@@ -11,9 +10,8 @@ module Riddler
         @content_definition_repo = content_definition_repo
         @slug_repo = slug_repo
         @interaction_repo = interaction_repo
+        @context_director = ::Riddler::ContextDirector.new params: params, headers: headers
         @slug_name = slug_name
-        @params = params
-        @headers = headers
         @slug = lookup_slug
       end
 
@@ -41,7 +39,7 @@ module Riddler
       end
 
       def excluded?
-        definition_use_case.excluded?
+        !slug_included? || definition_use_case.excluded?
       end
 
       def process
@@ -73,17 +71,16 @@ module Riddler
         @definition_use_case ||= ShowContentDefinition.new \
           content_definition_repo: content_definition_repo,
           content_definition_id: slug.content_definition_id,
-          params: params,
-          headers: headers
+          context_director: context_director
       end
 
       def context
-        definition_use_case.context
+        context_director.context
       end
 
       # Only has IDs extracted - context builders have not been processed
       def simple_context
-        @simple_context = ::Riddler::ContextDirector.new(params: params, headers: headers).simple_context
+        context_director.simple_context
       end
 
       def identity
@@ -108,6 +105,15 @@ module Riddler
 
       def lookup_slug
         slug_repo.find_by name: slug_name
+      end
+
+      def slug_included?
+        return true unless slug_has_include_predicate?
+        Predicator.evaluate slug.include_predicate, context.to_liquid
+      end
+
+      def slug_has_include_predicate?
+        slug.include_predicate.to_s.strip != ""
       end
     end
   end

@@ -18,7 +18,7 @@
 
   <div class="row">
     <div class="col">
-      <h4><%= publish_request.content.type %> - <%= publish_request.content.title %>
+      <h4><%= publish_request.content.short_name %> <%= publish_request.content.content_type %>: <%= publish_request.content.title %>
     </div>
   </div>
 
@@ -39,7 +39,7 @@
       <div class="form-group">
         <div class="field">
           Definition:
-          <textarea class="form-control" rows="5" disabled><%= @definition %></textarea>
+          <textarea class="form-control" rows="6" disabled><%= @definition %></textarea>
         </div>
       </div>
       <div class="form-group">

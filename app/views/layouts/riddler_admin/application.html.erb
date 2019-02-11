@@ -1,60 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title><%= ::RiddlerAdmin.config.app_name %></title>
+  <title><%= page_title %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <%= stylesheet_link_tag    "riddler_admin/application", media: "all" %>
   <%= javascript_include_tag "riddler_admin/application" %>
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <%= link_to ::RiddlerAdmin.config.app_name, riddler_admin.root_path, class: "navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <% if ::RiddlerAdmin.config.parent_app_name.present? %>
-          <li class="nav-item">
-            <%= link_to ::RiddlerAdmin.config.parent_app_name, main_app.root_path, class: "nav-link" %>
-          </li>
-        <% end %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="steps-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Steps
-          </a>
-          <div class="dropdown-menu" aria-labelledby="steps-dropdown">
-            <%= link_to "All steps", steps_path, class: "dropdown-item" %>
-            <div class="dropdown-divider"></div>
-            <%= link_to "New step", new_step_path, class: "dropdown-item" %>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="preview-contexts-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Preview Contexts
-          </a>
-          <div class="dropdown-menu" aria-labelledby="preview-contexts-dropdown">
-            <%= link_to "All preview contexts", preview_contexts_path, class: "dropdown-item" %>
-            <div class="dropdown-divider"></div>
-            <%= link_to "New preview context", new_preview_context_path, class: "dropdown-item" %>
-          </div>
-        </li>
-        <% if ::RiddlerAdmin.configuration.remote_riddler? %>
-          <li class="nav-item">
-            <%= link_to "Publish Requests", publish_requests_path, class: "nav-link" %>
-          </li>
-        <% end %>
-        <li class="nav-item">
-          <%= link_to "Slugs", slugs_path, class: "nav-link" %>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <script>
+    window.riddler_admin_path = "<%= riddler_admin.root_path %>"
+  </script>
 
-  <div class="container" style="padding: 2rem 0;">
+  <%= additional_javascript_includes %>
+</head>
+<body class="pt-5">
+  <%= render partial: "riddler_admin/navbar" %>
+
+  <div class="container mt-4">
     <%= yield %>
   </div>
 </body>

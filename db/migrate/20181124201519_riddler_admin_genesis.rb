@@ -1,17 +1,5 @@
 class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
   def change
-    create_table :ra_steps, id: false do |t|
-      t.primary_key :id, :string, index: true
-      t.timestamps
-      t.string :type, null: false
-      t.string :title
-      t.string :name, null: false
-      t.references :stepable, polymorphic: true, index: true, type: :string
-      t.integer :position
-      t.string :include_predicate
-      t.boolean :preview_enabled, default: false
-    end
-
     create_table :ra_elements, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
@@ -24,6 +12,16 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.string :include_predicate
     end
 
+    create_table :ra_content_definitions, id: false do |t|
+      t.primary_key :id, :string, index: true
+      t.timestamps
+      t.integer :schema_version, null: false
+      t.references :publish_request, type: :string
+      t.references :content, polymorphic: true, index: true, type: :string
+      t.integer :version, null: false
+      t.jsonb :definition, null: false
+    end
+
     create_table :ra_preview_contexts, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
@@ -33,7 +31,6 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.string :yaml
       t.string :encrypted_yaml
     end
-
     add_index :ra_preview_contexts, :title, unique: true
 
     create_table :ra_publish_requests, id: false do |t|
@@ -49,14 +46,16 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.references :content, polymorphic: true, index: true, type: :string
     end
 
-    create_table :ra_content_definitions, id: false do |t|
+    create_table :ra_steps, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
-      t.integer :schema_version, null: false
-      t.references :publish_request, type: :string
-      t.references :content, polymorphic: true, index: true, type: :string
-      t.integer :version, null: false
-      t.jsonb :definition, null: false
+      t.string :type, null: false
+      t.string :title
+      t.string :name, null: false
+      t.references :stepable, polymorphic: true, index: true, type: :string
+      t.integer :position
+      t.string :include_predicate
+      t.boolean :preview_enabled, default: false
     end
 
     create_table :ra_slugs, id: false do |t|
@@ -66,6 +65,7 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.string :status, default: "live", null: false
       t.references :content_definition, type: :string, null: false
       t.string :interaction_identity
+      t.string :include_predicate
     end
     add_index :ra_slugs, :name, unique: true
   end

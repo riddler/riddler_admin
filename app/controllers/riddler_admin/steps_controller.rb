@@ -103,7 +103,7 @@ module RiddlerAdmin
 
     # Use callbacks to share common setup or constraints between actions.
     def set_step
-      @step = Step.find(params[:id])
+      @step = Step.includes(:elements).find(params[:id])
     end
 
     def set_step_class

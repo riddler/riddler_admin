@@ -21,9 +21,10 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Id</th>
       <th>Status</th>
       <th>Content</th>
+      <th>Approval</th>
+      <th>Published</th>
 
       <th colspan="3"></th>
     </tr>
@@ -33,12 +34,25 @@
     <% @publish_requests.each do |publish_request| %>
       <tr>
         <td><%= link_to publish_request.title, publish_request %></td>
-        <td><%= publish_request.id %></td>
         <td><%= publish_request.status %></td>
         <td><%= publish_request.content.title %></td>
+        <td>
+          <% if publish_request.approved_at.present? %>
+            <%= time_ago_in_words publish_request.approved_at %> ago
+            by
+            <%= publish_request.approved_by_name %>
+          <% end %>
+        </td>
+        <td>
+          <% if publish_request.published_at.present? %>
+            <%= time_ago_in_words publish_request.published_at %> ago
+          <% end %>
+        </td>
 
         <td>
+          <% unless publish_request.approved? %>
             <%= link_to "Delete", publish_request, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-light" %>
+          <% end %>
         </td>
       </tr>
     <% end %>

@@ -11,3 +11,34 @@
     <h1><%= ::RiddlerAdmin.config.app_name %> Dashboard</h1>
   </div>
 </div>
+
+<% if riddler_user_can_approve? %>
+  <div class="row">
+    <div class="col">
+      <h2>Publish Requests</h2>
+
+      <% unapproved_prs = ::RiddlerAdmin::PublishRequest.unapproved %>
+      <% if unapproved_prs.count.zero? %>
+        No unapproved requests at this time.
+      <% else %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Content</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% unapproved_prs.each do |publish_request| %>
+              <tr>
+                <td><%= link_to publish_request.title, publish_request %></td>
+                <td><%= publish_request.content.title %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+<% end %>
