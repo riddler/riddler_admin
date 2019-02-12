@@ -11,7 +11,11 @@ module RiddlerAdmin
 
   puts "=" * 80
   puts "Creating Pokemon Step"
-  step = Steps::Content.create! id: "st_pokemon", title: "Pokemon", name: "pokemon", preview_enabled: true
+  step = Steps::Content.create! id: "st_pokemon",
+    title: "Pokemon",
+    name: "pokemon",
+    preview_enabled: true,
+    include_predicate: "pokemon.name is present"
 
   puts "Creating Heading"
   Elements::Heading.create! name: "heading", text: "{{ pokemon.name | capitalize }}", container: step
@@ -30,8 +34,8 @@ Types: {% for type in pokemon.types %}
     text: "{{ pokemon.name | capitalize }}",
     container: step
 
-  puts "Creating ExternalLink"
-  Elements::ExternalLink.create! name: "external_link",
+  puts "Creating Link"
+  Elements::Link.create! name: "link",
     url: "https://pokeapi.co/api/v2/pokemon/{{ pokemon.id }}/",
     text: "View raw JSON from PokeAPI",
     container: step
