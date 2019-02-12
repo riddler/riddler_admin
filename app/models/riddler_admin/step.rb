@@ -8,12 +8,15 @@ module RiddlerAdmin
 
     validates_presence_of :title
 
-    validates_presence_of :name
-
     # Alphanumeric and underscore only - no whitespace.
     # We might consider doing lowercase only for snake casing.
-    validates_format_of :name, with: /\A[a-z][a-zA-Z0-9_]*\z/,
-      message: "must be a valid variable name (no spaces, start with character)"
+    validates :name, presence: true,
+      format: {
+        with: /\A[a-z][a-zA-Z0-9_]*\z/,
+        message: "must be a valid variable name (no spaces, start with character)"
+      }
+
+    validates :include_predicate, predicate: true
 
     has_many :publish_requests,
       dependent: :nullify,
