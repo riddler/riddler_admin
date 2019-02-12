@@ -1,8 +1,8 @@
 module Riddler
   module Elements
-    class ExternalLink < ::Riddler::Element
+    class Link < ::Riddler::Element
       def self.type
-        "external_link"
+        "link"
       end
 
       def href

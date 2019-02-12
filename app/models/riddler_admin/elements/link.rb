@@ -1,6 +1,6 @@
 module RiddlerAdmin
   module Elements
-    class ExternalLink < Element
+    class Link < Element
       validates_presence_of :url
 
       def self.model_name

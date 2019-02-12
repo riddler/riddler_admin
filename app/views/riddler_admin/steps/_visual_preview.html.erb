@@ -7,7 +7,7 @@
     <% data["elements"].each do |element| %>
       <li class="list-group-item">
         <% case element[:type] %>
-        <% when "external_link" %>
+        <% when "link" %>
           <a href="<%= element[:href] %>" target="_blank"><%= element[:text] %></a>
         <% when "heading" %>
           <h5><%= element[:text] %></h5>
