@@ -16,7 +16,7 @@ module RiddlerAdmin
         message: "must be a valid variable name (no spaces, start with character)"
       }
 
-    validates :include_predicate, predicate: true
+    validates :include_predicate, parseable_predicate: true
 
     has_many :publish_requests,
       dependent: :nullify,

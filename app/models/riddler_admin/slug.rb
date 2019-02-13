@@ -17,7 +17,7 @@ module RiddlerAdmin
       in: %w[ live paused ],
       message: "%{value} must be 'live' or 'paused'" }
 
-    validates :include_predicate, predicate: true
+    validates :include_predicate, parseable_predicate: true
 
     after_create :create_remote
     after_update :update_remote
