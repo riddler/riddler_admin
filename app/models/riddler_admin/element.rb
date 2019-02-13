@@ -16,7 +16,7 @@ module RiddlerAdmin
     validates_format_of :name, with: /\A[a-z][a-zA-Z0-9_]*\z/, message: "cannot start with a capital letter or a number."
     validates_uniqueness_of :name, scope: [:container_type, :container_id], unless: :is_variant?
 
-    validates :include_predicate, predicate: true
+    validates :include_predicate, parseable_predicate: true
 
     def self.available_classes
       [
