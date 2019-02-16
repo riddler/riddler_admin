@@ -33,7 +33,10 @@ module RiddlerAdmin
 
     # Should always comes from the admin tool
     def internal_preview
-      @preview_context = ::RiddlerAdmin::PreviewContext.find params["pctx_id"]
+      @preview_context = ::RiddlerAdmin::PreviewContext.find_by_id params["pctx_id"]
+      if @preview_context.nil?
+        render(status: 400, json: {message: "Invalid pctx_id"}) and return
+      end
 
       @use_case = ::Riddler::UseCases::AdminPreviewStep.new @step.definition_hash,
         preview_context_data: @preview_context.data
@@ -103,7 +106,7 @@ module RiddlerAdmin
 
     # Use callbacks to share common setup or constraints between actions.
     def set_step
-      @step = Step.includes(:elements).find(params[:id])
+      @step = Step.find(params[:id])
     end
 
     def set_step_class

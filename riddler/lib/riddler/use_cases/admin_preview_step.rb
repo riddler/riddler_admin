@@ -12,7 +12,13 @@ module Riddler
 
       def process
         if step.include?
-          step.to_hash
+          hash = step.to_hash
+          return hash unless hash.nil?
+
+          {
+            response_code: 204,
+            message: "There was no step to include"
+          }
         else
           {
             response_code: 204,

@@ -2,14 +2,15 @@ module Riddler
   module UseCases
     class ShowSlug
       attr_reader :content_definition_repo, :slug_repo, :interaction_repo,
-        :slug_name, :context_director, :slug, :interaction
+        :interaction_class, :slug_name, :context_director, :slug, :interaction
 
       def initialize content_definition_repo:, slug_repo:, interaction_repo:,
-        slug_name:, params: {}, headers: {}
+        interaction_class:, slug_name:, params: {}, headers: {}
 
         @content_definition_repo = content_definition_repo
         @slug_repo = slug_repo
         @interaction_repo = interaction_repo
+        @interaction_class = interaction_class
         @context_director = ::Riddler::ContextDirector.new params: params, headers: headers
         @slug_name = slug_name
         @slug = lookup_slug
@@ -57,7 +58,7 @@ module Riddler
       end
 
       def create_interaction
-        @interaction = Entities::Interaction.new slug: slug_name,
+        @interaction = interaction_class.new slug: slug_name,
           status: "active",
           content_definition_id: slug.content_definition_id,
           identifiers: context.ids
