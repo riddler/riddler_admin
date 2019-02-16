@@ -16,7 +16,7 @@ module Riddler
       end
 
       def to_hash
-        included_step.to_hash
+        included_step&.to_hash
       end
     end
   end
