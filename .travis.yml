@@ -1,0 +1,16 @@
+language: ruby
+addons:
+  postgresql: "9.6"
+cache:
+- bundler
+before_script:
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake app:assets:precompile
+deploy:
+  provider: heroku
+  api_key:
+    secure: "CFeqMrMvEydQll1/c8l5U6Bkp5JbAzowQ6YUhPnWVJqcb/NTUgFCbnTWenLj3UisMVA//Sfc2XIfNdHGbf/hvY4+FmQE/HNxiez8GbpEpCczhP5tEBSIlne18cbjG0gPJoTyhxJbJ5+CGT4wtX6XXtp9yONnapnVm1NlJmheOg6taqYCZZtFGnyxFyOTpITV8gHGDoTTTzlZvS+c0dxiVQJsyRp2pJSvd+UMWf4zsw3++4GOBpg2aLMj09rKr814C8r3ee5+9n2TqVWfn5jfC4XplIkQq/P/VEVbBk2vKx/Y2OgvCRUNFXqeF3YmAteiLUj/1nx7j6xcSq5E9y7oFwKOSwwpj8onFHysI7jJ+pibAuEhVGbn7nDHJrrEtj+I8EZnXt+6CXBKOwmW4i1n6MdnDcTNytFgF0ZQtiSA5rcSI7t1aohHYGTQdOEi4xha37Eu4FRYBqWlTrpJEaXfWCjg6qzYj2AZhI7G6XTl7F6irE+RSZp3fLf0Hf/TDlxrjoy07vfkdgV0eOOpsEuR0GLQDg0eO03MkM+GCDvAvNyv9FRTwVkhpBum+n9/jMDEXJZ8lPAkXSYqPa6df6kMhkI3/t1+IaQtJdLQc3fTSujoFgtUNyI2HJN9yZy4MRsD/Hx7wAVHqEu7XrOm9/AJfrSQRDA/Kz/Ex2faQoAHUz4="
+  app: riddler-admin
+  on:
+    repo: riddler/riddler_admin
