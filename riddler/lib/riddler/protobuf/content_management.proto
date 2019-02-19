@@ -8,19 +8,16 @@ import "riddler/protobuf/slug.proto";
 message CreateContentDefinitionRequest {
   ContentDefinition content_definition = 1;
 }
-
 message CreateContentDefinitionResponse {}
 
 message CreateSlugRequest {
   Slug slug = 1;
 }
-
 message CreateSlugResponse {}
 
 message UpdateSlugRequest {
   Slug slug = 1;
 }
-
 message UpdateSlugResponse {}
 
 service ContentManagement {

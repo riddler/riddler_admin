@@ -49,7 +49,9 @@ module Riddler
 
       def process
         find_interaction || create_interaction
-        definition_use_case.process.merge interaction_id: interaction.id
+        context.assign "interaction", interaction.to_hash
+        definition_use_case.process.merge interaction_id: interaction.id,
+          dismiss_url: "/interactions/#{interaction.id}/dismiss"
       end
 
       private
@@ -57,12 +59,13 @@ module Riddler
       def find_interaction
         return nil unless request_is_unique?
 
-        @interaction ||= interaction_repo.last_by slug: slug_name,
+        @interaction ||= interaction_repo.last_by slug_name: slug_name,
           identity: identity
       end
 
       def create_interaction
-        @interaction = interaction_class.new slug: slug_name,
+        @interaction = interaction_class.new slug_name: slug_name,
+          slug_id: slug.id,
           status: "active",
           content_definition_id: slug.content_definition_id,
           identifiers: context.ids
