@@ -65,7 +65,7 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.string :status, default: "live", null: false
       t.references :content_definition, type: :string, null: false
       t.string :interaction_identity
-      t.string :include_predicate
+      t.string :target_predicate
     end
     add_index :ra_slugs, :name, unique: true
   end

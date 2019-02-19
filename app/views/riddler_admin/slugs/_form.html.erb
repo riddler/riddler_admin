@@ -34,8 +34,8 @@
       <small class="form-text text-muted">This liquid string will determine when an interaction is used again (can only use <code>ids</code>).</small>
     </div>
     <div class="form-group col">
-      <%= form.label :include_predicate %>
-      <%= form.text_field :include_predicate, class: "form-control", placeholder: "e.g. params.user_id is present" %>
+      <%= form.label :target_predicate %>
+      <%= form.text_field :target_predicate, class: "form-control", placeholder: "e.g. params.user_id is present" %>
       <small class="form-text text-muted">Use data from the context that evaluates to <code>true</code> or <code>false</code></small>
     </div>
   </div>

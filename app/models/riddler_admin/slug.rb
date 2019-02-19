@@ -17,7 +17,7 @@ module RiddlerAdmin
       in: %w[ live paused ],
       message: "%{value} must be 'live' or 'paused'" }
 
-    validates :include_predicate, parseable_predicate: true
+    validates :target_predicate, parseable_predicate: true
 
     after_create :create_remote
     after_update :update_remote
@@ -40,7 +40,7 @@ module RiddlerAdmin
         content_definition_id: content_definition.id,
         interaction_identity: interaction_identity
 
-      proto.include_predicate = include_predicate if include_predicate.present?
+      proto.target_predicate = target_predicate if target_predicate.present?
       proto
     end
 
