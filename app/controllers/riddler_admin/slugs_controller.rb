@@ -60,7 +60,7 @@ module RiddlerAdmin
     # Only allow a trusted parameter "white list" through.
     def slug_params
       params.require(:slug).permit :name, :status, :content_definition_id,
-          :persist_interaction, :interaction_identity, :include_predicate
+          :persist_interaction, :interaction_identity, :target_predicate
     end
   end
 end

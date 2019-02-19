@@ -39,8 +39,12 @@ module Riddler
         @interaction.status == "completed"
       end
 
+      def targeted?
+        slug_targeted?
+      end
+
       def excluded?
-        !slug_included? || definition_use_case.excluded?
+        definition_use_case.excluded?
       end
 
       def process
@@ -108,13 +112,13 @@ module Riddler
         slug_repo.find_by name: slug_name
       end
 
-      def slug_included?
-        return true unless slug_has_include_predicate?
-        Predicator.evaluate slug.include_predicate, context.to_liquid
+      def slug_targeted?
+        return true unless slug_has_target_predicate?
+        Predicator.evaluate slug.target_predicate, context.to_liquid
       end
 
-      def slug_has_include_predicate?
-        slug.include_predicate.to_s.strip != ""
+      def slug_has_target_predicate?
+        slug.target_predicate.to_s.strip != ""
       end
     end
   end

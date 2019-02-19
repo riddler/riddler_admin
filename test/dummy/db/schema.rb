@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2019_01_26_153702) do
     t.string "status", default: "live", null: false
     t.string "content_definition_id", null: false
     t.string "interaction_identity"
+    t.string "target_predicate"
     t.index ["content_definition_id"], name: "index_ra_slugs_on_content_definition_id"
     t.index ["id"], name: "index_ra_slugs_on_id"
     t.index ["name"], name: "index_ra_slugs_on_name", unique: true

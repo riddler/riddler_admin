@@ -12,5 +12,5 @@ message Slug {
   string status = 5;
   string content_definition_id = 6;
   string interaction_identity = 7;
-  string include_predicate = 8;
+  string target_predicate = 8;
 }
