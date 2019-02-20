@@ -18,6 +18,7 @@ module Riddler
         rpc :CreateContentDefinition, CreateContentDefinitionRequest, CreateContentDefinitionResponse
         rpc :CreateSlug, CreateSlugRequest, CreateSlugResponse
         rpc :UpdateSlug, UpdateSlugRequest, UpdateSlugResponse
+        rpc :GetSlugStats, GetSlugStatsRequest, GetSlugStatsResponse
       end
 
       Stub = Service.rpc_stub_class

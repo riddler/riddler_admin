@@ -22,6 +22,11 @@ module RiddlerAdmin
     after_create :create_remote
     after_update :update_remote
 
+    def daily_stats
+      day_stats = stats_response.slug_stats.detect { |ss| ss.interval == :DAY }
+      day_stats.event_counts
+    end
+
     def create_remote
       content_management_grpc.create_slug create_request_proto
     end
@@ -46,9 +51,17 @@ module RiddlerAdmin
 
     private
 
+    def stats_response
+      @stats_response ||= content_management_grpc.get_slug_stats get_stats_proto
+    end
+
     def timestamp_proto timestamp
       ::Google::Protobuf::Timestamp.new seconds: timestamp.to_i,
         nanos: timestamp.nsec
+    end
+
+    def get_stats_proto
+      ::Riddler::Protobuf::GetSlugStatsRequest.new slug: to_proto
     end
 
     def create_request_proto

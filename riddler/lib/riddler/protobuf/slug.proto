@@ -14,3 +14,23 @@ message Slug {
   string interaction_identity = 7;
   string target_predicate = 8;
 }
+
+enum Interval {
+  SECOND = 0;
+  MINUTE = 1;
+  HOUR = 2;
+  DAY = 3;
+  WEEK = 4;
+  MONTH = 5;
+  YEAR = 6;
+}
+
+message EventCount {
+  string event_name = 1;
+  int32 count = 2;
+}
+
+message SlugStats {
+  Interval interval = 1;
+  repeated EventCount event_counts = 2;
+}

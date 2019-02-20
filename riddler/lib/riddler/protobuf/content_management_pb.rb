@@ -21,6 +21,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "riddler.protobuf.UpdateSlugResponse" do
   end
+  add_message "riddler.protobuf.GetSlugStatsRequest" do
+    optional :slug, :message, 1, "riddler.protobuf.Slug"
+  end
+  add_message "riddler.protobuf.GetSlugStatsResponse" do
+    repeated :slug_stats, :message, 1, "riddler.protobuf.SlugStats"
+  end
 end
 
 module Riddler
@@ -31,5 +37,7 @@ module Riddler
     CreateSlugResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("riddler.protobuf.CreateSlugResponse").msgclass
     UpdateSlugRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("riddler.protobuf.UpdateSlugRequest").msgclass
     UpdateSlugResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("riddler.protobuf.UpdateSlugResponse").msgclass
+    GetSlugStatsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("riddler.protobuf.GetSlugStatsRequest").msgclass
+    GetSlugStatsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("riddler.protobuf.GetSlugStatsResponse").msgclass
   end
 end
