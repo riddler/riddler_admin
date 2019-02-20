@@ -15,10 +15,30 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :interaction_identity, :string, 7
     optional :target_predicate, :string, 8
   end
+  add_message "riddler.protobuf.EventCount" do
+    optional :event_name, :string, 1
+    optional :count, :int32, 2
+  end
+  add_message "riddler.protobuf.SlugStats" do
+    optional :interval, :enum, 1, "riddler.protobuf.Interval"
+    repeated :event_counts, :message, 2, "riddler.protobuf.EventCount"
+  end
+  add_enum "riddler.protobuf.Interval" do
+    value :SECOND, 0
+    value :MINUTE, 1
+    value :HOUR, 2
+    value :DAY, 3
+    value :WEEK, 4
+    value :MONTH, 5
+    value :YEAR, 6
+  end
 end
 
 module Riddler
   module Protobuf
     Slug = Google::Protobuf::DescriptorPool.generated_pool.lookup("riddler.protobuf.Slug").msgclass
+    EventCount = Google::Protobuf::DescriptorPool.generated_pool.lookup("riddler.protobuf.EventCount").msgclass
+    SlugStats = Google::Protobuf::DescriptorPool.generated_pool.lookup("riddler.protobuf.SlugStats").msgclass
+    Interval = Google::Protobuf::DescriptorPool.generated_pool.lookup("riddler.protobuf.Interval").enummodule
   end
 end
