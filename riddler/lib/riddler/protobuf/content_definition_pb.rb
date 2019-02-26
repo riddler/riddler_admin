@@ -8,11 +8,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "riddler.protobuf.ContentDefinition" do
     optional :id, :string, 1
     optional :created_at, :message, 2, "google.protobuf.Timestamp"
-    optional :updated_at, :message, 3, "google.protobuf.Timestamp"
-    optional :schema_version, :int32, 4
-    optional :content_type, :string, 5
-    optional :content_id, :string, 6
-    optional :version, :int32, 7
+    optional :content_type, :string, 3
+    optional :content_id, :string, 4
+    optional :title, :string, 5
+    optional :version, :int32, 6
+    optional :schema_version, :int32, 7
     optional :definition_json, :string, 8
   end
 end
