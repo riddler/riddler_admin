@@ -30,6 +30,7 @@ module RiddlerAdmin
         created_at: created_at_proto,
         content_type: content.content_type,
         content_id: content.id,
+        title: title,
         version: version,
         definition_json: definition.to_json
     end
