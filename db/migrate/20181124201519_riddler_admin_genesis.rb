@@ -15,10 +15,10 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
     create_table :ra_content_definitions, id: false do |t|
       t.primary_key :id, :string, index: true
       t.timestamps
-      t.integer :schema_version, null: false
       t.references :publish_request, type: :string
       t.references :content, polymorphic: true, index: true, type: :string
       t.integer :version, null: false
+      t.integer :definition_schema_version, null: false
       t.jsonb :definition, null: false
     end
 

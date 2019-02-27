@@ -1,5 +1,3 @@
-require "riddler/protobuf/content_management_services_pb"
-
 module RiddlerAdmin
   class PublishRequest < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "pr".freeze
@@ -32,8 +30,9 @@ module RiddlerAdmin
     end
 
     def publish published_at = Time.now.utc
+      raise "ERROR: Attempt to publish an unapproved definition" unless approved?
       create_content_definition! content: content
-      publish_to_remote
+      content_definition.publish_to_remote
 
       update_attributes published_at: published_at,
         status: "published"
@@ -43,23 +42,7 @@ module RiddlerAdmin
       published_at.present?
     end
 
-    def publish_to_remote
-      raise "ERROR: Attempt to publish an unapproved definition" unless approved?
-      content_management_grpc.create_content_definition request_proto
-    end
-
     private
-
-    def request_proto
-      ::Riddler::Protobuf::CreateContentDefinitionRequest.new \
-        content_definition: content_definition.to_proto
-    end
-
-    def content_management_grpc
-      ::Riddler::Protobuf::ContentManagement::Stub.new \
-        ::RiddlerAdmin.configuration.riddler_grpc_address,
-        :this_channel_is_insecure
-    end
 
     def set_defaults
       return if title.present? || content.blank?

@@ -18,11 +18,11 @@ ActiveRecord::Schema.define(version: 2019_01_26_153702) do
   create_table "ra_content_definitions", id: :string, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "schema_version", null: false
     t.string "publish_request_id"
     t.string "content_type"
     t.string "content_id"
     t.integer "version", null: false
+    t.integer "definition_schema_version", null: false
     t.jsonb "definition", null: false
     t.index ["content_type", "content_id"], name: "index_ra_content_definitions_on_content_type_and_content_id"
     t.index ["id"], name: "index_ra_content_definitions_on_id"

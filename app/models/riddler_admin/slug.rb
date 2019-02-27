@@ -14,8 +14,8 @@ module RiddlerAdmin
       }
 
     validates :status, presence: true, inclusion: {
-      in: %w[ live paused ],
-      message: "%{value} must be 'live' or 'paused'" }
+      in: ::Riddler::Protobuf::SlugStatus.constants.map(&:to_s)
+    }
 
     validates :target_predicate, parseable_predicate: true
 
@@ -41,11 +41,17 @@ module RiddlerAdmin
         created_at: timestamp_proto(created_at),
         updated_at: timestamp_proto(updated_at),
         name: name,
-        status: status,
-        content_definition_id: content_definition.id,
-        interaction_identity: interaction_identity
+        status: status.upcase.to_sym,
+        content_definition_id: content_definition.id
 
-      proto.target_predicate = target_predicate if target_predicate.present?
+      if interaction_identity.to_s.strip != ""
+        proto.interaction_identity = interaction_identity
+      end
+
+      if target_predicate.to_s.strip != ""
+        proto.target_predicate = target_predicate
+      end
+
       proto
     end
 

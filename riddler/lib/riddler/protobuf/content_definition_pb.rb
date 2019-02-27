@@ -8,17 +8,23 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "riddler.protobuf.ContentDefinition" do
     optional :id, :string, 1
     optional :created_at, :message, 2, "google.protobuf.Timestamp"
-    optional :content_type, :string, 3
+    optional :content_type, :enum, 3, "riddler.protobuf.ContentType"
     optional :content_id, :string, 4
-    optional :title, :string, 5
-    optional :version, :int32, 6
-    optional :schema_version, :int32, 7
-    optional :definition_json, :string, 8
+    optional :version, :int32, 5
+    optional :title, :string, 6
+    optional :description, :string, 7
+    optional :definition_schema_version, :int32, 8
+    optional :definition_json, :string, 9
+  end
+  add_enum "riddler.protobuf.ContentType" do
+    value :UNKNOWN_CONTENT_TYPE, 0
+    value :STEP, 1
   end
 end
 
 module Riddler
   module Protobuf
     ContentDefinition = Google::Protobuf::DescriptorPool.generated_pool.lookup("riddler.protobuf.ContentDefinition").msgclass
+    ContentType = Google::Protobuf::DescriptorPool.generated_pool.lookup("riddler.protobuf.ContentType").enummodule
   end
 end
