@@ -50,8 +50,17 @@ module Riddler
       def process
         find_interaction || create_interaction
         context.assign "interaction", interaction.to_hash
-        definition_use_case.process.merge interaction_id: interaction.id,
+
+        content_hash = definition_use_case.process.merge \
+          interaction_id: interaction.id,
           dismiss_url: "/interactions/#{interaction.id}/dismiss"
+
+        interaction.content_type = content_hash[:content_type]
+        interaction.content_id = content_hash[:id]
+
+        interaction_repo.update interaction
+
+        content_hash
       end
 
       private
