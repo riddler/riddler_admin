@@ -22,21 +22,21 @@ module Riddler
 
       def paused?
         return true if slug.nil?
-        slug.status == "paused"
+        slug.status == "PAUSED"
       end
 
       def dismissed?
         return false unless slug_defines_identity?
         find_interaction
         return false if @interaction.nil?
-        @interaction.status == "dismissed"
+        @interaction.status == "DISMISSED"
       end
 
       def completed?
         return false unless slug_defines_identity?
         find_interaction
         return false if @interaction.nil?
-        @interaction.status == "completed"
+        @interaction.status == "COMPLETED"
       end
 
       def targeted?
@@ -66,7 +66,7 @@ module Riddler
       def create_interaction
         @interaction = interaction_class.new slug_name: slug_name,
           slug_id: slug.id,
-          status: "active",
+          status: "ACTIVE",
           content_definition_id: slug.content_definition_id,
           identifiers: context.ids
 

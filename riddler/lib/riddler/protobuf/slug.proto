@@ -9,20 +9,28 @@ message Slug {
   google.protobuf.Timestamp created_at = 2;
   google.protobuf.Timestamp updated_at = 3;
   string name = 4;
-  string status = 5;
+  SlugStatus status = 5;
   string content_definition_id = 6;
   string interaction_identity = 7;
   string target_predicate = 8;
 }
 
+enum SlugStatus {
+  UNKNOWN_SLUG_STATUS = 0;
+  LIVE = 1;
+  PAUSED = 2;
+}
+
 enum Interval {
-  SECOND = 0;
-  MINUTE = 1;
-  HOUR = 2;
-  DAY = 3;
-  WEEK = 4;
-  MONTH = 5;
-  YEAR = 6;
+  UNKNOWN_INTERVAL = 0;
+  SECOND = 1;
+  MINUTE = 2;
+  HOUR = 3;
+  DAY = 4;
+  WEEK = 5;
+  MONTH = 6;
+  QUARTER = 7;
+  YEAR = 8;
 }
 
 message EventCount {
