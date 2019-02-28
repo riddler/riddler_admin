@@ -13,10 +13,11 @@ message ContentDefinition {
   string title = 6;
   string description = 7;
   int32 definition_schema_version = 8;
-  string definition_json = 9;
+  string definition = 9;
 }
 
 enum ContentType {
   UNKNOWN_CONTENT_TYPE = 0;
   STEP = 1;
+  ELEMENT = 2;
 }

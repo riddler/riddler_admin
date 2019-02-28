@@ -68,12 +68,13 @@ module Riddler
       def find_interaction
         return nil unless request_is_unique?
 
-        @interaction ||= interaction_repo.last_by slug_name: slug_name,
+        @interaction ||= interaction_repo.last_by slug_id: slug.id,
           identity: identity
       end
 
       def create_interaction
-        @interaction = interaction_class.new slug_name: slug_name,
+        @interaction = interaction_class.new \
+          slug_name: slug.name,
           slug_id: slug.id,
           status: "ACTIVE",
           content_definition_id: slug.content_definition_id,
