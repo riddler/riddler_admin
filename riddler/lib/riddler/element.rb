@@ -28,6 +28,7 @@ module Riddler
 
     def to_hash
       {
+        content_type: "element",
         type: self.class.type,
         id: definition["id"],
         name: definition["name"]
