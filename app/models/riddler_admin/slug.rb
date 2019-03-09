@@ -25,6 +25,8 @@ module RiddlerAdmin
     def daily_stats
       day_stats = stats_response.slug_stats.detect { |ss| ss.interval == :DAY }
       day_stats.event_counts
+    rescue GRPC::Unavailable, GRPC::DeadlineExceeded
+      []
     end
 
     def create_remote
@@ -81,7 +83,8 @@ module RiddlerAdmin
     def content_management_grpc
       ::Riddler::Protobuf::ContentManagement::Stub.new \
         ::RiddlerAdmin.configuration.riddler_grpc_address,
-        :this_channel_is_insecure
+        :this_channel_is_insecure,
+        timeout: 0.5
     end
   end
 end

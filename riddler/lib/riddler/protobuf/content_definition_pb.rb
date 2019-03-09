@@ -14,7 +14,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :title, :string, 6
     optional :description, :string, 7
     optional :definition_schema_version, :int32, 8
-    optional :definition, :string, 9
+    oneof :definition do
+      optional :definition_string, :string, 9
+    end
   end
   add_enum "riddler.protobuf.ContentType" do
     value :UNKNOWN_CONTENT_TYPE, 0

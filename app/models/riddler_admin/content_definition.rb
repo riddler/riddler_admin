@@ -38,7 +38,7 @@ module RiddlerAdmin
         description: description,
         version: version,
         definition_schema_version: DEFINITION_SCHEMA_VERSION,
-        definition: definition.to_json
+        definition_string: definition.to_json
     end
 
     def publish_to_remote
