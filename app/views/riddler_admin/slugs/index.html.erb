@@ -24,8 +24,6 @@
       <th>ContentDefinition</th>
       <th>Status</th>
       <th>Events (last day)</th>
-
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -39,10 +37,6 @@
           <% slug.daily_stats.each do |event_counts| %>
             <%= event_counts.event_name.titleize %>: <%= event_counts.count %>
           <% end %>
-        </td>
-
-        <td>
-          <%= link_to "Delete", slug, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-light" %>
         </td>
       </tr>
     <% end %>

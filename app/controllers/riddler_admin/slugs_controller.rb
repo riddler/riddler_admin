@@ -38,6 +38,7 @@ module RiddlerAdmin
     end
 
     def destroy
+      raise "Destroying slugs is not currently supported"
       @slug.destroy
       redirect_to slugs_url, notice: "Slug was successfully destroyed."
     end

@@ -47,4 +47,17 @@ module Riddler
   def self.logger
     @logger ||= ::Outlog.logger
   end
+
+  def self.render content_definition, context
+    context = ::Riddler::Context.new context unless context.kind_of? ::Riddler::Context
+
+    case content_definition["content_type"]
+    when "element"
+      content = ::Riddler::Element.for content_definition, context
+    end
+
+    return nil unless content.include?
+
+    content.to_hash
+  end
 end
