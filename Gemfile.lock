@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    riddler_admin (0.1.0)
+    riddler_admin (0.2.0)
       acts_as_list
       bootstrap
       jquery-rails
