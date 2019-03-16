@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails", "~> 5.2"
-  s.add_dependency "riddler"
+  s.add_dependency "riddler", "~> 0.2"
   s.add_dependency "bootstrap"
   s.add_dependency "acts_as_list"
   s.add_dependency "jquery-rails"
