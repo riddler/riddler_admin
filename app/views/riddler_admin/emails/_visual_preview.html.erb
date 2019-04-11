@@ -1,5 +1,9 @@
 <% if (data[:response_code] || "").to_s == "204" %>
-  <p><%= data[:message] %></p>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <%= data[:message] %>
+    </li>
+  </ul>
 <% else %>
   <div class="card">
     <div class="card-body">

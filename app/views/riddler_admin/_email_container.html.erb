@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Emails</h4>
+    <a href="#" onclick="$('.<%= emailable.id %>-detail').toggle(); return false;">Toggle all</a>
+  </div>
+  <div class="card-body">
+    <ul id="<%= emailable.id %>-emails" class="list-group email-container">
+      <%= render partial: "riddler_admin/email", collection: emailable.emails %>
+    </ul>
+  </div>
+</div>

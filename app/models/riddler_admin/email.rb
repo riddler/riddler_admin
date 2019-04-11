@@ -3,6 +3,9 @@ module RiddlerAdmin
     MODEL_KEY = "em".freeze
     ID_LENGTH = 5 # 916_132_832 per second
 
+    belongs_to :emailable, polymorphic: true, optional: true
+    acts_as_list scope: [:emailable_type, :emailable_id]
+
     validates_presence_of :title
 
     validates :name, presence: true, uniqueness: true,
@@ -28,6 +31,7 @@ module RiddlerAdmin
     def self.available_classes
       [
         Emails::Basic,
+        Emails::Variant
       ]
     end
 

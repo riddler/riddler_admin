@@ -1,0 +1,35 @@
+<li class="list-group-item" id="<%= email.id %>" data-id="<%= email.id %>">
+  <div>
+    <%= link_to "Toggle", "#", onclick: "$('##{email.id}-detail').toggle(); return false;" %>
+    <span class="handle">Move</span>
+  </div>
+
+  <h5>
+    <%= email.name %>
+    <span class="small text-muted"><%= email.short_name %> Email</span>
+  </h5>
+
+  <div id="<%= email.id %>-detail" class="<%= email.emailable.id %>-detail" style="display: none;">
+    <%= form_with model: email do |f| %>
+      <% if email.errors.any? %>
+        ERRORS
+      <% end %>
+
+      <div class="form-row">
+        <div class="form-group col">
+          <%= f.label :include_predicate %>
+          <%= f.text_field :include_predicate, class: "form-control", placeholder: "e.g. params.user_id is present" %>
+          <small class="form-text text-muted">Use data from the context that evaluates to <code>true</code> or <code>false</code></small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col">
+          <%= f.submit 'Update email', class: 'btn btn-outline-primary' %>
+          <%= link_to "Delete", email, method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: 'btn btn-link' %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</li>

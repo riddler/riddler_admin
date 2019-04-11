@@ -1,0 +1,59 @@
+<div class="row" style="margin-bottom: 32px;">
+  <div class="col-sm">
+
+    <ul id="email-tabs" class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" id="emails-tab" data-toggle="tab" href="#emails" role="tab" aria-controls="emails" aria-selected="true">Emails</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="email-definition-tab" data-toggle="tab" href="#email-definition" role="tab" aria-controls="email-definition" aria-selected="false">Definition</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="email-preview-tab" data-toggle="tab" href="#email-preview" role="tab" aria-controls="email-preview" aria-selected="false">Preview</a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm">
+
+    <div class="tab-content" id="email-tabs-content">
+      <div class="tab-pane fade show active" id="emails" role="tabpanel" aria-labelledby="emails-tab">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+              <h4>Add a email type</h4>
+
+              <ul class="nav flex-column">
+              <% RiddlerAdmin::Email.available_classes.each do |klass| %>
+                <%= link_to "#{klass.short_name} Email", new_email_path(type: klass.name, email_id: @email.id), remote: true, class: 'nav-link' %>
+              <% end %>
+              </ul>
+
+            </div>
+            <div class="col-md-9">
+              <div id="new-email">
+              </div>
+
+              <%= render partial: "riddler_admin/email_container", locals: { emailable: @email } %>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tab-pane fade" id="email-definition" role="tabpanel" aria-labelledby="definition-tab">
+        <%= render partial: "definition", object: @email %>
+      </div>
+
+      <div class="tab-pane fade" id="email-preview" role="tabpanel" aria-labelledby="preview-tab">
+        <%= render partial: "riddler_admin/preview_email", locals: { preview_contexts: @preview_contexts, email: @email } %>
+      </div>
+    </div>
+
+  </div>
+</div>

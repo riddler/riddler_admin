@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 2019_01_27_135342) do
     t.integer "position"
     t.string "title", null: false
     t.string "name", null: false
-    t.string "subject", null: false
-    t.string "body", null: false
+    t.string "subject"
+    t.string "body"
     t.string "css"
     t.string "include_predicate"
     t.boolean "preview_enabled", default: false

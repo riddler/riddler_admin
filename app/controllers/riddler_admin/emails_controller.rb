@@ -18,7 +18,13 @@ module RiddlerAdmin
 
     # GET /emails/new
     def new
-      @email = @email_class.new
+      hash = {}
+
+      if email = Email.find_by_id(params["email_id"])
+        hash[:emailable] = email
+      end
+
+      @email = @email_class.new hash
     end
 
     # GET /emails/1/edit
@@ -28,6 +34,9 @@ module RiddlerAdmin
     # Should always comes from the admin tool
     def internal_preview
       @preview_context = ::RiddlerAdmin::PreviewContext.find params["pctx_id"]
+      if @preview_context.nil?
+        render(status: 400, json: {message: "Invalid pctx_id"}) and return
+      end
 
       @use_case = ::Riddler::UseCases::AdminPreviewEmail.new @email.definition_hash,
         preview_context_data: @preview_context.data
@@ -118,7 +127,8 @@ module RiddlerAdmin
 
     # Only allow a trusted parameter "white list" through.
     def email_params
-      params.require(:email).permit(:type, :title, :name, :subject, :body, :css, :include_predicate)
+      params.require(:email).permit(:type, :title, :name, :subject, :body, :css, :include_predicate,
+                                    :emailable_type, :emailable_id)
     end
   end
 end
