@@ -14,6 +14,9 @@
         <%= link_to "Steps", steps_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
+        <%= link_to "Emails", emails_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
         <%= link_to "Preview contexts", preview_contexts_path, class: "nav-link" %>
       </li>
       <% if ::RiddlerAdmin.configuration.remote_riddler? %>

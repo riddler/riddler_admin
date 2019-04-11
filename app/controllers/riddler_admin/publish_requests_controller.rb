@@ -28,8 +28,12 @@ module RiddlerAdmin
         hash[:content] = step
         @publish_request = PublishRequest.new hash
         @definition = step.definition_hash.to_yaml
+      elsif email = Email.find_by_id(params["email_id"])
+        hash[:content] = email
+        @publish_request = PublishRequest.new hash
+        @definition = email.definition_hash.to_yaml
       else
-        redirect_to publish_requests_path, notice: "Content must be provided in step_id"
+        redirect_to publish_requests_path, notice: "Content must be provided in step_id, or email_id"
       end
     end
 

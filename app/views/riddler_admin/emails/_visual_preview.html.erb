@@ -1,0 +1,19 @@
+<% if (data[:response_code] || "").to_s == "204" %>
+  <p><%= data[:message] %></p>
+<% else %>
+  <div class="card">
+    <div class="card-body">
+      <%= link_to "Send Preview", send_preview_email_path(@email, pctx_id: @preview_context.id), remote: true, method: "post", class: "send-preview-email-link btn btn-light float-right" %>
+      <h5><%= data[:subject] %></h5>
+      <div id="<%= preview_context.id %>-iframe-wrapper" class="email-visual-preview">
+        <iframe></iframe>
+        <script>
+          var iframe = $("#<%= @preview_context.id %>-iframe-wrapper iframe")[0]
+          iframe.contentWindow.document.open();
+          iframe.contentWindow.document.write(`<%= @preview_hash[:body].html_safe %>`);
+          iframe.contentWindow.document.close();
+        </script>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -12,6 +12,14 @@ RiddlerAdmin::Engine.routes.draw do
     post "publish", on: :member
   end
 
+  resources :emails do
+    get "internal_preview", on: :member
+    post "send_preview", on: :member
+    post "preview", on: :member
+    get "preview", on: :member
+    get "toggle", on: :member
+  end
+
   resources :steps do
     put "sort", on: :collection
 

@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm">
+    <% if notice %>
+    <div class="alert alert-success">
+      <span id="notice"><%= notice %></span>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom: 32px;">
+  <div class="col-sm-6">
+    <h1><%= @email.title %></h1>
+  </div>
+  <div class="col-sm-6">
+    <%= link_to 'Edit Email', edit_email_path(@email), class: 'btn btn-light float-right' %>
+    <%= link_to "#{@email.preview_enabled ? 'Disable' : 'Enable'} Preview", toggle_email_path(@email), class: 'btn btn-light float-right mr-2' %>
+    <% if ::RiddlerAdmin.configuration.remote_riddler? %>
+      <%= link_to "Publish", new_publish_request_path(email_id: @email.id), class: "btn btn-light float-right"%>
+    <% end %>
+    <% if @email.preview_enabled %>
+      <span class="badge badge-success float-right mr-2 mt-2">Preview Enabled</span>
+    <% else %>
+      <span class="badge badge-secondary float-right mr-2 mt-2">Preview Disabled</span>
+    <% end %>
+  </div>
+</div>
+
+<%= render partial: @email.to_partial_path("show") %>
