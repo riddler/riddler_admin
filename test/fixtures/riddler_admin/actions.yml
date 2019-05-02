@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  title: MyString
+  actionable: one
+  actionable_type: Actionable
+  position: 1
+  options: 
+
+two:
+  type: 
+  title: MyString
+  actionable: two
+  actionable_type: Actionable
+  position: 1
+  options: 
