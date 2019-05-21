@@ -61,7 +61,11 @@ module RiddlerAdmin
       options ||= {}
       hash = serializable_hash options.merge(serializable_hash_options)
       hash["type"] = object
-      hash.delete "include_predicate" if hash["include_predicate"].blank?
+      if hash["include_predicate"].blank?
+        hash.delete "include_predicate"
+      else
+        hash["include_predicate_instructions"] = ::Predicator.compile hash["include_predicate"]
+      end
       hash
     end
 

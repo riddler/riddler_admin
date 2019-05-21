@@ -6,7 +6,7 @@ gemspec
 gem "pg"
 gem "predicator"
 gem "puma"
-#gem "riddler", path: "../riddler"
+gem "riddler", path: "../riddler"
 gem "vault"
 
 group :development do
