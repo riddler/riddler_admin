@@ -44,7 +44,7 @@ module RiddlerAdmin
         updated_at: timestamp_proto(updated_at),
         name: name,
         status: status.upcase.to_sym,
-        content_definition_id: content_definition.id
+        content_version_id: content_definition.id
 
       if interaction_identity.to_s.strip != ""
         proto.interaction_identity = interaction_identity

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Add an action</h4>
+
+      <ul class="nav flex-column">
+      <% RiddlerAdmin::Action.available_classes.each do |klass| %>
+        <%= link_to "#{klass.short_name}", new_action_path(type: klass.name, step_id: @step.id), remote: true, class: 'nav-link' %>
+      <% end %>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div id="new-action">
+      </div>
+
+      <%= render partial: "riddler_admin/action_container", locals: { actionable: @step } %>
+
+    </div>
+  </div>
+</div>

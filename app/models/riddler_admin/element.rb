@@ -46,11 +46,11 @@ module RiddlerAdmin
 
     # Used in serialization
     def object
-      type.demodulize.underscore
+      type.demodulize
     end
 
     def content_type
-      "element"
+      "Element"
     end
 
     def content_id

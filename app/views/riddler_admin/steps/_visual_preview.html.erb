@@ -7,13 +7,13 @@
     <% data["elements"].each do |element| %>
       <li class="list-group-item">
         <% case element[:type] %>
-        <% when "link" %>
+        <% when "Link" %>
           <a href="<%= element[:href] %>" target="_blank"><%= element[:text] %></a>
-        <% when "heading" %>
+        <% when "Heading" %>
           <h5><%= element[:text] %></h5>
-        <% when "image" %>
+        <% when "Image" %>
           <img src="<%= element[:src] %>" alt="<%= element[:alt] %>" />
-        <% when "text" %>
+        <% when "Text" %>
           <%= element[:text] %>
         <% else %>
           Unknown Element type "<%= element[:type] %>"

@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 2019_05_01_171846) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "type", null: false
-    t.string "callback", null: false
-    t.string "title", null: false
+    t.string "transition_type", null: false
+    t.string "name", null: false
     t.string "actionable_type"
     t.string "actionable_id"
     t.integer "position"

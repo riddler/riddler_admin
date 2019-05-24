@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <h4>Enter Actions</h4>
+        <a href="#" onclick="$('.<%= actionable.id %>-detail').toggle(); return false;">Toggle all</a>
+      </div>
+      <div class="card-body">
+        <ul id="<%= actionable.id %>-enter-actions" class="list-group action-container">
+          <%= render partial: "riddler_admin/action", collection: actionable.enter_actions %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <h4>Exit Actions</h4>
+        <a href="#" onclick="$('.<%= actionable.id %>-detail').toggle(); return false;">Toggle all</a>
+      </div>
+      <div class="card-body">
+        <ul id="<%= actionable.id %>-exit-actions" class="list-group action-container">
+          <%= render partial: "riddler_admin/action", collection: actionable.exit_actions %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
