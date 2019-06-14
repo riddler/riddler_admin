@@ -6,6 +6,9 @@
         <a class="nav-link active" id="elements-tab" data-toggle="tab" href="#elements" role="tab" aria-controls="elements" aria-selected="true">Elements</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" id="step-actions-tab" data-toggle="tab" href="#step-actions" role="tab" aria-controls="step-actions" aria-selected="false">Actions</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" id="step-definition-tab" data-toggle="tab" href="#step-definition" role="tab" aria-controls="step-definition" aria-selected="false">Definition</a>
       </li>
       <li class="nav-item">
@@ -44,6 +47,10 @@
           </div>
         </div>
 
+      </div>
+
+      <div class="tab-pane fade" id="step-actions" role="tabpanel" aria-labelledby="step-actions-tab">
+        <%= render partial: "actions", locals: { step: @step } %>
       </div>
 
       <div class="tab-pane fade" id="step-definition" role="tabpanel" aria-labelledby="definition-tab">

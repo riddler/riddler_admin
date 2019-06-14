@@ -45,6 +45,9 @@ module RiddlerAdmin
 
       content_proto = content_management_grpc.preview_content request_proto
       @preview_hash = JSON.parse content_proto.content_json
+
+    rescue GRPC::Unavailable, GRPC::DeadlineExceeded
+      @preview_hash = {"message" => "gRPC unavailable: #{$!}"}
     end
 
     def sort
@@ -110,7 +113,8 @@ module RiddlerAdmin
     def content_management_grpc
       ::Riddler::Protobuf::ContentManagement::Stub.new \
         ::RiddlerAdmin.configuration.riddler_grpc_address,
-        :this_channel_is_insecure
+        :this_channel_is_insecure,
+        timeout: 0.5
     end
 
     # Use callbacks to share common setup or constraints between actions.

@@ -1,5 +1,5 @@
 <ul class="list-group">
-  <% if (data["response_code"] || "").to_s == "204" %>
+  <% if data["message"] %>
     <li class="list-group-item">
       <%= data["message"] %>
     </li>
