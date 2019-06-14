@@ -6,8 +6,8 @@ module RiddlerAdmin
     # The Step or Element being published
     belongs_to :content, polymorphic: true
 
-    # The ContentDefinition created as a result of this request
-    has_one :content_definition
+    # The ContentVersion created as a result of this request
+    has_one :content_version
 
     validates :title, presence: true
 
@@ -30,9 +30,9 @@ module RiddlerAdmin
     end
 
     def publish published_at = Time.now.utc
-      raise "ERROR: Attempt to publish an unapproved definition" unless approved?
-      create_content_definition! content: content
-      content_definition.publish_to_remote
+      raise "ERROR: Attempt to publish an unapproved version" unless approved?
+      create_content_version! content: content
+      content_version.publish_to_remote
 
       update_attributes published_at: published_at,
         status: "published"

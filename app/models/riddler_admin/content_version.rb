@@ -1,9 +1,9 @@
-require "riddler/protobuf/content_definition_pb"
+require "riddler/protobuf/content_version_pb"
 require "riddler/protobuf/content_management_services_pb"
 
 module RiddlerAdmin
-  class ContentDefinition < ::RiddlerAdmin::ApplicationRecord
-    MODEL_KEY = "cdef".freeze
+  class ContentVersion < ::RiddlerAdmin::ApplicationRecord
+    MODEL_KEY = "cver".freeze
     ID_LENGTH = 5 # 916_132_832 per second
 
     DEFINITION_SCHEMA_VERSION = 1
@@ -29,10 +29,10 @@ module RiddlerAdmin
     end
 
     def to_proto
-      ::Riddler::Protobuf::ContentDefinition.new \
+      ::Riddler::Protobuf::ContentVersion.new \
         id: id,
         created_at: created_at_proto,
-        content_type: content.content_type.upcase.to_sym,
+        content_type: content.content_type,
         content_id: content.id,
         title: content.title,
         description: description,
@@ -42,7 +42,7 @@ module RiddlerAdmin
     end
 
     def publish_to_remote
-      content_management_grpc.create_content_definition create_request_proto
+      content_management_grpc.create_content_version create_request_proto
     end
 
     private
@@ -53,8 +53,8 @@ module RiddlerAdmin
     end
 
     def create_request_proto
-      ::Riddler::Protobuf::CreateContentDefinitionRequest.new \
-        content_definition: self.to_proto
+      ::Riddler::Protobuf::CreateContentVersionRequest.new \
+        content_version: self.to_proto
     end
 
     def content_management_grpc

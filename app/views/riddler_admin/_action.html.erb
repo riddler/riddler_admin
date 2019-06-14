@@ -1,0 +1,19 @@
+<li class="list-group-item" id="<%= action.id %>" data-id="<%= action.id %>">
+  <div>
+    <%= link_to "Toggle", "#", onclick: "$('##{action.id}-detail').toggle(); return false;" %>
+    <span class="handle">Move</span>
+  </div>
+
+  <h5>
+    <%= action.name %>
+    <span class="small text-muted"><%= action.short_name %> Action</span>
+  </h5>
+
+  <div id="<%= action.id %>-detail" class="<%= action.actionable.id %>-detail" style="display: none;">
+    <div id="<%= action.id %>-form">
+      <%= render partial: "riddler_admin/actions/form", locals: { action: action } %>
+    </div>
+
+    <%= render partial: action.to_partial_path("detail"), locals: { action: action } %>
+  </div>
+</li>

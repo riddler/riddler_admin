@@ -6,6 +6,9 @@ require "ulid"
 
 require "riddler_admin/engine"
 require "riddler_admin/configuration"
+
+require "riddler_admin/visitor"
+
 require "riddler"
 
 module RiddlerAdmin

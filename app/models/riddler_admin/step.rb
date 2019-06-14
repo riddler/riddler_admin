@@ -18,11 +18,23 @@ module RiddlerAdmin
 
     validates :include_predicate, parseable_predicate: true
 
+    has_many :enter_actions,
+      -> { where("transition_type = ?", "enter").order(position: :asc) },
+      class_name: "::RiddlerAdmin::Action",
+      dependent: :destroy,
+      as: :actionable
+
+    has_many :exit_actions,
+      -> { where("transition_type = ?", "exit").order(position: :asc) },
+      class_name: "::RiddlerAdmin::Action",
+      dependent: :destroy,
+      as: :actionable
+
     has_many :publish_requests,
       dependent: :nullify,
       as: :content
 
-    has_many :content_definitions,
+    has_many :content_versions,
       dependent: :nullify,
       as: :content
 
@@ -53,11 +65,11 @@ module RiddlerAdmin
 
     # Used in serialization
     def object
-      type.demodulize.underscore
+      type.demodulize
     end
 
     def content_type
-      "step"
+      "Step"
     end
 
     def content_id
@@ -65,14 +77,24 @@ module RiddlerAdmin
     end
 
     def published?
-      content_definitions.any?
+      content_versions.any?
     end
 
     def definition_hash options=nil
       options ||= {}
       hash = serializable_hash options.merge(serializable_hash_options)
       hash["type"] = object
-      hash.delete "include_predicate" if hash["include_predicate"].blank?
+      if hash["include_predicate"].blank?
+        hash.delete "include_predicate"
+      else
+        hash["include_predicate_instructions"] = ::Predicator.compile hash["include_predicate"]
+      end
+      if enter_actions.any?
+        hash["enter_actions"] = enter_actions.map{ |a| a.definition_hash }
+      end
+      if exit_actions.any?
+        hash["exit_actions"] = exit_actions.map{ |a| a.definition_hash }
+      end
       hash
     end
 

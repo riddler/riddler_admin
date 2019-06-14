@@ -1,0 +1,9 @@
+$("#new-action").fadeOut().html("").show();
+
+<% if "enter" == @action.transition_type %>
+$("#<%= [@action.actionable.id, @action.transition_type].join '-' %>-actions")
+  .html("<%= j render partial: "riddler_admin/action", collection: @action.actionable.enter_actions %>")
+<% else %>
+$("#<%= [@action.actionable.id, @action.transition_type].join '-' %>-actions")
+  .html("<%= j render partial: "riddler_admin/action", collection: @action.actionable.exit_actions %>")
+<% end %>

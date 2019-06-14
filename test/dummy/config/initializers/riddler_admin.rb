@@ -1,5 +1,6 @@
 ::RiddlerAdmin.configure do |c|
-  c.riddler_grpc_address = "localhost:9001"
+  #c.riddler_grpc_address = "10.10.4.196:50051"
+  #c.riddler_grpc_address = "127.0.0.1:50051"
   # c.encrypt_preview_contexts = true
 
   c.user_class_name = "::User"

@@ -1,3 +1,4 @@
+require "riddler/protobuf/content_management_services_pb"
 require_dependency "riddler_admin/application_controller"
 
 module RiddlerAdmin
@@ -38,10 +39,23 @@ module RiddlerAdmin
         render(status: 400, json: {message: "Invalid pctx_id"}) and return
       end
 
-      @use_case = ::Riddler::UseCases::AdminPreviewStep.new @step.definition_hash,
-        preview_context_data: @preview_context.data
+      if ::RiddlerAdmin.configuration.remote_riddler?
+        begin
+          request_proto = ::Riddler::Protobuf::PreviewContentRequest.new \
+            definition_json: @step.definition_hash.to_json,
+            context_json: @preview_context.data.to_json
 
-      @preview_hash = @use_case.process
+          content_proto = content_management_grpc.preview_content request_proto
+          @preview_hash = JSON.parse content_proto.content_json
+        rescue GRPC::Unavailable, GRPC::DeadlineExceeded
+          @preview_hash = {"message" => "gRPC unavailable: #{$!}"}
+        end
+      else
+        use_case = ::Riddler::UseCases::AdminPreviewStep.new @step.definition_hash,
+          preview_context_data: @preview_context.data
+
+        @preview_hash = use_case.process.deep_stringify_keys
+      end
     end
 
     def sort
@@ -103,6 +117,13 @@ module RiddlerAdmin
     end
 
     private
+
+    def content_management_grpc
+      ::Riddler::Protobuf::ContentManagement::Stub.new \
+        ::RiddlerAdmin.configuration.riddler_grpc_address,
+        :this_channel_is_insecure,
+        timeout: 0.5
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_step

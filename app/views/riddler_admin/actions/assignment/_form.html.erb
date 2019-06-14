@@ -1,0 +1,18 @@
+<%= f.fields_for :options, OpenStruct.new(action.options) do |ff| %>
+  <div class="form-row">
+    <div class="form-group col">
+      <%= ff.label :variable %>
+      <%= ff.text_field :variable, class: "form-control" %>
+      <small class="form-text text-muted">
+        Variable that will be assigned to.
+        Will be availabe as: <code>assigns.[variable]</code>
+      </small>
+    </div>
+
+    <div class="form-group col">
+      <%= ff.label :value_template, "Value Template" %>
+      <%= ff.text_field :value_template, class: "form-control" %>
+      <small class="form-text text-muted">Liquid template that will be evaluated for the value</small>
+    </div>
+  </div>
+<% end %>
