@@ -1,6 +1,22 @@
-<div class="form-group">
+<%= f.fields_for :options, OpenStruct.new(action.options) do |ff| %>
   <div class="form-row">
-    <div class="col">
+    <div class="form-group col">
+      <%= ff.label :request_method %>
+      <%= ff.select :request_method, options_for_select([["GET", "GET"], ["POST", "POST"]], ff.object.request_method), {}, class:"form-control" %>
+    </div>
+
+    <div class="form-group col">
+      <%= ff.label :url_template, "URL Template" %>
+      <%= ff.text_field :url_template, class: "form-control" %>
+      <small class="form-text text-muted">Liquid template that will be evaluated for the URL.</small>
     </div>
   </div>
-</div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <%= ff.label :body_template, "Body Template" %>
+      <%= ff.text_area :body_template, class: "form-control" %>
+      <small class="form-text text-muted">Liquid template that will be evaluated for the body of the request.</small>
+    </div>
+  </div>
+<% end %>

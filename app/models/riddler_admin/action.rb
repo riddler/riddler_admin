@@ -25,12 +25,13 @@ module RiddlerAdmin
 
     def self.available_classes
       [
+        Actions::Assignment,
         Actions::HTTPRequest
       ]
     end
 
     def self.default_class
-      Actions::HTTPRequest
+      Actions::Assignment
     end
 
     def self.short_name
@@ -68,7 +69,7 @@ module RiddlerAdmin
     end
 
     def excluded_attrs
-      [:created_at, :updated_at, :actionable_type, :actionable_id, :position, :transition_type]
+      [:created_at, :updated_at, :actionable_type, :actionable_id, :position, :transition_type, :options]
     end
 
     private
