@@ -30,14 +30,25 @@ module RiddlerAdmin
 
     def refresh_data input_headers: {}
       use_case_headers = merge_headers input_headers
+      hash = {}
 
-      input_json = {params: params_hash, headers: use_case_headers}.to_json
+      if ::RiddlerAdmin.configuration.remote_riddler?
+        input_json = {params: params_hash, headers: use_case_headers}.to_json
 
-      request_proto = ::Riddler::Protobuf::GenerateContextRequest.new \
-        input_json: input_json
+        request_proto = ::Riddler::Protobuf::GenerateContextRequest.new \
+          input_json: input_json
 
-      context_proto = content_management_grpc.generate_context request_proto
-      hash = JSON.parse context_proto.context_json
+        context_proto = content_management_grpc.generate_context request_proto
+        hash = JSON.parse context_proto.context_json
+
+      else
+        use_case = ::Riddler::UseCases::PreviewContext.new \
+          params: params_hash,
+          headers: use_case_headers
+
+        hash = use_case.process
+      end
+
       update_data hash
     end
 

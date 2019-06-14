@@ -39,15 +39,23 @@ module RiddlerAdmin
         render(status: 400, json: {message: "Invalid pctx_id"}) and return
       end
 
-      request_proto = ::Riddler::Protobuf::PreviewContentRequest.new \
-        definition_json: @step.definition_hash.to_json,
-        context_json: @preview_context.data.to_json
+      if ::RiddlerAdmin.configuration.remote_riddler?
+        begin
+          request_proto = ::Riddler::Protobuf::PreviewContentRequest.new \
+            definition_json: @step.definition_hash.to_json,
+            context_json: @preview_context.data.to_json
 
-      content_proto = content_management_grpc.preview_content request_proto
-      @preview_hash = JSON.parse content_proto.content_json
+          content_proto = content_management_grpc.preview_content request_proto
+          @preview_hash = JSON.parse content_proto.content_json
+        rescue GRPC::Unavailable, GRPC::DeadlineExceeded
+          @preview_hash = {"message" => "gRPC unavailable: #{$!}"}
+        end
+      else
+        use_case = ::Riddler::UseCases::AdminPreviewStep.new @step.definition_hash,
+          preview_context_data: @preview_context.data
 
-    rescue GRPC::Unavailable, GRPC::DeadlineExceeded
-      @preview_hash = {"message" => "gRPC unavailable: #{$!}"}
+        @preview_hash = use_case.process.deep_stringify_keys
+      end
     end
 
     def sort
