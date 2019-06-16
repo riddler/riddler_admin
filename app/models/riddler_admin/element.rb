@@ -24,7 +24,10 @@ module RiddlerAdmin
         Elements::Image,
         Elements::Link,
         Elements::Text,
-        Elements::Variant
+        Elements::Variant,
+
+        Elements::Button,
+        Elements::TextQuestion
       ]
     end
 

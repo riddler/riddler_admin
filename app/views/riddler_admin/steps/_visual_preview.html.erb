@@ -1,3 +1,4 @@
+<form>
 <ul class="list-group">
   <% if data["elements"].blank? %>
     <li class="list-group-item">
@@ -7,6 +8,8 @@
     <% data["elements"].each do |element| %>
       <li class="list-group-item">
         <% case element["type"] %>
+        <% when "Button" %>
+          <button id="<%= element["id"] %>" class="btn btn-primary"><%= element["text"] %></button>
         <% when "Link" %>
           <a href="<%= element["href"] %>" target="_blank"><%= element["text"] %></a>
         <% when "Heading" %>
@@ -15,6 +18,9 @@
           <img src="<%= element["src"] %>" alt="<%= element["alt"] %>" />
         <% when "Text" %>
           <%= element["text"] %>
+        <% when "TextQuestion" %>
+          <label for="<%= element["id"] %>"><%= element["text"] %></label><br/>
+          <input id="<%= element["id"] %>" type="text" class="form-control" />
         <% else %>
           Unknown Element type "<%= element["type"] %>"
         <% end %>
@@ -22,3 +28,4 @@
     <% end %>
   <% end %>
 </ul>
+</form>

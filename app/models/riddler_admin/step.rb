@@ -43,6 +43,9 @@ module RiddlerAdmin
     def self.available_classes
       [
         Steps::Content,
+        Steps::Input,
+        Steps::LinearFlow,
+        Steps::Redirect,
         Steps::Variant
       ]
     end
