@@ -72,15 +72,15 @@ module RiddlerAdmin
       def action_create_params
         params.require(:ra_action).permit(:id, :name, :type, :actionable_type, :actionable_id,
                                           :include_predicate, :transition_type,
-                                          options: [:variable, :value_template,
-                                                    :request_method, :url_template, :body_template])
+                                          options: [:variable, :value,
+                                                    :request_method, :url, :body])
       end
 
       # Only allow a trusted parameter "white list" through.
       def action_params
         params.require(:ra_action).permit(:name, :include_predicate, :transition_type,
-                                          options: [:variable, :value_template,
-                                                    :request_method, :url_template, :body_template])
+                                          options: [:variable, :value,
+                                                    :request_method, :url, :body])
       end
   end
 end

@@ -8,7 +8,7 @@ module RiddlerAdmin
       def definition_hash opts=nil
         hash = super
         hash["variable"] = options["variable"]
-        hash["value_template"] = options["value_template"]
+        hash["value"] = options["value"]
         hash
       end
     end
