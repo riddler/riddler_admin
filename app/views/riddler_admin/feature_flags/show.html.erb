@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-sm">
+    <% if notice %>
+    <div class="alert alert-success">
+      <span id="notice"><%= notice %></span>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom: 32px;">
+  <div class="col-sm-6">
+    <h1><%= @feature_flag.name %></h1>
+  </div>
+  <div class="col-sm-6">
+    <%= link_to "Edit", edit_feature_flag_path(@feature_flag), class: "btn btn-primary float-right" %>
+  </div>
+</div>

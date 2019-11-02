@@ -9,6 +9,8 @@ RiddlerAdmin::Engine.routes.draw do
     put "sort", on: :collection
   end
 
+  resources :feature_flags
+
   resources :preview_contexts
 
   resources :publish_requests do

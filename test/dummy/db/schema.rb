@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_14_020123) do
+ActiveRecord::Schema.define(version: 2019_11_02_031055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,13 @@ ActiveRecord::Schema.define(version: 2019_06_14_020123) do
     t.boolean "preview_enabled", default: false
     t.index ["emailable_type", "emailable_id"], name: "index_ra_emails_on_emailable_type_and_emailable_id"
     t.index ["id"], name: "index_ra_emails_on_id"
+  end
+
+  create_table "ra_feature_flags", id: :string, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.boolean "enabled"
   end
 
   create_table "ra_preview_contexts", id: :string, force: :cascade do |t|
