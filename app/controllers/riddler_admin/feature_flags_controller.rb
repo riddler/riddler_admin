@@ -63,12 +63,12 @@ module RiddlerAdmin
           @preview_hash = {"message" => "gRPC unavailable: #{$!}"}
         end
       else
-        #use_case = ::Riddler::UseCases::AdminPreviewFeatureFlag.new @feature_flag.definition_hash,
-        #  preview_context_data: @preview_context.data
+        use_case = ::Riddler::UseCases::AdminPreviewFeatureFlag.new @feature_flag.definition_hash,
+          preview_context_data: @preview_context.data
 
-        #@preview_hash = use_case.process.deep_stringify_keys
-        @preview_hash = {}
-        @preview_hash[@feature_flag.name] = "todo"
+        @preview_hash = use_case.process.deep_stringify_keys
+        #@preview_hash = {}
+        #@preview_hash[@feature_flag.name] = "todo"
       end
     end
 
