@@ -1,0 +1,8 @@
+<%= f.fields_for :options, OpenStruct.new(toggle.options) do |ff| %>
+  <div class="form-row">
+    <div class="form-group col">
+      <%= ff.label :condition %>
+      <%= ff.text_field :condition, class: "form-control" %>
+    </div>
+  </div>
+<% end %>

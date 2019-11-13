@@ -40,6 +40,9 @@
         <small class="form-text text-muted">Use data from the context that evaluates to <code>true</code> or <code>false</code></small>
       </div>
     </div>
+
+    <%= render partial: toggle.to_partial_path("form"), locals: { f: form, toggle: toggle } %>
+
     <div class="form-row">
       <div class="actions">
         <%= form.submit "Save toggle", class: "btn btn-primary" %>

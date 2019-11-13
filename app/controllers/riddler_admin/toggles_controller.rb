@@ -89,7 +89,7 @@ module RiddlerAdmin
 
     # Only allow a trusted parameter "white list" through.
     def toggle_params
-      params.require(:toggle).permit(:name, :title, :include_condition, :enabled)
+      params.require(:toggle).permit(:name, :title, :include_condition, options: [:condition])
     end
   end
 end

@@ -50,6 +50,7 @@ module RiddlerAdmin
       hash["type"] = object
       if hash["include_condition"].blank?
         hash.delete "include_condition"
+        hash.delete "include_condition_instructions"
       else
         hash["include_condition_instructions"] = ::Predicator.compile hash["include_condition"]
       end
@@ -64,7 +65,7 @@ module RiddlerAdmin
     end
 
     def excluded_attrs
-      [:created_at, :updated_at, :title]
+      [:created_at, :updated_at, :title, :options]
     end
 
     private
