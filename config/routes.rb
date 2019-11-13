@@ -9,8 +9,6 @@ RiddlerAdmin::Engine.routes.draw do
     put "sort", on: :collection
   end
 
-  resources :feature_flags
-
   resources :preview_contexts
 
   resources :publish_requests do
@@ -28,4 +26,8 @@ RiddlerAdmin::Engine.routes.draw do
   end
 
   resources :slugs
+
+  resources :toggles do
+    get "internal_preview", on: :member
+  end
 end

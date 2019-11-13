@@ -1,0 +1,50 @@
+<%= form_with model: toggle, local: true do |form| %>
+  <div class="row">
+    <% if toggle.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(toggle.errors.count, "error") %> prohibited this toggle from being saved:</h2>
+
+        <ul>
+        <% toggle.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <div class="form-row">
+      <div class="col">
+        <%= form.label :title %>
+        <%= form.text_field :title, class:"form-control" %>
+      </div>
+      <div class="col">
+        <%= form.label :name %>
+        <%= form.text_field :name, class:"form-control" %>
+        <small class="form-text text-muted">This will be created based on the title if not provided</small>
+      </div>
+    </div>
+    <% unless @toggle.persisted? %>
+    <div class="form-row">
+      <div class="col">
+        <%= form.label :type %>
+        <%= form.select :type, options_for_select(::RiddlerAdmin::Toggle.available_classes.map{|klass| [klass.short_name, klass.name]}, toggle.type), {}, class:"form-control" %>
+      </div>
+    </div>
+    <% end %>
+    <div class="form-row">
+      <div class="col">
+        <%= form.label :include_condition %>
+        <%= form.text_field :include_condition, class: "form-control", placeholder: "e.g. params.user_id is present" %>
+        <small class="form-text text-muted">Use data from the context that evaluates to <code>true</code> or <code>false</code></small>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="actions">
+        <%= form.submit "Save toggle", class: "btn btn-primary" %>
+        <%= link_to "Cancel", toggles_path, class: "btn btn-light" %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -13,7 +13,7 @@ require "riddler"
 
 module RiddlerAdmin
   def self.table_name_prefix
-    "ra_"
+    "rid_"
   end
 
   def self.configure
