@@ -1,4 +1,4 @@
-<%= f.fields_for :options, OpenStruct.new(toggle.options) do |ff| %>
+<%= f.fields_for :options, OpenStruct.new(feature_flag.options) do |ff| %>
   <div class="form-row">
     <div class="form-group col">
       <%= ff.label :condition %>

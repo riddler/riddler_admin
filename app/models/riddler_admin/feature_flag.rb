@@ -1,6 +1,6 @@
 module RiddlerAdmin
-  class Toggle < ::RiddlerAdmin::ApplicationRecord
-    MODEL_KEY = "tog".freeze
+  class FeatureFlag < ::RiddlerAdmin::ApplicationRecord
+    MODEL_KEY = "ff".freeze
     CARDINALITY = :small
 
     validates_presence_of :title
@@ -19,12 +19,12 @@ module RiddlerAdmin
 
     def self.available_classes
       [
-        Toggles::Segment
+        FeatureFlags::Segment
       ]
     end
 
     def self.default_class
-      Toggles::Segment
+      FeatureFlags::Segment
     end
 
     def self.short_name

@@ -10,11 +10,11 @@
 
 <div class="row" style="margin-bottom: 32px;">
   <div class="col-sm-6">
-    <h1><%= @toggle.title %></h1>
+    <h1><%= @feature_flag.title %></h1>
   </div>
   <div class="col-sm-6">
-    <%= link_to 'Edit Toggle', edit_toggle_path(@toggle), class: 'btn btn-light float-right' %>
+    <%= link_to 'Edit FeatureFlag', edit_feature_flag_path(@feature_flag), class: 'btn btn-light float-right' %>
   </div>
 </div>
 
-<%= render partial: @toggle.to_partial_path("show") %>
+<%= render partial: @feature_flag.to_partial_path("show") %>

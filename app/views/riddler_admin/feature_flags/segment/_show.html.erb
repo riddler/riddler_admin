@@ -1,7 +1,7 @@
 <div class="row" style="margin-bottom: 32px;">
   <div class="col-sm">
 
-    <ul id="toggle-tabs" class="nav nav-tabs">
+    <ul id="feature-flags-tabs" class="nav nav-tabs">
       <li class="nav-item">
         <a class="nav-link active" id="options-tab" data-toggle="tab" href="#options" role="tab" aria-controls="options" aria-selected="true">Options</a>
       </li>
@@ -19,17 +19,17 @@
 <div class="row">
   <div class="col-sm">
 
-    <div class="tab-content" id="toggle-tabs-content">
+    <div class="tab-content" id="feature-flags-tabs-content">
       <div class="tab-pane fade show active" id="options" role="tabpanel" aria-labelledby="options-tab">
 
       </div>
 
       <div class="tab-pane fade" id="definition" role="tabpanel" aria-labelledby="definition-tab">
-        <%= render partial: "definition", object: @toggle %>
+        <%= render partial: "definition", object: @feature_flag %>
       </div>
 
       <div class="tab-pane fade" id="preview" role="tabpanel" aria-labelledby="preview-tab">
-        <%= render partial: "riddler_admin/preview_toggle", locals: { preview_contexts: @preview_contexts, toggle: @toggle } %>
+        <%= render partial: "riddler_admin/preview_feature_flag", locals: { preview_contexts: @preview_contexts, feature_flag: @feature_flag } %>
       </div>
     </div>
 

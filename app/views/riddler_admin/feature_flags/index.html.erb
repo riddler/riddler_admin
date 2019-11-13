@@ -8,10 +8,10 @@
 
 <div class="row">
   <div class="col-sm-6">
-    <h1>Toggles</h1>
+    <h1>FeatureFlags</h1>
   </div>
   <div class="col-sm-6">
-    <%= link_to 'New toggle', new_toggle_path, class: 'btn btn-primary float-right'%>
+    <%= link_to 'New Feature Flag', new_feature_flag_path, class: 'btn btn-primary float-right'%>
   </div>
 </div>
 
@@ -27,14 +27,14 @@
   </thead>
 
   <tbody>
-    <% @toggles.each do |toggle| %>
+    <% @feature_flags.each do |feature_flag| %>
       <tr>
-        <td><%= link_to toggle.title, toggle %></td>
-        <td><%= toggle.id %></td>
-        <td><%= toggle.type.demodulize %></td>
+        <td><%= link_to feature_flag.title, feature_flag %></td>
+        <td><%= feature_flag.id %></td>
+        <td><%= feature_flag.type.demodulize %></td>
 
         <td>
-            <%= link_to 'Delete', toggle, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-light' %>
+            <%= link_to 'Delete', feature_flag, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-light' %>
 
         </td>
       </tr>

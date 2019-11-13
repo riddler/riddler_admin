@@ -1,6 +1,6 @@
 <script>
   $(document).ready(function(){
-    $(".toggle-context-preview").first().click()
+    $(".feature-flag-context-preview").first().click()
   })
 </script>
 
@@ -9,7 +9,7 @@
     <h4>Preview Contexts</h4>
     <div class="list-group" id="preview-sections-tab" role="tablist">
       <% preview_contexts.each do |ctx| %>
-        <a class="list-group-item list-group-item-action toggle-context-preview" id="list-preview-<%= ctx.id %>" data-toggle-id="<%= toggle.id %>" data-pctx-id="<%= ctx.id %>" data-toggle="list" href="#preview-context-<%= ctx.id %>" role="tab" aria-controls="preview-context-<%= ctx.id %>"><%= ctx.title %></a>
+        <a class="list-group-item list-group-item-action feature-flag-context-preview" id="list-preview-<%= ctx.id %>" data-feature-flag-id="<%= feature_flag.id %>" data-pctx-id="<%= ctx.id %>" data-toggle="list" href="#preview-context-<%= ctx.id %>" role="tab" aria-controls="preview-context-<%= ctx.id %>"><%= ctx.title %></a>
       <% end %>
     </div>
   </div>

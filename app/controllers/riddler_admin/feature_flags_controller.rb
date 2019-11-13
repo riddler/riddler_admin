@@ -1,28 +1,28 @@
 require_dependency "riddler_admin/application_controller"
 
 module RiddlerAdmin
-  class TogglesController < ApplicationController
-    before_action :set_toggle, only: [:show, :edit, :update, :destroy, :internal_preview]
-    before_action :set_toggle_class
+  class FeatureFlagsController < ApplicationController
+    before_action :set_feature_flag, only: [:show, :edit, :update, :destroy, :internal_preview]
+    before_action :set_feature_flag_class
 
     def index
-      @toggles = Toggle.all
+      @feature_flags = FeatureFlag.all
     end
 
     def show
-      @definition = @toggle.definition_hash
+      @definition = @feature_flag.definition_hash
       @preview_contexts = ::RiddlerAdmin::PreviewContext.all
     end
 
     def new
-      @toggle = @toggle_class.new
+      @feature_flag = @feature_flag_class.new
     end
 
     def create
-      @toggle = @toggle_class.new toggle_params
+      @feature_flag = @feature_flag_class.new feature_flag_params
 
-      if @toggle.save
-        redirect_to @toggle, notice: "Toggle was successfully created."
+      if @feature_flag.save
+        redirect_to @feature_flag, notice: "FeatureFlag was successfully created."
       else
         render :new
       end
@@ -32,16 +32,16 @@ module RiddlerAdmin
     end
 
     def update
-      if @toggle.update toggle_params
-        redirect_to @toggle, notice: "Toggle was successfully updated."
+      if @feature_flag.update feature_flag_params
+        redirect_to @feature_flag, notice: "FeatureFlag was successfully updated."
       else
         render :edit
       end
     end
 
     def destroy
-      @toggle.destroy
-      redirect_to toggles_url, notice: "Toggle was successfully destroyed."
+      @feature_flag.destroy
+      redirect_to feature_flags_url, notice: "FeatureFlag was successfully destroyed."
     end
 
     # Should always comes from the admin tool
@@ -54,7 +54,7 @@ module RiddlerAdmin
       if ::RiddlerAdmin.configuration.remote_riddler?
         begin
           request_proto = ::Riddler::Protobuf::PreviewContentRequest.new \
-            definition_json: @toggle.definition_hash.to_json,
+            definition_json: @feature_flag.definition_hash.to_json,
             context_json: @preview_context.data.to_json
 
           content_proto = content_management_grpc.preview_content request_proto
@@ -63,33 +63,33 @@ module RiddlerAdmin
           @preview_hash = {"message" => "gRPC unavailable: #{$!}"}
         end
       else
-        #use_case = ::Riddler::UseCases::AdminPreviewToggle.new @toggle.definition_hash,
+        #use_case = ::Riddler::UseCases::AdminPreviewFeatureFlag.new @feature_flag.definition_hash,
         #  preview_context_data: @preview_context.data
 
         #@preview_hash = use_case.process.deep_stringify_keys
         @preview_hash = {}
-        @preview_hash[@toggle.name] = "todo"
+        @preview_hash[@feature_flag.name] = "todo"
       end
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_toggle
-      @toggle = Toggle.find params[:id]
+    def set_feature_flag
+      @feature_flag = FeatureFlag.find params[:id]
     end
 
-    def set_toggle_class
-      class_name = params.fetch(:toggle, {}).delete(:type) ||
+    def set_feature_flag_class
+      class_name = params.fetch(:feature_flag, {}).delete(:type) ||
         params.delete(:type)
-      class_name = RiddlerAdmin::Toggle.default_class.name if class_name.blank?
+      class_name = RiddlerAdmin::FeatureFlag.default_class.name if class_name.blank?
 
-      @toggle_class = class_name.constantize
+      @feature_flag_class = class_name.constantize
     end
 
     # Only allow a trusted parameter "white list" through.
-    def toggle_params
-      params.require(:toggle).permit(:name, :title, :include_condition, options: [:condition])
+    def feature_flag_params
+      params.require(:feature_flag).permit(:name, :title, :include_condition, options: [:condition])
     end
   end
 end

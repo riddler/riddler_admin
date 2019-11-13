@@ -74,7 +74,7 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
     end
     add_index :rid_slugs, :name, unique: true
 
-    create_table :rid_toggles, id: :string do |t|
+    create_table :rid_feature_flags, id: :string do |t|
       t.timestamps
       t.string :type, null: false
       t.string :name, null: false
@@ -83,6 +83,6 @@ class RiddlerAdminGenesis < ActiveRecord::Migration[5.2]
       t.jsonb :include_condition_instructions
       t.jsonb :options
     end
-    add_index :rid_toggles, :name, unique: true
+    add_index :rid_feature_flags, :name, unique: true
   end
 end
