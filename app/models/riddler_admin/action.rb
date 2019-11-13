@@ -1,7 +1,7 @@
 module RiddlerAdmin
   class Action < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "act".freeze
-    ID_LENGTH = 6
+    CARDINALITY = :small
 
     belongs_to :actionable, polymorphic: true, validate: true
 

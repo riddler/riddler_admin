@@ -1,7 +1,7 @@
 module RiddlerAdmin
   class Toggle < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "tog".freeze
-    ID_LENGTH = 5 # 916_132_832 per second
+    CARDINALITY = :small
 
     validates_presence_of :title
 

@@ -3,7 +3,7 @@ require "riddler/protobuf/content_management_services_pb"
 module RiddlerAdmin
   class Slug < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "sl".freeze
-    ID_LENGTH = 5 # 916_132_832 per second
+    CARDINALITY = :small
 
     belongs_to :content_version
 

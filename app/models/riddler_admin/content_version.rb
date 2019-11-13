@@ -4,7 +4,7 @@ require "riddler/protobuf/content_management_services_pb"
 module RiddlerAdmin
   class ContentVersion < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "cver".freeze
-    ID_LENGTH = 5 # 916_132_832 per second
+    CARDINALITY = :small
 
     DEFINITION_SCHEMA_VERSION = 1
 

@@ -3,7 +3,7 @@ require "riddler/protobuf/content_management_services_pb"
 module RiddlerAdmin
   class PreviewContext < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "pctx".freeze
-    ID_LENGTH = 5 # 916_132_832 per second
+    CARDINALITY = :small
 
     validates :title, presence: true, uniqueness: true
 

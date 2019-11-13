@@ -1,7 +1,7 @@
 module RiddlerAdmin
   class Element < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "el".freeze
-    ID_LENGTH = 6 # 56_800_235_584 per second
+    CARDINALITY = :medium
 
     after_initialize :set_defaults
 

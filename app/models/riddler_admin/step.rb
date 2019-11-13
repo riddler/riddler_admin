@@ -1,7 +1,7 @@
 module RiddlerAdmin
   class Step < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "st".freeze
-    ID_LENGTH = 5 # 916_132_832 per second
+    CARDINALITY = :small
 
     belongs_to :stepable, polymorphic: true, optional: true
     acts_as_list scope: [:stepable_type, :stepable_id]

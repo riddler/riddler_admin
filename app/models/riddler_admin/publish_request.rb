@@ -1,7 +1,7 @@
 module RiddlerAdmin
   class PublishRequest < ::RiddlerAdmin::ApplicationRecord
     MODEL_KEY = "pr".freeze
-    ID_LENGTH = 5 # 916_132_832 per second
+    CARDINALITY = :small
 
     # The Step or Element being published
     belongs_to :content, polymorphic: true
