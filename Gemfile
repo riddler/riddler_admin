@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gemspec
 
+gem "aws-sdk-sqs"
 gem "pg"
 gem "predicator"
 gem "puma"

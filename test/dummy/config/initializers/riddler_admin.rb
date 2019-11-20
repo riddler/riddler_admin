@@ -8,6 +8,11 @@
 
   c.main_app_name = "Main App"
 
+  c.publish_block = -> (message) {
+    SQS.send_message queue_url: SEND_QUEUE.queue_url,
+    message_body: message
+  }
+
   #c.user_can_approve_block = -> (user) {
   #  user && user.role == "admin"
   #}

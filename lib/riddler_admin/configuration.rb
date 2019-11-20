@@ -5,6 +5,7 @@ module RiddlerAdmin
       :vault_address, :preview_context_transit_key,
       :current_user_method, :user_id_method, :user_name_block,
       :user_can_approve_block, :user_can_deploy_block,
+      :publish_block,
       :controller_authorization_block, :app_name, :main_app_name,
       :javascript_includes
 
@@ -20,6 +21,7 @@ module RiddlerAdmin
       @user_id_method = :id
       @user_name_block = -> (user) { user.name }
       @javascript_includes = []
+      @publish_block = -> (message) { Rails.logger.info "PUBLISH: #{message}" }
     end
 
     def remote_riddler?
